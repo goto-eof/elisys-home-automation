@@ -6,7 +6,7 @@ project. Currently, Elisys Home Automation supports only the motion sensor devic
 data provided by a motion sensor controlled by a ESP32 device (or Raspberry Pi). In particular, it allows to:
 
 - supply the configuration for the motion sensor when it starts for the first time;
-- send notifications via discord when a motion is detected, so that a post request is handled;
+- send notifications via Discord when a motion is detected, so that a post request is handled;
 - take trace about the sensor status:  alive/disabled.
 
 # Technologies
