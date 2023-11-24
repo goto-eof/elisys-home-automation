@@ -1,4 +1,4 @@
-# Elisys Home Automation
+# Elisys Home Automation Server (Java)
 
 Elisys Home Automation is the back-end side
 for [**ESP32 IDF | Motion Detector and Server Notifier (Rust)**](https://github.com/goto-eof/esp32-motion-detector-and-server-notifier-rust)
