@@ -1,7 +1,7 @@
 # Elisys Home Automation
 
 Elisys Home Automation is the back-end side
-for ["ESP32 IDF | Motion Detector and Server Notifier (Rust)"](https://github.com/goto-eof/esp32-motion-detector-and-server-notifier-rust)
+for [**ESP32 IDF | Motion Detector and Server Notifier (Rust)**](https://github.com/goto-eof/esp32-motion-detector-and-server-notifier-rust)
 project. Currently, Elisys Home Automation supports only the motion sensor device, so that it allows to retrieve the
 data provided by a motion sensor controlled by a ESP32 device (or Raspberry Pi). In particular, it allows to:
 
