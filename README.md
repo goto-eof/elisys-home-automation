@@ -20,6 +20,7 @@ PostgreSQL.
 Rename `src/main/resources/application.properties` in `src/main/resources/application-dev.properties`.
 
 Configure IntelliJ IDEA in this way:
+
 ![IDE](images/ide_config.png)
 
 Before run the application for the first time it is necessary to configure these properties in `application.properties`
@@ -57,9 +58,9 @@ java -jar elisys-home-automation.jar
 
 The API documentation can be found at the following URI (after server starts):
 
-```
-http://localhost:8080/swagger-ui/index.html
-```
+
+[http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+
 
 This project is a Work In Progress.
 
