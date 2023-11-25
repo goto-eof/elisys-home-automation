@@ -54,13 +54,17 @@ Then run the jar `elisys-home-automation.jar` located in `build/libs` in the fol
 java -jar elisys-home-automation.jar
 ```
 
+Or for external configuration file:
+
+```
+java -jar -Dspring.config.location=application-dev.properties elisys-home-automation.jar
+```
+
 # OpenApi
 
 The API documentation can be found at the following URI (after server starts):
 
-
 [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
-
 
 This project is a Work In Progress.
 
