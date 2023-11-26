@@ -45,17 +45,21 @@ public class SensorConfigurationServiceImpl implements SensorConfigurationServic
             log.info(result.toString());
             return result;
         }
-        Device device = new Device();
-        device.setMacAddress(motionSensorConfigurationRequestDTO.getMacAddress());
-        device.setDescription(motionSensorConfigurationRequestDTO.getMacAddress());
-        device = deviceRepository.save(device);
-
+        Device device = createAndSaveDeviceModel(motionSensorConfigurationRequestDTO);
         SensorConfigurationDTO dto = loadDefaultConfiguration(motionSensorConfigurationRequestDTO.getMacAddress());
         SensorConfiguration model = sensorConfigurationMapper.toModel(dto);
         model.setDevice(device);
         SensorConfigurationDTO result = this.sensorConfigurationMapper.toDTO(this.sensorConfigurationRepository.save(model));
         log.info(result.toString());
         return result;
+    }
+
+    private Device createAndSaveDeviceModel(SensorConfigurationRequestDTO motionSensorConfigurationRequestDTO) {
+        Device device = new Device();
+        device.setMacAddress(motionSensorConfigurationRequestDTO.getMacAddress());
+        device.setDescription(motionSensorConfigurationRequestDTO.getMacAddress());
+        device = deviceRepository.save(device);
+        return device;
     }
 
     private SensorConfigurationDTO loadDefaultConfiguration(String macAddress) {

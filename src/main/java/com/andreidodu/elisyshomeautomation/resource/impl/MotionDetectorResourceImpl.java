@@ -1,6 +1,6 @@
-package com.andreidodu.elisyshomeautomation.controller.impl;
+package com.andreidodu.elisyshomeautomation.resource.impl;
 
-import com.andreidodu.elisyshomeautomation.controller.MotionDetectionResource;
+import com.andreidodu.elisyshomeautomation.resource.MotionDetectionResource;
 import com.andreidodu.elisyshomeautomation.dto.request.AlertRequestDTO;
 import com.andreidodu.elisyshomeautomation.service.MotionDetectorService;
 import com.andreidodu.elisyshomeautomation.dto.response.ResponseStatusDTO;

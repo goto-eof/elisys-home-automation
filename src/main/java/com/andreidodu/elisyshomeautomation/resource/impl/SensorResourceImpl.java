@@ -1,8 +1,8 @@
-package com.andreidodu.elisyshomeautomation.controller.impl;
+package com.andreidodu.elisyshomeautomation.resource.impl;
 
 import com.andreidodu.elisyshomeautomation.dto.response.SensorConfigurationDTO;
 import com.andreidodu.elisyshomeautomation.service.SensorConfigurationService;
-import com.andreidodu.elisyshomeautomation.controller.SensorResource;
+import com.andreidodu.elisyshomeautomation.resource.SensorResource;
 import com.andreidodu.elisyshomeautomation.dto.request.SensorConfigurationRequestDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

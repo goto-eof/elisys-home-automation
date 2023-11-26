@@ -1,4 +1,4 @@
-package com.andreidodu.elisyshomeautomation.controller;
+package com.andreidodu.elisyshomeautomation.resource;
 
 import com.andreidodu.elisyshomeautomation.dto.request.AlertRequestDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.ResponseStatusDTO;

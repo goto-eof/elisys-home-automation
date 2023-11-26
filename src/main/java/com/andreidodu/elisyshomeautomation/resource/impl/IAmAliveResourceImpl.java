@@ -1,6 +1,6 @@
-package com.andreidodu.elisyshomeautomation.controller.impl;
+package com.andreidodu.elisyshomeautomation.resource.impl;
 
-import com.andreidodu.elisyshomeautomation.controller.IAmAliveResource;
+import com.andreidodu.elisyshomeautomation.resource.IAmAliveResource;
 import com.andreidodu.elisyshomeautomation.dto.request.IAmAliveRequestDTO;
 import com.andreidodu.elisyshomeautomation.service.IAmAliveService;
 import com.andreidodu.elisyshomeautomation.dto.response.ResponseStatusDTO;

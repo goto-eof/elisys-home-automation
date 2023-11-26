@@ -2,6 +2,7 @@ package com.andreidodu.elisyshomeautomation.service.impl;
 
 import com.andreidodu.elisyshomeautomation.dao.DeviceRepository;
 import com.andreidodu.elisyshomeautomation.model.Alive;
+import com.andreidodu.elisyshomeautomation.model.Device;
 import com.andreidodu.elisyshomeautomation.service.IAmAliveService;
 import com.andreidodu.elisyshomeautomation.dao.IAmAliveRepository;
 import com.andreidodu.elisyshomeautomation.dto.request.IAmAliveRequestDTO;
@@ -24,20 +25,22 @@ public class IAmAliveServiceImpl implements IAmAliveService {
     public ResponseStatusDTO check(final IAmAliveRequestDTO iAmAliveRequestDTO) {
         Optional<Alive> aliveOptional = iAmAliveRepository.findByDevice_MacAddress(iAmAliveRequestDTO.getMacAddress());
         ResponseStatusDTO status = new ResponseStatusDTO();
-        status.setStatus(false);
         if (aliveOptional.isPresent()) {
-            final Alive alive = aliveOptional.get();
-            alive.setLastAckTimestamp(new Date());
-            iAmAliveRepository.save(alive);
+            createAndSaveAliveModel(Optional.empty());
             status.setStatus(true);
             return status;
         }
-        Alive alive = new Alive();
-        alive.setLastAckTimestamp(new Date());
-        alive.setDevice(deviceRepository.findByMacAddress(iAmAliveRequestDTO.getMacAddress()).get());
-        iAmAliveRepository.save(alive);
+        Optional<Device> deviceOptional = deviceRepository.findByMacAddress(iAmAliveRequestDTO.getMacAddress());
+        createAndSaveAliveModel(deviceOptional);
         status.setStatus(true);
         return status;
+    }
+
+    private void createAndSaveAliveModel(Optional<Device> deviceOptional) {
+        final Alive alive = new Alive();
+        alive.setLastAckTimestamp(new Date());
+        deviceOptional.ifPresent(alive::setDevice);
+        iAmAliveRepository.save(alive);
     }
 
 }

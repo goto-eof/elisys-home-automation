@@ -1,4 +1,4 @@
-package com.andreidodu.elisyshomeautomation.controller;
+package com.andreidodu.elisyshomeautomation.resource;
 
 import com.andreidodu.elisyshomeautomation.dto.response.SensorConfigurationDTO;
 import com.andreidodu.elisyshomeautomation.dto.request.SensorConfigurationRequestDTO;
