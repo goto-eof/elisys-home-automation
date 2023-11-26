@@ -1,6 +1,6 @@
 package com.andreidodu.elisyshomeautomation.controller.impl;
 
-import com.andreidodu.elisyshomeautomation.controller.MotionSensorResource;
+import com.andreidodu.elisyshomeautomation.controller.MotionDetectionResource;
 import com.andreidodu.elisyshomeautomation.dto.request.AlertRequestDTO;
 import com.andreidodu.elisyshomeautomation.service.MotionDetectorService;
 import com.andreidodu.elisyshomeautomation.dto.response.ResponseStatusDTO;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-public class MotionDetectorResourceImpl implements MotionSensorResource {
+public class MotionDetectorResourceImpl implements MotionDetectionResource {
 
     final private MotionDetectorService motionDetectorService;
 

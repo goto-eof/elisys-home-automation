@@ -1,10 +1,11 @@
 package com.andreidodu.elisyshomeautomation.dao;
 
 import com.andreidodu.elisyshomeautomation.model.Alive;
+import com.andreidodu.elisyshomeautomation.model.Device;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 
-public interface IAmAliveRepository extends CrudRepository<Alive, Long> {
-    Optional<Alive> findByDevice_MacAddress(String macAddress);
+public interface DeviceRepository extends CrudRepository<Device, Long> {
+    Optional<Device> findByMacAddress(String macAddress);
 }

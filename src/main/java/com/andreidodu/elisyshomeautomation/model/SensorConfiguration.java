@@ -1,5 +1,6 @@
 package com.andreidodu.elisyshomeautomation.model;
 
+import com.andreidodu.elisyshomeautomation.model.common.ModelCommon;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,15 +13,12 @@ import java.util.Date;
 @Getter
 @Setter
 @EntityListeners(AuditingEntityListener.class)
-public class SensorConfiguration {
+public class SensorConfiguration extends ModelCommon {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-
-    @Column(name = "mac_address", nullable = false, unique = true)
-    private String macAddress;
 
     @Column(name = "alert_endpoint", nullable = false)
     private String alertEndpoint;
@@ -33,12 +31,16 @@ public class SensorConfiguration {
 
     private String crontab;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "device_id", referencedColumnName = "id")
+    private Device device;
+
 
     @Override
     public String toString() {
         return "SensorConfiguration{" +
                 "id=" + id +
-                ", macAddress='" + macAddress + '\'' +
+                ", macAddress='" + device.getMacAddress() + '\'' +
                 ", alertEndpoint='" + alertEndpoint + '\'' +
                 ", iAmAliveEndpoint='" + iAmAliveEndpoint + '\'' +
                 ", iAmAliveIntervalSeconds=" + iAmAliveIntervalSeconds +

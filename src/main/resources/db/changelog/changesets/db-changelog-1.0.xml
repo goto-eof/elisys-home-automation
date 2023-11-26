@@ -6,16 +6,16 @@
       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
       ">
 
-    <changeSet author="Andrei Dodu" id="2023-11-24-001">
-        <createTable tableName="${tablePrefix}alive">
+    <changeSet author="Andrei Dodu" id="2023-11-26-001">
+        <createTable tableName="${tablePrefix}device">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="mac_address" type="varchar(255)">
-                <constraints nullable="true"/>
+                <constraints nullable="false"/>
             </column>
-            <column name="last_ack_timestamp" type="TIMESTAMP">
-                <constraints nullable="true"/>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="false"/>
             </column>
             <column name="insert_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
             <column name="update_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
@@ -23,21 +23,36 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="2023-11-24-002" author="Andrei Dodu">
-        <addUniqueConstraint columnNames="mac_address"
-                             constraintName="mac_address_unique"
-                             tableName="${tablePrefix}alive"
-                             validate="true"/>
-    </changeSet>
+    <changeSet author="Andrei Dodu" id="2023-11-24-001">
+        <createTable tableName="${tablePrefix}alive">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="last_ack_timestamp" type="TIMESTAMP">
+                <constraints nullable="true"/>
+            </column>
+            <column name="device_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="insert_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
+            <column name="update_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
+            <column name="version" type="INT"/>
+        </createTable>
 
+        <addForeignKeyConstraint  baseColumnNames="device_id"
+                                  baseTableName="${tablePrefix}alive"
+                                  constraintName="fk_alive_device"
+                                  onDelete="CASCADE"
+                                  onUpdate="RESTRICT"
+                                  referencedColumnNames="id"
+                                  referencedTableName="${tablePrefix}device"
+                                  validate="true"/>
+    </changeSet>
 
     <changeSet author="Andrei Dodu" id="2023-11-24-003">
         <createTable tableName="${tablePrefix}sensor_configuration">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="mac_address" type="varchar(255)">
-                <constraints nullable="false"/>
             </column>
             <column name="alert_endpoint" type="varchar(1000)">
                 <constraints nullable="false"/>
@@ -51,10 +66,50 @@
             <column name="crontab" type="varchar(100)">
                 <constraints nullable="false"/>
             </column>
+            <column name="device_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
             <column name="insert_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
             <column name="update_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
             <column name="version" type="INT"/>
         </createTable>
+        <addForeignKeyConstraint  baseColumnNames="device_id"
+                                  baseTableName="${tablePrefix}sensor_configuration"
+                                  constraintName="fk_sens_config_device"
+                                  onDelete="CASCADE"
+                                  onUpdate="RESTRICT"
+                                  referencedColumnNames="id"
+                                  referencedTableName="${tablePrefix}device"
+                                  validate="true"/>
     </changeSet>
+
+
+
+    <changeSet author="Andrei Dodu" id="2023-11-26-002">
+        <createTable tableName="${tablePrefix}motion_detection">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="device_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_timestamp" type="TIMESTAMP">
+                <constraints nullable="true"/>
+            </column>
+            <column name="insert_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
+            <column name="update_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
+            <column name="version" type="INT"/>
+        </createTable>
+        <addForeignKeyConstraint  baseColumnNames="device_id"
+                                  baseTableName="${tablePrefix}motion_detection"
+                                  constraintName="fk_motion_detection_device"
+                                  onDelete="CASCADE"
+                                  onUpdate="RESTRICT"
+                                  referencedColumnNames="id"
+                                  referencedTableName="${tablePrefix}device"
+                                  validate="true"/>
+    </changeSet>
+
+
 
 </databaseChangeLog>

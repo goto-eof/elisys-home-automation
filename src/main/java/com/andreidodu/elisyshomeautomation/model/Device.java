@@ -9,21 +9,26 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.util.Date;
 
 @Entity
-@Table(name = "ha_alive")
+@Table(name = "ha_device")
 @Getter
 @Setter
 @EntityListeners(AuditingEntityListener.class)
-public class Alive extends ModelCommon {
+public class Device extends ModelCommon {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "last_ack_timestamp", nullable = false)
-    private Date lastAckTimestamp;
+    @Column(name = "mac_address", nullable = false, unique = true)
+    private String macAddress;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "device_id", referencedColumnName = "id")
-    private Device device;
+    @Column(name = "description", nullable = false)
+    private String description;
+
+    @OneToOne(mappedBy = "device")
+    private Alive alive;
+
+    @OneToOne(mappedBy = "device")
+    private SensorConfiguration sensorConfiguration;
 }

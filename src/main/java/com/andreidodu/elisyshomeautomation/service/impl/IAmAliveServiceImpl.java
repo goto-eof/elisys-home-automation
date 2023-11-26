@@ -1,5 +1,6 @@
 package com.andreidodu.elisyshomeautomation.service.impl;
 
+import com.andreidodu.elisyshomeautomation.dao.DeviceRepository;
 import com.andreidodu.elisyshomeautomation.model.Alive;
 import com.andreidodu.elisyshomeautomation.service.IAmAliveService;
 import com.andreidodu.elisyshomeautomation.dao.IAmAliveRepository;
@@ -18,9 +19,10 @@ import java.util.Optional;
 public class IAmAliveServiceImpl implements IAmAliveService {
 
     final private IAmAliveRepository iAmAliveRepository;
+    final private DeviceRepository deviceRepository;
 
     public ResponseStatusDTO check(final IAmAliveRequestDTO iAmAliveRequestDTO) {
-        Optional<Alive> aliveOptional = iAmAliveRepository.findByMacAddress(iAmAliveRequestDTO.getMacAddress());
+        Optional<Alive> aliveOptional = iAmAliveRepository.findByDevice_MacAddress(iAmAliveRequestDTO.getMacAddress());
         ResponseStatusDTO status = new ResponseStatusDTO();
         status.setStatus(false);
         if (aliveOptional.isPresent()) {
@@ -31,10 +33,10 @@ public class IAmAliveServiceImpl implements IAmAliveService {
             return status;
         }
         Alive alive = new Alive();
-        alive.setMacAddress(iAmAliveRequestDTO.getMacAddress());
         alive.setLastAckTimestamp(new Date());
+        alive.setDevice(deviceRepository.findByMacAddress(iAmAliveRequestDTO.getMacAddress()).get());
         iAmAliveRepository.save(alive);
-        status.setStatus(false);
+        status.setStatus(true);
         return status;
     }
 

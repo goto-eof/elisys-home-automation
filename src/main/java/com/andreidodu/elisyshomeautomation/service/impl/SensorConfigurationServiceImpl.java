@@ -1,9 +1,11 @@
 package com.andreidodu.elisyshomeautomation.service.impl;
 
+import com.andreidodu.elisyshomeautomation.dao.DeviceRepository;
 import com.andreidodu.elisyshomeautomation.dao.SensorConfigurationRepository;
 import com.andreidodu.elisyshomeautomation.dto.response.SensorConfigurationDTO;
 import com.andreidodu.elisyshomeautomation.mapper.SensorConfigurationMapper;
 import com.andreidodu.elisyshomeautomation.dto.request.SensorConfigurationRequestDTO;
+import com.andreidodu.elisyshomeautomation.model.Device;
 import com.andreidodu.elisyshomeautomation.model.SensorConfiguration;
 import com.andreidodu.elisyshomeautomation.service.SensorConfigurationService;
 import lombok.RequiredArgsConstructor;
@@ -33,17 +35,24 @@ public class SensorConfigurationServiceImpl implements SensorConfigurationServic
 
     private final SensorConfigurationRepository sensorConfigurationRepository;
     private final SensorConfigurationMapper sensorConfigurationMapper;
+    private final DeviceRepository deviceRepository;
 
     @Override
     public SensorConfigurationDTO getConfiguration(SensorConfigurationRequestDTO motionSensorConfigurationRequestDTO) {
-        Optional<SensorConfiguration> sensorConfigurationOptional = sensorConfigurationRepository.findByMacAddress(motionSensorConfigurationRequestDTO.getMacAddress());
+        Optional<SensorConfiguration> sensorConfigurationOptional = sensorConfigurationRepository.findByDevice_MacAddress(motionSensorConfigurationRequestDTO.getMacAddress());
         if (sensorConfigurationOptional.isPresent()) {
             SensorConfigurationDTO result = sensorConfigurationMapper.toDTO(sensorConfigurationOptional.get());
             log.info(result.toString());
             return result;
         }
+        Device device = new Device();
+        device.setMacAddress(motionSensorConfigurationRequestDTO.getMacAddress());
+        device.setDescription(motionSensorConfigurationRequestDTO.getMacAddress());
+        device = deviceRepository.save(device);
+
         SensorConfigurationDTO dto = loadDefaultConfiguration(motionSensorConfigurationRequestDTO.getMacAddress());
         SensorConfiguration model = sensorConfigurationMapper.toModel(dto);
+        model.setDevice(device);
         SensorConfigurationDTO result = this.sensorConfigurationMapper.toDTO(this.sensorConfigurationRepository.save(model));
         log.info(result.toString());
         return result;
