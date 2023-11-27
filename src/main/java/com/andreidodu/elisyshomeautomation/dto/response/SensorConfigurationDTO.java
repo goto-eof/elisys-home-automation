@@ -18,4 +18,5 @@ public class SensorConfigurationDTO extends SensorResponseCommonDTO {
     @JsonProperty("iAmAliveIntervalSeconds")
     private Long iAmAliveIntervalSeconds;
     private String crontab;
+    private Integer timezoneOffsetSec;
 }

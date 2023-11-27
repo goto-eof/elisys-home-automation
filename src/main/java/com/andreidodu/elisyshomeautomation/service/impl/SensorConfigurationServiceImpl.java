@@ -33,6 +33,9 @@ public class SensorConfigurationServiceImpl implements SensorConfigurationServic
     @Value("${app.configuration.default.motion.sensor.crontab}")
     private String crontab;
 
+    @Value("${app.configuration.default.motion.sensor.crontab.timezone}")
+    private Integer timezoneOffsetSec;
+
     private final SensorConfigurationRepository sensorConfigurationRepository;
     private final SensorConfigurationMapper sensorConfigurationMapper;
     private final DeviceRepository deviceRepository;
@@ -70,6 +73,7 @@ public class SensorConfigurationServiceImpl implements SensorConfigurationServic
         dto.setIAmAliveIntervalSeconds(iAmAliveIntervalSeconds);
         dto.setIAmAliveEndpoint(iAmAliveEndpoint);
         dto.setCrontab(crontab);
+        dto.setTimezoneOffsetSec(timezoneOffsetSec);
         return dto;
     }
 

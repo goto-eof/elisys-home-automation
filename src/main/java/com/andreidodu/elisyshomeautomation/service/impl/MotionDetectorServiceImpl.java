@@ -29,12 +29,12 @@ public class MotionDetectorServiceImpl implements MotionDetectorService {
         status.setStatus(true);
         log.info("alert request received from " + alertRequestDTO.getMacAddress());
         try {
+            Device device = deviceRepository.findByMacAddress(alertRequestDTO.getMacAddress()).get();
             DiscordMessageDTO discordMessageDTO = new DiscordMessageDTO();
-            discordMessageDTO.setContent((new Date()) + " - alert from [" + alertRequestDTO.getMacAddress() + "]");
+            discordMessageDTO.setContent((new Date()) + " - motion detected by [" + alertRequestDTO.getMacAddress() + "][" + device.getDescription() + "]");
             log.info("sending to discord channel...");
             discordChannel.sendMessage(discordMessageDTO);
             log.info("message sent successfully to Discord channel");
-            Device device = deviceRepository.findByMacAddress(alertRequestDTO.getMacAddress()).get();
             createAndSaveMotionDetectionModel(device);
         } catch (Exception e) {
             status.setStatus(false);

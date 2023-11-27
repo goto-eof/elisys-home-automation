@@ -29,6 +29,9 @@ public class SensorConfiguration extends ModelCommon {
     @Column(name = "i_am_alive_interval_seconds", nullable = false)
     private Long iAmAliveIntervalSeconds;
 
+    @Column(name = "timezone_offset_sec", nullable = false)
+    private Integer timezoneOffsetSec;
+
     private String crontab;
 
     @OneToOne(cascade = CascadeType.ALL)
