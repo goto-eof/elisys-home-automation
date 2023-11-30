@@ -9,15 +9,17 @@ import com.andreidodu.elisyshomeautomation.model.MotionDetection;
 import com.andreidodu.elisyshomeautomation.service.MotionDetectorService;
 import com.andreidodu.elisyshomeautomation.dto.request.AlertRequestDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.ResponseStatusDTO;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
-@Service
-@RequiredArgsConstructor
 @Slf4j
+@Service
+@Transactional
+@RequiredArgsConstructor
 public class MotionDetectorServiceImpl implements MotionDetectorService {
 
     final private DiscordChannel discordChannel;

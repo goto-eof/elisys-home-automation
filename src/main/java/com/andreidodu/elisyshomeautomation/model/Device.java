@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "ha_device")
@@ -31,4 +32,7 @@ public class Device extends ModelCommon {
 
     @OneToOne(mappedBy = "device")
     private SensorConfiguration sensorConfiguration;
+
+    @OneToMany(mappedBy = "device")
+    private List<Weather> weather;
 }

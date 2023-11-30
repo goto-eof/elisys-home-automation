@@ -5,6 +5,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SensorResponseCommonDTO extends SensorRequestCommon {
+public class SensorResponseCommonDTO extends SensorRequestCommonDTO {
     private String macAddress;
 }

@@ -39,14 +39,14 @@
             <column name="version" type="INT"/>
         </createTable>
 
-        <addForeignKeyConstraint  baseColumnNames="device_id"
-                                  baseTableName="${tablePrefix}alive"
-                                  constraintName="fk_alive_device"
-                                  onDelete="CASCADE"
-                                  onUpdate="RESTRICT"
-                                  referencedColumnNames="id"
-                                  referencedTableName="${tablePrefix}device"
-                                  validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="device_id"
+                                 baseTableName="${tablePrefix}alive"
+                                 constraintName="fk_alive_device"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="${tablePrefix}device"
+                                 validate="true"/>
     </changeSet>
 
     <changeSet author="Andrei Dodu" id="2023-11-24-003">
@@ -76,16 +76,15 @@
             <column name="update_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
             <column name="version" type="INT"/>
         </createTable>
-        <addForeignKeyConstraint  baseColumnNames="device_id"
-                                  baseTableName="${tablePrefix}sensor_configuration"
-                                  constraintName="fk_sens_config_device"
-                                  onDelete="CASCADE"
-                                  onUpdate="RESTRICT"
-                                  referencedColumnNames="id"
-                                  referencedTableName="${tablePrefix}device"
-                                  validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="device_id"
+                                 baseTableName="${tablePrefix}sensor_configuration"
+                                 constraintName="fk_sens_config_device"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="${tablePrefix}device"
+                                 validate="true"/>
     </changeSet>
-
 
 
     <changeSet author="Andrei Dodu" id="2023-11-26-002">
@@ -103,16 +102,44 @@
             <column name="update_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
             <column name="version" type="INT"/>
         </createTable>
-        <addForeignKeyConstraint  baseColumnNames="device_id"
-                                  baseTableName="${tablePrefix}motion_detection"
-                                  constraintName="fk_motion_detection_device"
-                                  onDelete="CASCADE"
-                                  onUpdate="RESTRICT"
-                                  referencedColumnNames="id"
-                                  referencedTableName="${tablePrefix}device"
-                                  validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="device_id"
+                                 baseTableName="${tablePrefix}motion_detection"
+                                 constraintName="fk_motion_detection_device"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="${tablePrefix}device"
+                                 validate="true"/>
     </changeSet>
 
+
+    <changeSet author="Andrei Dodu" id="2023-11-30-001">
+        <createTable tableName="${tablePrefix}weather">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="device_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="temperature" type="double"/>
+            <column name="humidity" type="double"/>
+            <column name="pressure" type="double"/>
+
+            <column name="insert_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
+            <column name="update_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
+            <column name="version" type="INT"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="device_id"
+                                 baseTableName="${tablePrefix}weather"
+                                 constraintName="fk_weather_device"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="${tablePrefix}device"
+                                 validate="true"/>
+    </changeSet>
 
 
 </databaseChangeLog>

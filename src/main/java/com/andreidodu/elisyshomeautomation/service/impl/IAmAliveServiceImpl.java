@@ -7,6 +7,7 @@ import com.andreidodu.elisyshomeautomation.service.IAmAliveService;
 import com.andreidodu.elisyshomeautomation.dao.IAmAliveRepository;
 import com.andreidodu.elisyshomeautomation.dto.request.IAmAliveRequestDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.ResponseStatusDTO;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -14,9 +15,10 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.Optional;
 
-@Service
-@RequiredArgsConstructor
 @Slf4j
+@Service
+@Transactional
+@RequiredArgsConstructor
 public class IAmAliveServiceImpl implements IAmAliveService {
 
     final private IAmAliveRepository iAmAliveRepository;
