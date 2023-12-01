@@ -19,5 +19,6 @@ public class WeatherSensorConfigurationDTO extends SensorResponseCommonDTO {
     private Long iAmAliveIntervalSeconds;
     private String temperatureSensorUnitOfMeasure;
     private Long weatherSensorSupplyIntervalSeconds;
+    private String crontab;
 
 }

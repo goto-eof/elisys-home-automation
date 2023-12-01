@@ -63,7 +63,7 @@
             <column name="i_am_alive_interval_seconds" type="bigint">
                 <constraints nullable="false"/>
             </column>
-            <column name="crontab" type="varchar(100)">
+            <column name="crontab" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
             <column name="timezone_offset_sec" type="int">
@@ -165,6 +165,9 @@
                 <constraints nullable="false"/>
             </column>
             <column name="device_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="crontab" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
             <column name="insert_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>

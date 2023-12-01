@@ -44,6 +44,9 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
     @Value("${app.configuration.default.motion.sensor.alert.endpoint}")
     private String alertEndpoint;
 
+    @Value("${app.configuration.default.weather.sensor.crontab}")
+    private String crontab;
+
 
     private final WeatherSensorConfigurationRepository sensorConfigurationRepository;
     private final WeatherSensorConfigurationMapper sensorConfigurationMapper;
@@ -158,6 +161,7 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
         dto.setIAmAliveEndpoint(iAmAliveEndpoint);
         dto.setWeatherSensorSupplyIntervalSeconds(weatherSensorSupplyIntervalSeconds);
         dto.setTemperatureSensorUnitOfMeasure(temperatureSensorUnitOfMeasure);
+        dto.setCrontab(crontab);
         return dto;
     }
 

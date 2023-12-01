@@ -33,6 +33,8 @@ public class WeatherSensorConfiguration extends ModelCommon {
     @Column(name = "weather_sensor_supply_interval_seconds", nullable = false)
     private Long weatherSensorSupplyIntervalSeconds;
 
+    private String crontab;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "device_id", referencedColumnName = "id")
     private Device device;
