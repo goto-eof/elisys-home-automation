@@ -35,13 +35,13 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
 
     @Value("${app.configuration.default.weather.sensors.supply.interval.seconds}")
     private Long weatherSensorSupplyIntervalSeconds;
-    @Value("${app.configuration.default.motion.sensor.iamalive.interval.seconds}")
+    @Value("${app.configuration.default.weather.sensor.iamalive.interval.seconds}")
     private Long iAmAliveIntervalSeconds;
 
-    @Value("${app.configuration.default.motion.sensor.iamalive.endpoint}")
+    @Value("${app.configuration.default.weather.sensor.iamalive.endpoint}")
     private String iAmAliveEndpoint;
 
-    @Value("${app.configuration.default.motion.sensor.alert.endpoint}")
+    @Value("${app.configuration.default.weather.sensor.alert.endpoint}")
     private String alertEndpoint;
 
     @Value("${app.configuration.default.weather.sensor.crontab}")
