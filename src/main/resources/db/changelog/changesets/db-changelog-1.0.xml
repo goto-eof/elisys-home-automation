@@ -170,6 +170,9 @@
             <column name="crontab" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
+            <column name="timezone_offset_sec" type="int">
+                <constraints nullable="false"/>
+            </column>
             <column name="insert_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
             <column name="update_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
             <column name="version" type="INT"/>

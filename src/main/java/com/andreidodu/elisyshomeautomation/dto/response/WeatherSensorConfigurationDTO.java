@@ -17,8 +17,11 @@ public class WeatherSensorConfigurationDTO extends SensorResponseCommonDTO {
     private String iAmAliveEndpoint;
     @JsonProperty("iAmAliveIntervalSeconds")
     private Long iAmAliveIntervalSeconds;
+    private String crontab;
+    private Integer timezoneOffsetSec;
     private String temperatureSensorUnitOfMeasure;
     private Long weatherSensorSupplyIntervalSeconds;
-    private String crontab;
+
+
 
 }

@@ -47,6 +47,8 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
     @Value("${app.configuration.default.weather.sensor.crontab}")
     private String crontab;
 
+    @Value("${app.configuration.default.weather.sensor.crontab.timezone}")
+    private Integer timezoneOffsetSec;
 
     private final WeatherSensorConfigurationRepository sensorConfigurationRepository;
     private final WeatherSensorConfigurationMapper sensorConfigurationMapper;
@@ -162,6 +164,7 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
         dto.setWeatherSensorSupplyIntervalSeconds(weatherSensorSupplyIntervalSeconds);
         dto.setTemperatureSensorUnitOfMeasure(temperatureSensorUnitOfMeasure);
         dto.setCrontab(crontab);
+        dto.setTimezoneOffsetSec(timezoneOffsetSec);
         return dto;
     }
 

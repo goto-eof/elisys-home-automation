@@ -35,6 +35,9 @@ public class WeatherSensorConfiguration extends ModelCommon {
 
     private String crontab;
 
+    @Column(name = "timezone_offset_sec", nullable = false)
+    private Integer timezoneOffsetSec;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "device_id", referencedColumnName = "id")
     private Device device;
