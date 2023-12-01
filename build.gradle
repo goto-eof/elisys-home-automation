@@ -8,7 +8,7 @@ def springfoxVersion = '3.0.0'
 def springfoxUiVersion = '2.9.2'
 
 group = 'com.andreidodu'
-version = '0.2.0-SNAPSHOT'
+version = '0.3.0-SNAPSHOT'
 
 java {
     sourceCompatibility = '17'

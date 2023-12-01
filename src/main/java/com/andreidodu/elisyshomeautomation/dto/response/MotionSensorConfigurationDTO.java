@@ -9,7 +9,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class SensorConfigurationDTO extends SensorResponseCommonDTO {
+public class MotionSensorConfigurationDTO extends SensorResponseCommonDTO {
 
     private Long id;
     private String alertEndpoint;

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 @Transactional
 @RequiredArgsConstructor
 public class DeviceServiceImpl implements DeviceService {
+    
     private final DeviceRepository deviceRepository;
     private final DeviceMapper deviceMapper;
 

@@ -1,13 +1,15 @@
 package com.andreidodu.elisyshomeautomation.mapper;
 
 import com.andreidodu.elisyshomeautomation.dto.response.MotionSensorConfigurationDTO;
+import com.andreidodu.elisyshomeautomation.dto.response.WeatherSensorConfigurationDTO;
 import com.andreidodu.elisyshomeautomation.model.MotionSensorConfiguration;
+import com.andreidodu.elisyshomeautomation.model.WeatherSensorConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
-public interface SensorConfigurationMapper {
+public interface WeatherSensorConfigurationMapper {
     @Mapping(source = "device.macAddress", target = "macAddress")
-    MotionSensorConfigurationDTO toDTO(MotionSensorConfiguration alive);
-    MotionSensorConfiguration toModel(MotionSensorConfigurationDTO dto);
+    WeatherSensorConfigurationDTO toDTO(WeatherSensorConfiguration model);
+    WeatherSensorConfiguration toModel(WeatherSensorConfigurationDTO dto);
 }

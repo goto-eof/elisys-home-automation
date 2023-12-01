@@ -1,0 +1,290 @@
+{
+	"info": {
+		"_postman_id": "755a1952-80ee-45c3-b79a-c2dc76310147",
+		"name": "home-automation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3791908",
+		"_collection_link": "https://universal-astronaut-464565.postman.co/workspace/Mine~d5302425-80bd-4eda-8155-f0f59819963b/collection/3791908-755a1952-80ee-45c3-b79a-c2dc76310147?action=share&source=collection_link&creator=3791908"
+	},
+	"item": [
+		{
+			"name": "motion | alert",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"macAddress\":\"ciao\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/motion-sensor/alert",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"motion-sensor",
+						"alert"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "motion | configuration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"macAddress\":\"ciao\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/motion-sensor/configuration",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"motion-sensor",
+						"configuration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sensor | iAmAlive",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"macAddress\":\"ciao\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/i-am-alive/notify",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"i-am-alive",
+						"notify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "weather | submit",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"macAddress\": \"ciao\",\n    \"temperature\": 1.9,\n    \"humidity\": 2.5,\n    \"pressure\": 3.4,\n    \"light\": false,\n    \"lux\": 0.1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/weather-sensor/submit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"weather-sensor",
+						"submit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "weather | configuration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"macAddress\": \"ciao\",\n    \"temperature\": 1.1,\n    \"humidity\": 2.2,\n    \"pressure\": 3.3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/weather-sensor/configuration",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"weather-sensor",
+						"configuration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "weather | last",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"macAddress\": \"ciao\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/weather-sensor/last",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"weather-sensor",
+						"last"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "weather | byDate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"macAddress\": \"ciao\",\n    \"date\":\"2023-12-01T00:00:09.227+00:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/weather-sensor/byDate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"weather-sensor",
+						"byDate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "weather | average",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"macAddress\": \"ciao\",\n    \"date\":\"2023-12-01T00:00:00.000+00:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/weather-sensor/average",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"weather-sensor",
+						"average"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "weather | averageByDateInterval",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"macAddress\": \"ciao\",\n    \"dateStart\":\"2023-11-30T23:21:09.227+00:00\",\n    \"dateEnd\":\"2023-12-30T23:21:09.227+00:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/weather-sensor/averageByDateInterval",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"weather-sensor",
+						"averageByDateInterval"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,6 +1,6 @@
 package com.andreidodu.elisyshomeautomation.mapper;
 
-import com.andreidodu.elisyshomeautomation.dto.request.WeatherDTO;
+import com.andreidodu.elisyshomeautomation.dto.response.WeatherDTO;
 import com.andreidodu.elisyshomeautomation.model.Weather;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

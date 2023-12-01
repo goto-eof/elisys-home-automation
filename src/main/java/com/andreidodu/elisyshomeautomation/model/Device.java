@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -31,7 +30,10 @@ public class Device extends ModelCommon {
     private Alive alive;
 
     @OneToOne(mappedBy = "device")
-    private SensorConfiguration sensorConfiguration;
+    private MotionSensorConfiguration motionSensorConfiguration;
+
+    @OneToOne(mappedBy = "device")
+    private WeatherSensorConfiguration weatherSensorConfiguration;
 
     @OneToMany(mappedBy = "device")
     private List<Weather> weather;

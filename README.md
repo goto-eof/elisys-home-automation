@@ -3,7 +3,7 @@
 Elisys Home Automation is the back-end side
 for [**ESP32 IDF | Motion Detector and Server Notifier (Rust)**](https://github.com/goto-eof/esp32-motion-detector-and-server-notifier-rust)
 project. Currently, Elisys Home Automation supports the motion sensor and the temperature/humidity/pressure sensor, so that it allows to retrieve the
-data provided by a motion/temperature/humidity/pressure sensor controlled by a ESP32 device (or Raspberry Pi). In particular, it allows to:
+data provided by a motion/temperature/humidity/pressure/light sensors controlled by a ESP32 device (or Raspberry Pi). In particular, it allows to:
 
 - supply the configuration for the motion sensor when it starts for the first time;
 - send notifications via Discord when a motion is detected, so that when a post request is handled;

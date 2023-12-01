@@ -12,7 +12,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="mac_address" type="varchar(255)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" unique="true"/>
             </column>
             <column name="description" type="varchar(255)">
                 <constraints nullable="false"/>
@@ -50,7 +50,7 @@
     </changeSet>
 
     <changeSet author="Andrei Dodu" id="2023-11-24-003">
-        <createTable tableName="${tablePrefix}sensor_configuration">
+        <createTable tableName="${tablePrefix}motion_sensor_configuration">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -77,8 +77,8 @@
             <column name="version" type="INT"/>
         </createTable>
         <addForeignKeyConstraint baseColumnNames="device_id"
-                                 baseTableName="${tablePrefix}sensor_configuration"
-                                 constraintName="fk_sens_config_device"
+                                 baseTableName="${tablePrefix}motion_sensor_configuration"
+                                 constraintName="fk_mot_sens_config_device"
                                  onDelete="CASCADE"
                                  onUpdate="RESTRICT"
                                  referencedColumnNames="id"
@@ -126,6 +126,8 @@
             <column name="temperature" type="double"/>
             <column name="humidity" type="double"/>
             <column name="pressure" type="double"/>
+            <column name="is_light" type="boolean"/>
+            <column name="lux" type="double"/>
 
             <column name="insert_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
             <column name="update_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
@@ -141,5 +143,42 @@
                                  validate="true"/>
     </changeSet>
 
+
+    <changeSet author="Andrei Dodu" id="2023-12-01-001">
+        <createTable tableName="${tablePrefix}weather_sensor_configuration">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="alert_endpoint" type="varchar(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="i_am_alive_endpoint" type="varchar(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="i_am_alive_interval_seconds" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="temperature_sensor_unit_of_measure" type="varchar(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="weather_sensor_supply_interval_seconds" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="device_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="insert_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
+            <column name="update_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
+            <column name="version" type="INT"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="device_id"
+                                 baseTableName="${tablePrefix}weather_sensor_configuration"
+                                 constraintName="fk_wea_sens_config_device"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="${tablePrefix}device"
+                                 validate="true"/>
+    </changeSet>
 
 </databaseChangeLog>

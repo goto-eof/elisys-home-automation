@@ -6,14 +6,12 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.util.Date;
-
 @Entity
-@Table(name = "ha_sensor_configuration")
+@Table(name = "ha_motion_sensor_configuration")
 @Getter
 @Setter
 @EntityListeners(AuditingEntityListener.class)
-public class SensorConfiguration extends ModelCommon {
+public class MotionSensorConfiguration extends ModelCommon {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
