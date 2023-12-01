@@ -13,6 +13,6 @@ public class WeatherDTO extends SensorRequestCommonDTO {
     private Double temperature;
     private Double humidity;
     private Double pressure;
-    private boolean light;
+    private Boolean light;
     private Double lux;
 }
