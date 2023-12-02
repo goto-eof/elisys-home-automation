@@ -285,6 +285,37 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "relay | configuration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"macAddress\": \"ciao\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/relay/configuration",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"relay",
+						"configuration"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
