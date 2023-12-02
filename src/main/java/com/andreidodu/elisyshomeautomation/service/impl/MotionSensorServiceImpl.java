@@ -89,7 +89,7 @@ public class MotionSensorServiceImpl implements MotionSensorService {
         }
         Optional<Device> deviceOptional = this.deviceRepository.findByMacAddress(motionSensorConfigurationRequestDTO.getMacAddress());
         if (deviceOptional.isEmpty()) {
-            this.deviceService.createNewDevice(motionSensorConfigurationRequestDTO.getMacAddress(), motionSensorConfigurationRequestDTO.getMacAddress());
+            this.deviceService.createNewDevice(motionSensorConfigurationRequestDTO.getMacAddress(), "motion sensor", motionSensorConfigurationRequestDTO.getMacAddress());
             deviceOptional = this.deviceRepository.findByMacAddress(motionSensorConfigurationRequestDTO.getMacAddress());
         }
         MotionSensorConfigurationDTO dto = loadDefaultConfiguration(motionSensorConfigurationRequestDTO.getMacAddress());

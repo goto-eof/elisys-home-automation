@@ -15,15 +15,16 @@ import org.springframework.stereotype.Service;
 @Transactional
 @RequiredArgsConstructor
 public class DeviceServiceImpl implements DeviceService {
-    
+
     private final DeviceRepository deviceRepository;
     private final DeviceMapper deviceMapper;
 
     @Override
-    public DeviceDTO createNewDevice(final String macAddress, final String description) {
+    public DeviceDTO createNewDevice(final String macAddress, final String name, final String description) {
         Device model = new Device();
         model.setMacAddress(macAddress);
         model.setDescription(description);
+        model.setName(name);
         Device device = this.deviceRepository.save(model);
         return this.deviceMapper.toDTO(device);
     }

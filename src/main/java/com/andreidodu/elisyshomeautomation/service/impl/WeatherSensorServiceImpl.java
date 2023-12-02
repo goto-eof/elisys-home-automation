@@ -62,7 +62,7 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
         Weather model = this.weatherMapper.toModel(dto);
         Optional<Device> deviceOptional = this.deviceRepository.findByMacAddress(dto.getMacAddress());
         if (deviceOptional.isEmpty()) {
-            this.deviceService.createNewDevice(dto.getMacAddress(), dto.getMacAddress());
+            this.deviceService.createNewDevice(dto.getMacAddress(), "weather sensor", dto.getMacAddress());
             deviceOptional = this.deviceRepository.findByMacAddress(dto.getMacAddress());
         }
         model.setDevice(deviceOptional.get());
@@ -144,7 +144,7 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
         }
         Optional<Device> deviceOptional = this.deviceRepository.findByMacAddress(sensorConfigurationRequestDTO.getMacAddress());
         if (deviceOptional.isEmpty()) {
-            this.deviceService.createNewDevice(sensorConfigurationRequestDTO.getMacAddress(), sensorConfigurationRequestDTO.getMacAddress());
+            this.deviceService.createNewDevice(sensorConfigurationRequestDTO.getMacAddress(), "weather sensor", sensorConfigurationRequestDTO.getMacAddress());
             deviceOptional = this.deviceRepository.findByMacAddress(sensorConfigurationRequestDTO.getMacAddress());
         }
         WeatherSensorConfigurationDTO dto = loadDefaultConfiguration(sensorConfigurationRequestDTO.getMacAddress());

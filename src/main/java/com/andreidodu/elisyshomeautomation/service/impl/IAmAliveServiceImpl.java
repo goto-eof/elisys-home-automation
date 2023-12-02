@@ -36,7 +36,7 @@ public class IAmAliveServiceImpl implements IAmAliveService {
         }
         Optional<Device> deviceOptional = this.deviceRepository.findByMacAddress(iAmAliveRequestDTO.getMacAddress());
         if (deviceOptional.isEmpty()) {
-            this.deviceService.createNewDevice(iAmAliveRequestDTO.getMacAddress(), iAmAliveRequestDTO.getMacAddress());
+            this.deviceService.createNewDevice(iAmAliveRequestDTO.getMacAddress(), iAmAliveRequestDTO.getMacAddress(), iAmAliveRequestDTO.getMacAddress());
             deviceOptional = this.deviceRepository.findByMacAddress(iAmAliveRequestDTO.getMacAddress());
         }
         createAliveModelAndSave(deviceOptional.get());

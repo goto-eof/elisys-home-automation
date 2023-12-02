@@ -38,7 +38,7 @@ public class RelayConfigurationServiceImpl implements RelayConfigurationService 
         }
         Optional<Device> deviceOptional = this.deviceRepository.findByMacAddress(configurationRequestDTO.getMacAddress());
         if (deviceOptional.isEmpty()) {
-            this.deviceService.createNewDevice(configurationRequestDTO.getMacAddress(), configurationRequestDTO.getMacAddress());
+            this.deviceService.createNewDevice(configurationRequestDTO.getMacAddress(), "Relay device", configurationRequestDTO.getMacAddress());
             deviceOptional = this.deviceRepository.findByMacAddress(configurationRequestDTO.getMacAddress());
         }
         RelayConfigurationResponseDTO dto = loadDefaultConfiguration(configurationRequestDTO.getMacAddress());

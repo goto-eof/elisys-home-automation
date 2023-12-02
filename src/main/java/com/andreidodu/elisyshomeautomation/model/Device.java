@@ -23,6 +23,9 @@ public class Device extends ModelCommon {
     @Column(name = "mac_address", nullable = false, unique = true)
     private String macAddress;
 
+    @Column(name = "name", nullable = false)
+    private String name;
+
     @Column(name = "description", nullable = false)
     private String description;
 
