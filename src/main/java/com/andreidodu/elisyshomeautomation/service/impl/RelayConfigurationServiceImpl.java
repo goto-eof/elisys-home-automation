@@ -52,7 +52,7 @@ public class RelayConfigurationServiceImpl implements RelayConfigurationService 
     private RelayConfigurationResponseDTO loadDefaultConfiguration(String macAddress) {
         RelayConfigurationResponseDTO dto = new RelayConfigurationResponseDTO();
         dto.setMacAddress(macAddress);
-        dto.setPowerOn(true);
+        dto.setPowerOn(false);
         return dto;
     }
 
