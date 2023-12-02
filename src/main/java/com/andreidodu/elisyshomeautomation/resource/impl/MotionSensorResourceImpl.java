@@ -16,10 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class MotionSensorResourceImpl implements MotionSensorResource {
 
     final private MotionSensorService motionSensorService;
+
     @Override
     public ResponseEntity<MotionSensorConfigurationDTO> getConfiguration(SensorConfigurationRequestDTO configurationRequestDTO) {
         return ResponseEntity.ok(this.motionSensorService.getConfiguration(configurationRequestDTO));
     }
+
+    @Override
     public ResponseEntity<ResponseStatusDTO> alert(@RequestBody AlertRequestDTO alertRequestDTO) {
         return ResponseEntity.ok(motionSensorService.alert(alertRequestDTO));
     }

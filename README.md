@@ -1,13 +1,16 @@
 # Elisys Home Automation Server (Java)
 
 **Elisys Home Automation Server (Java)** is the back-end side
-for the following projects: 
+for the following projects:
+
 - [**Elisys ESP32 Motion Detector (Rust)**](https://github.com/goto-eof/esp32-motion-detector-and-server-notifier-rust)
 - [**Elisys ESP32 Weather Station (Rust)**](https://github.com/goto-eof/elisys-esp32-weather-station-client-rust)
 - [**Elisys ESP32 Relay Client (Rust)**](https://github.com/goto-eof/elisys-esp32-relay-client-rust)
-  
-Currently, Elisys Home Automation supports the motion sensor and the temperature/humidity/pressure sensor, so that it allows to retrieve the
-data provided by a motion/temperature/humidity/pressure/light sensors controlled by a ESP32 device (or Raspberry Pi). In particular, it allows to:
+
+Currently, Elisys Home Automation Server supports the motion/temperature/humidity/pressure sensors, so that it allows to
+retrieve the
+data provided by a motion/temperature/humidity/pressure/light sensors controlled by a ESP32 device (or Raspberry Pi).
+Moreover, EHAS provides the functionality to control remotely a Relay device. In particular, it allows to:
 
 - supply the configuration for the motion sensor when it starts for the first time;
 - send notifications via Discord when a motion is detected, so that when a post request is handled;
@@ -16,6 +19,7 @@ data provided by a motion/temperature/humidity/pressure/light sensors controlled
 - provide the last temperature/humidity/pressure values
 - provide the list of temperature/humidity/pressure values by date
 - provide the average of temperature/humidity/pressure by date
+- control remotely a Relay
 
 # Technologies
 

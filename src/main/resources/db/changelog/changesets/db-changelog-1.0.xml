@@ -187,4 +187,30 @@
                                  validate="true"/>
     </changeSet>
 
+
+    <changeSet author="Andrei Dodu" id="2023-12-02-001">
+        <createTable tableName="${tablePrefix}relay_configuration">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="power_on" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="device_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="insert_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
+            <column name="update_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
+            <column name="version" type="INT"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="device_id"
+                                 baseTableName="${tablePrefix}relay_configuration"
+                                 constraintName="fk_relay_config_device"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="${tablePrefix}device"
+                                 validate="true"/>
+    </changeSet>
+
 </databaseChangeLog>
