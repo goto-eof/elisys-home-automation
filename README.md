@@ -19,6 +19,8 @@ Moreover, EHAS provides the functionality to control remotely a Relay device. In
 - provide the last temperature/humidity/pressure values
 - provide the list of temperature/humidity/pressure values by date
 - provide the average of temperature/humidity/pressure by date
+- provide the minimum temperature by date
+- provide the maximum temperature by date
 - control remotely a Relay
 
 # Technologies
