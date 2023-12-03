@@ -81,3 +81,8 @@ The API documentation can be found at the following URI (after server starts):
 This project is a Work In Progress.
 
 If you found a bug please contact me [here](https://andre-i.eu/#contactme).
+
+
+# Note
+
+There is a postman collection in the root project directory that can be imported in your postman environment.
