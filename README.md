@@ -14,7 +14,7 @@ Moreover, EHAS provides the functionality to control remotely a Relay device. In
 
 - supply the configuration for the motion sensor when it starts for the first time;
 - send notifications via Discord when a motion is detected, so that when a post request is handled;
-- take trace about the sensor status:  alive/disabled.
+- keep trace about the sensor status:  alive/disabled.
 - store temperature/humidity/pressure from sensors
 - provide the last temperature/humidity/pressure values
 - provide the list of temperature/humidity/pressure values by date
