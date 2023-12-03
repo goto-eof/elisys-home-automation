@@ -1,6 +1,5 @@
-package com.andreidodu.elisyshomeautomation.dao;
+package com.andreidodu.elisyshomeautomation.repository;
 
-import com.andreidodu.elisyshomeautomation.model.MotionDetection;
 import com.andreidodu.elisyshomeautomation.model.Weather;
 import org.springframework.data.repository.CrudRepository;
 
@@ -14,7 +13,7 @@ public interface WeatherRepository extends CrudRepository<Weather, Long> {
 
     Weather findTopByDevice_MacAddressOrderByIdDesc(String macAddress);
 
-    Optional<Weather> findTopByDevice_macAddressAndCreatedDateBetweenOrderByTemperatureAsc(String macAddress, Date dateStart, Date dateEnd);
+    Optional<Weather> findTopByDevice_macAddressAndCreatedDateBetweenAndTemperatureNotNullOrderByTemperatureAsc(String macAddress, Date dateStart, Date dateEnd);
 
-    Optional<Weather> findTopByDevice_macAddressAndCreatedDateBetweenOrderByTemperatureDesc(String macAddress, Date dateStart, Date dateEnd);
+    Optional<Weather> findTopByDevice_macAddressAndCreatedDateBetweenAndTemperatureNotNullOrderByTemperatureDesc(String macAddress, Date dateStart, Date dateEnd);
 }

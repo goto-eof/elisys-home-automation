@@ -1,8 +1,8 @@
 package com.andreidodu.elisyshomeautomation.service.impl;
 
-import com.andreidodu.elisyshomeautomation.dao.DeviceRepository;
-import com.andreidodu.elisyshomeautomation.dao.WeatherRepository;
-import com.andreidodu.elisyshomeautomation.dao.WeatherSensorConfigurationRepository;
+import com.andreidodu.elisyshomeautomation.repository.DeviceRepository;
+import com.andreidodu.elisyshomeautomation.repository.WeatherRepository;
+import com.andreidodu.elisyshomeautomation.repository.WeatherSensorConfigurationRepository;
 import com.andreidodu.elisyshomeautomation.dto.request.SensorConfigurationRequestDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.WeatherDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.WeatherSensorConfigurationDTO;
@@ -105,7 +105,7 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
         Date dateStart = DateUtil.calculateStartDate(date);
         Date dateEnd = DateUtil.calculateEndDate(date);
         log.info("mac_address: " + macAddress + " - dateStart: " + dateStart + " - dateEnd: " + dateEnd);
-        Optional<Weather> weatherOptional = this.weatherRepository.findTopByDevice_macAddressAndCreatedDateBetweenOrderByTemperatureAsc(macAddress, dateStart, dateEnd);
+        Optional<Weather> weatherOptional = this.weatherRepository.findTopByDevice_macAddressAndCreatedDateBetweenAndTemperatureNotNullOrderByTemperatureAsc(macAddress, dateStart, dateEnd);
         return weatherOptional.map(weatherMapper::toDTO).orElseThrow(() -> new ApplicationException("no record found"));
     }
 
@@ -114,7 +114,7 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
         Date dateStart = DateUtil.calculateStartDate(date);
         Date dateEnd = DateUtil.calculateEndDate(date);
         log.info("mac_address: " + macAddress + " - dateStart: " + dateStart + " - dateEnd: " + dateEnd);
-        Optional<Weather> weatherOptional = this.weatherRepository.findTopByDevice_macAddressAndCreatedDateBetweenOrderByTemperatureDesc(macAddress, dateStart, dateEnd);
+        Optional<Weather> weatherOptional = this.weatherRepository.findTopByDevice_macAddressAndCreatedDateBetweenAndTemperatureNotNullOrderByTemperatureDesc(macAddress, dateStart, dateEnd);
         return weatherOptional.map(weatherMapper::toDTO).orElseThrow(() -> new ApplicationException("no record found"));
     }
 
