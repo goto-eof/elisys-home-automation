@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @ToString
@@ -15,4 +17,5 @@ public class WeatherDTO extends SensorRequestCommonDTO {
     private Double pressure;
     private Boolean light;
     private Double lux;
+    private Date createdDate;
 }

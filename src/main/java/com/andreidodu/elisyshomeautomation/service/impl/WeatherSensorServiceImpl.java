@@ -6,6 +6,7 @@ import com.andreidodu.elisyshomeautomation.dao.WeatherSensorConfigurationReposit
 import com.andreidodu.elisyshomeautomation.dto.request.SensorConfigurationRequestDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.WeatherDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.WeatherSensorConfigurationDTO;
+import com.andreidodu.elisyshomeautomation.exception.ApplicationException;
 import com.andreidodu.elisyshomeautomation.mapper.WeatherMapper;
 import com.andreidodu.elisyshomeautomation.mapper.WeatherSensorConfigurationMapper;
 import com.andreidodu.elisyshomeautomation.model.Device;
@@ -97,6 +98,24 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
         WeatherDTO weatherDTO = calculateAverageFromList(dtoList);
         weatherDTO.setMacAddress(macAddress);
         return weatherDTO;
+    }
+
+    @Override
+    public WeatherDTO getMinimumTemperature(final String macAddress, final Date date) {
+        Date dateStart = DateUtil.calculateStartDate(date);
+        Date dateEnd = DateUtil.calculateEndDate(date);
+        log.info("mac_address: " + macAddress + " - dateStart: " + dateStart + " - dateEnd: " + dateEnd);
+        Optional<Weather> weatherOptional = this.weatherRepository.findTopByDevice_macAddressAndCreatedDateBetweenOrderByTemperatureAsc(macAddress, dateStart, dateEnd);
+        return weatherOptional.map(weatherMapper::toDTO).orElseThrow(() -> new ApplicationException("no record found"));
+    }
+
+    @Override
+    public WeatherDTO getMaximumTemperature(final String macAddress, final Date date) {
+        Date dateStart = DateUtil.calculateStartDate(date);
+        Date dateEnd = DateUtil.calculateEndDate(date);
+        log.info("mac_address: " + macAddress + " - dateStart: " + dateStart + " - dateEnd: " + dateEnd);
+        Optional<Weather> weatherOptional = this.weatherRepository.findTopByDevice_macAddressAndCreatedDateBetweenOrderByTemperatureDesc(macAddress, dateStart, dateEnd);
+        return weatherOptional.map(weatherMapper::toDTO).orElseThrow(() -> new ApplicationException("no record found"));
     }
 
     private static WeatherDTO calculateAverageFromList(List<WeatherDTO> dtoList) {

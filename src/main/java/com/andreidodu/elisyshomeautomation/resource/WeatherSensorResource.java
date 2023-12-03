@@ -41,4 +41,19 @@ public interface WeatherSensorResource {
     @PostMapping(value = "/averageByDateInterval")
     ResponseEntity<WeatherDTO> calculateAverageByDateInterval(@RequestBody WeatherByDateIntervalRequestDTO weatherByDateRequestDTO);
 
+    @Operation(summary = "Retrieve minimum temperature by date")
+    @PostMapping(value = "/minimumTemperature")
+    ResponseEntity<WeatherDTO> getMinimumTemperature(@RequestBody WeatherByDateRequestDTO weatherByDateRequestDTO);
+
+    @Operation(summary = "Retrieve maximum temperature by date")
+    @PostMapping(value = "/maximumTemperature")
+    ResponseEntity<WeatherDTO> getMaximumTemperature(@RequestBody WeatherByDateRequestDTO weatherByDateRequestDTO);
+
+    @Operation(summary = "Retrieve today minimum temperature")
+    @PostMapping(value = "/todayMinimumTemperature")
+    ResponseEntity<WeatherDTO> getTodayMinimumTemperature(@RequestBody SensorRequestCommonDTO dto);
+
+    @Operation(summary = "Retrieve today maximum temperature")
+    @PostMapping(value = "/todayMaximumTemperature")
+    ResponseEntity<WeatherDTO> getTodayMaximumTemperature(@RequestBody SensorRequestCommonDTO dto);
 }

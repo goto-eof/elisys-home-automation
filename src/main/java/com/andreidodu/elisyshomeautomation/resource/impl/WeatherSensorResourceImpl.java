@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -50,6 +51,26 @@ public class WeatherSensorResourceImpl implements WeatherSensorResource {
     @Override
     public ResponseEntity<WeatherDTO> calculateAverageByDateInterval(WeatherByDateIntervalRequestDTO dto) {
         return ResponseEntity.ok(this.weatherSensorService.calculateAverageByIntervalDate(dto.getMacAddress(), dto.getDateStart(), dto.getDateEnd()));
+    }
+
+    @Override
+    public ResponseEntity<WeatherDTO> getMinimumTemperature(WeatherByDateRequestDTO dto) {
+        return ResponseEntity.ok(this.weatherSensorService.getMinimumTemperature(dto.getMacAddress(), dto.getDate()));
+    }
+
+    @Override
+    public ResponseEntity<WeatherDTO> getMaximumTemperature(WeatherByDateRequestDTO dto) {
+        return ResponseEntity.ok(this.weatherSensorService.getMaximumTemperature(dto.getMacAddress(), dto.getDate()));
+    }
+
+    @Override
+    public ResponseEntity<WeatherDTO> getTodayMinimumTemperature(SensorRequestCommonDTO dto) {
+        return ResponseEntity.ok(this.weatherSensorService.getMinimumTemperature(dto.getMacAddress(), new Date()));
+    }
+
+    @Override
+    public ResponseEntity<WeatherDTO> getTodayMaximumTemperature(SensorRequestCommonDTO dto) {
+        return ResponseEntity.ok(this.weatherSensorService.getMaximumTemperature(dto.getMacAddress(), new Date()));
     }
 
 }

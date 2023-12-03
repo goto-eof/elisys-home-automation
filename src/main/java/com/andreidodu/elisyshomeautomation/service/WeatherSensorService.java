@@ -16,6 +16,10 @@ public interface WeatherSensorService {
 
     WeatherDTO calculateAverageByIntervalDate(String macAddress, Date dateStart, Date dateEnd);
 
+    WeatherDTO getMinimumTemperature(String macAddress, Date date);
+
+    WeatherDTO getMaximumTemperature(String macAddress, Date date);
+
     WeatherDTO getLast(String macAddress);
 
     WeatherSensorConfigurationDTO getConfiguration(SensorConfigurationRequestDTO motionSensorConfigurationRequestDTO);
