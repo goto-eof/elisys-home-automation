@@ -417,7 +417,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"macAddress\": \"world\"\n}",
+					"raw": "{\n    \"macAddress\": \"zanzan\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -436,6 +436,68 @@
 						"v1",
 						"relay",
 						"configuration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "relay | enable",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"macAddress\": \"tao\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/relay/enable",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"relay",
+						"enable"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "relay | disable",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"macAddress\": \"tao\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/relay/disable",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"relay",
+						"disable"
 					]
 				}
 			},

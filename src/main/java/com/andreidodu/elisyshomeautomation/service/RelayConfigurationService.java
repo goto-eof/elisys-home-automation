@@ -10,4 +10,5 @@ import com.andreidodu.elisyshomeautomation.dto.response.ResponseStatusDTO;
 public interface RelayConfigurationService {
     RelayConfigurationResponseDTO getConfiguration(RelayConfigurationRequestDTO configurationRequestDTO);
 
+    RelayConfigurationResponseDTO switchOnOrOff(RelayConfigurationRequestDTO configurationRequestDTO, boolean powerOn);
 }

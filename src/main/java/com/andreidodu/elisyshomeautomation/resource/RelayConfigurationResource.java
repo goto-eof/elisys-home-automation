@@ -21,4 +21,13 @@ public interface RelayConfigurationResource {
     @PostMapping(value = "/configuration")
     ResponseEntity<RelayConfigurationResponseDTO> getConfiguration(@RequestBody RelayConfigurationRequestDTO configurationRequestDTO);
 
+    @Operation(summary = "Enable")
+    @PostMapping(value = "/enable")
+    ResponseEntity<RelayConfigurationResponseDTO> enable(@RequestBody RelayConfigurationRequestDTO configurationRequestDTO);
+
+    @Operation(summary = "Disable")
+    @PostMapping(value = "/disable")
+    ResponseEntity<RelayConfigurationResponseDTO> disable(@RequestBody RelayConfigurationRequestDTO configurationRequestDTO);
+
+
 }

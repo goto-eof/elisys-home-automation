@@ -21,10 +21,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class RelayConfigurationResourceImpl implements RelayConfigurationResource {
 
     final private RelayConfigurationService relayConfigurationService;
-
-
     @Override
     public ResponseEntity<RelayConfigurationResponseDTO> getConfiguration(RelayConfigurationRequestDTO configurationRequestDTO) {
         return ResponseEntity.ok(this.relayConfigurationService.getConfiguration(configurationRequestDTO));
+    }
+
+    @Override
+    public ResponseEntity<RelayConfigurationResponseDTO> enable(RelayConfigurationRequestDTO configurationRequestDTO) {
+        return ResponseEntity.ok(this.relayConfigurationService.switchOnOrOff(configurationRequestDTO, true));
+    }
+
+    @Override
+    public ResponseEntity<RelayConfigurationResponseDTO> disable(RelayConfigurationRequestDTO configurationRequestDTO) {
+        return ResponseEntity.ok(this.relayConfigurationService.switchOnOrOff(configurationRequestDTO, false));
     }
 }

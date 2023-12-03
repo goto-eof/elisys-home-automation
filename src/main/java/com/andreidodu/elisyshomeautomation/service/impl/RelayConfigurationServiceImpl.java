@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.function.Function;
 
 @Slf4j
 @Service
@@ -36,23 +37,46 @@ public class RelayConfigurationServiceImpl implements RelayConfigurationService 
             log.info(result.toString());
             return result;
         }
+        RelayConfigurationResponseDTO result = createNewConfiguration(configurationRequestDTO, this::loadDefaultConfiguration);
+        log.info(result.toString());
+        return result;
+    }
+
+    private RelayConfigurationResponseDTO createNewConfiguration(RelayConfigurationRequestDTO configurationRequestDTO, Function<String, RelayConfigurationResponseDTO> function) {
         Optional<Device> deviceOptional = this.deviceRepository.findByMacAddress(configurationRequestDTO.getMacAddress());
         if (deviceOptional.isEmpty()) {
             this.deviceService.createNewDevice(configurationRequestDTO.getMacAddress(), "Relay device", configurationRequestDTO.getMacAddress());
             deviceOptional = this.deviceRepository.findByMacAddress(configurationRequestDTO.getMacAddress());
         }
-        RelayConfigurationResponseDTO dto = loadDefaultConfiguration(configurationRequestDTO.getMacAddress());
+        RelayConfigurationResponseDTO dto = function.apply(configurationRequestDTO.getMacAddress());
         RelayConfiguration model = relayConfigurationMapper.toModel(dto);
         model.setDevice(deviceOptional.get());
-        RelayConfigurationResponseDTO result = this.relayConfigurationMapper.toDTO(this.relayConfigurationRepository.save(model));
-        log.info(result.toString());
-        return result;
+        return this.relayConfigurationMapper.toDTO(this.relayConfigurationRepository.save(model));
+    }
+
+    @Override
+    public RelayConfigurationResponseDTO switchOnOrOff(RelayConfigurationRequestDTO configurationRequestDTO, boolean switchOn) {
+        Optional<RelayConfiguration> configurationOptional = relayConfigurationRepository.findByDevice_MacAddress(configurationRequestDTO.getMacAddress());
+        if (configurationOptional.isPresent()) {
+            RelayConfiguration relayConfiguration = configurationOptional.get();
+            relayConfiguration.setPowerOn(switchOn);
+            RelayConfiguration newRelayConfiguration = this.relayConfigurationRepository.save(relayConfiguration);
+            return relayConfigurationMapper.toDTO(newRelayConfiguration);
+        }
+        return createNewConfiguration(configurationRequestDTO, (String macAddress) -> loadDefaultConfiguration(macAddress, switchOn));
     }
 
     private RelayConfigurationResponseDTO loadDefaultConfiguration(String macAddress) {
         RelayConfigurationResponseDTO dto = new RelayConfigurationResponseDTO();
         dto.setMacAddress(macAddress);
         dto.setPowerOn(false);
+        return dto;
+    }
+
+    private RelayConfigurationResponseDTO loadDefaultConfiguration(String macAddress, boolean powerOn) {
+        RelayConfigurationResponseDTO dto = new RelayConfigurationResponseDTO();
+        dto.setMacAddress(macAddress);
+        dto.setPowerOn(powerOn);
         return dto;
     }
 
