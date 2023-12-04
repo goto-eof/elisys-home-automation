@@ -8,8 +8,8 @@ for the following projects:
 - [**Elisys ESP32 Relay Client (Rust)**](https://github.com/goto-eof/elisys-esp32-relay-client-rust)
 
 Currently, Elisys Home Automation Server supports the motion/temperature/humidity/pressure sensors, so that it allows to
-retrieve the
-data provided by a motion/temperature/humidity/pressure/light sensors controlled by a ESP32 device (or Raspberry Pi).
+store and retrieve the
+data provided by a several sensors controlled by a ESP32 device (or Raspberry Pi).
 Moreover, EHAS provides the functionality to control remotely a Relay device. In particular, it allows to:
 
 - Motion detector
