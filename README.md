@@ -12,16 +12,21 @@ retrieve the
 data provided by a motion/temperature/humidity/pressure/light sensors controlled by a ESP32 device (or Raspberry Pi).
 Moreover, EHAS provides the functionality to control remotely a Relay device. In particular, it allows to:
 
-- supply the configuration for the motion sensor when it starts for the first time;
-- send notifications via Discord when a motion is detected, so that when a post request is handled;
-- keep trace about the sensor status:  alive/disabled.
-- store temperature/humidity/pressure from sensors
-- provide the last temperature/humidity/pressure values
-- provide the list of temperature/humidity/pressure values by date
-- provide the average of temperature/humidity/pressure by date
-- provide the minimum temperature by date
-- provide the maximum temperature by date
-- control remotely a Relay
+- Motion detector
+  - supply the configuration for the motion sensor when it starts for the first time;
+  - send notifications via Discord when a motion is detected, so that when a post request is handled;
+  - keep trace about the sensor status:  alive/disabled.
+
+- Weather station  
+  - store temperature/humidity/pressure from sensors
+  - provide the last temperature/humidity/pressure values
+  - provide the list of temperature/humidity/pressure values by date
+  - provide the average of temperature/humidity/pressure by date
+  - provide the minimum temperature by date
+  - provide the maximum temperature by date
+
+- Relay
+  - control remotely a Relay
 
 # Technologies
 
