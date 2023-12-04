@@ -23,6 +23,8 @@ import java.util.function.Function;
 @RequiredArgsConstructor
 public class RelayConfigurationServiceImpl implements RelayConfigurationService {
 
+    private final static String DEVICE_NAME = "Relay device";
+
     private final RelayConfigurationRepository relayConfigurationRepository;
     private final RelayConfigurationMapper relayConfigurationMapper;
     private final DeviceRepository deviceRepository;
@@ -45,7 +47,7 @@ public class RelayConfigurationServiceImpl implements RelayConfigurationService 
     private RelayConfigurationResponseDTO createNewConfiguration(RelayConfigurationRequestDTO configurationRequestDTO, Function<String, RelayConfigurationResponseDTO> function) {
         Optional<Device> deviceOptional = this.deviceRepository.findByMacAddress(configurationRequestDTO.getMacAddress());
         if (deviceOptional.isEmpty()) {
-            this.deviceService.createNewDevice(configurationRequestDTO.getMacAddress(), "Relay device", configurationRequestDTO.getMacAddress());
+            this.deviceService.createNewDevice(configurationRequestDTO.getMacAddress(), DEVICE_NAME, configurationRequestDTO.getMacAddress());
             deviceOptional = this.deviceRepository.findByMacAddress(configurationRequestDTO.getMacAddress());
         }
         RelayConfigurationResponseDTO dto = function.apply(configurationRequestDTO.getMacAddress());

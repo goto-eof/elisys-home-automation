@@ -31,6 +31,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class WeatherSensorServiceImpl implements WeatherSensorService {
 
+    public static final String DEVICE_NAME = "weather sensor";
     @Value("${app.configuration.default.temperature.sensor.unit.of.measure}")
     private String temperatureSensorUnitOfMeasure;
 
@@ -63,7 +64,7 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
         Weather model = this.weatherMapper.toModel(dto);
         Optional<Device> deviceOptional = this.deviceRepository.findByMacAddress(dto.getMacAddress());
         if (deviceOptional.isEmpty()) {
-            this.deviceService.createNewDevice(dto.getMacAddress(), "weather sensor", dto.getMacAddress());
+            this.deviceService.createNewDevice(dto.getMacAddress(), DEVICE_NAME, dto.getMacAddress());
             deviceOptional = this.deviceRepository.findByMacAddress(dto.getMacAddress());
         }
         model.setDevice(deviceOptional.get());
@@ -163,7 +164,7 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
         }
         Optional<Device> deviceOptional = this.deviceRepository.findByMacAddress(sensorConfigurationRequestDTO.getMacAddress());
         if (deviceOptional.isEmpty()) {
-            this.deviceService.createNewDevice(sensorConfigurationRequestDTO.getMacAddress(), "weather sensor", sensorConfigurationRequestDTO.getMacAddress());
+            this.deviceService.createNewDevice(sensorConfigurationRequestDTO.getMacAddress(), DEVICE_NAME, sensorConfigurationRequestDTO.getMacAddress());
             deviceOptional = this.deviceRepository.findByMacAddress(sensorConfigurationRequestDTO.getMacAddress());
         }
         WeatherSensorConfigurationDTO dto = loadDefaultConfiguration(sensorConfigurationRequestDTO.getMacAddress());

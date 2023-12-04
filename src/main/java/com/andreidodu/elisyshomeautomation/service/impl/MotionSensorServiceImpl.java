@@ -30,6 +30,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MotionSensorServiceImpl implements MotionSensorService {
 
+    public static final String DEVICE_NAME = "motion sensor";
     @Value("${app.configuration.default.motion.sensor.iamalive.interval.seconds}")
     private Long iAmAliveIntervalSeconds;
 
@@ -89,7 +90,7 @@ public class MotionSensorServiceImpl implements MotionSensorService {
         }
         Optional<Device> deviceOptional = this.deviceRepository.findByMacAddress(motionSensorConfigurationRequestDTO.getMacAddress());
         if (deviceOptional.isEmpty()) {
-            this.deviceService.createNewDevice(motionSensorConfigurationRequestDTO.getMacAddress(), "motion sensor", motionSensorConfigurationRequestDTO.getMacAddress());
+            this.deviceService.createNewDevice(motionSensorConfigurationRequestDTO.getMacAddress(), DEVICE_NAME, motionSensorConfigurationRequestDTO.getMacAddress());
             deviceOptional = this.deviceRepository.findByMacAddress(motionSensorConfigurationRequestDTO.getMacAddress());
         }
         MotionSensorConfigurationDTO dto = loadDefaultConfiguration(motionSensorConfigurationRequestDTO.getMacAddress());

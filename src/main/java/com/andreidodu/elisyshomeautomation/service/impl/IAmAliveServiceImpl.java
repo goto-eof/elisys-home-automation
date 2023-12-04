@@ -22,6 +22,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class IAmAliveServiceImpl implements IAmAliveService {
 
+    private final static String DEVICE_NAME = "uknown device";
+
     final private IAmAliveRepository iAmAliveRepository;
     final private DeviceRepository deviceRepository;
     final private DeviceService deviceService;
@@ -36,7 +38,7 @@ public class IAmAliveServiceImpl implements IAmAliveService {
         }
         Optional<Device> deviceOptional = this.deviceRepository.findByMacAddress(iAmAliveRequestDTO.getMacAddress());
         if (deviceOptional.isEmpty()) {
-            this.deviceService.createNewDevice(iAmAliveRequestDTO.getMacAddress(), iAmAliveRequestDTO.getMacAddress(), iAmAliveRequestDTO.getMacAddress());
+            this.deviceService.createNewDevice(iAmAliveRequestDTO.getMacAddress(), DEVICE_NAME, iAmAliveRequestDTO.getMacAddress());
             deviceOptional = this.deviceRepository.findByMacAddress(iAmAliveRequestDTO.getMacAddress());
         }
         createAliveModelAndSave(deviceOptional.get());
