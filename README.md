@@ -10,7 +10,7 @@ for the following projects:
 Currently, Elisys Home Automation Server supports the motion/temperature/humidity/pressure sensors, so that it allows to
 store and retrieve the
 data provided by a several sensors controlled by a ESP32 device (or Raspberry Pi).
-Moreover, EHAS provides the functionality to control remotely a Relay device. In particular, it allows to:
+Moreover, E.H.A.S. provides the functionality to control remotely a Relay device. In particular, it allows to:
 
 - retrieve data from a Motion detector
   - supply the configuration for the motion sensor when it starts for the first time;
