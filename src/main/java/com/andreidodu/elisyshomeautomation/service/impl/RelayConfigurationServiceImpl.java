@@ -1,7 +1,7 @@
 package com.andreidodu.elisyshomeautomation.service.impl;
 
-import com.andreidodu.elisyshomeautomation.dao.DeviceRepository;
-import com.andreidodu.elisyshomeautomation.dao.RelayConfigurationRepository;
+import com.andreidodu.elisyshomeautomation.repository.DeviceRepository;
+import com.andreidodu.elisyshomeautomation.repository.RelayConfigurationRepository;
 import com.andreidodu.elisyshomeautomation.dto.request.RelayConfigurationRequestDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.RelayConfigurationResponseDTO;
 import com.andreidodu.elisyshomeautomation.mapper.RelayConfigurationMapper;

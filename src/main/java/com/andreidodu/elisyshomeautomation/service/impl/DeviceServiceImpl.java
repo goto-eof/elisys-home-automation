@@ -1,6 +1,6 @@
 package com.andreidodu.elisyshomeautomation.service.impl;
 
-import com.andreidodu.elisyshomeautomation.dao.DeviceRepository;
+import com.andreidodu.elisyshomeautomation.repository.DeviceRepository;
 import com.andreidodu.elisyshomeautomation.dto.DeviceDTO;
 import com.andreidodu.elisyshomeautomation.mapper.DeviceMapper;
 import com.andreidodu.elisyshomeautomation.model.Device;

@@ -1,9 +1,9 @@
 package com.andreidodu.elisyshomeautomation.service.impl;
 
 import com.andreidodu.elisyshomeautomation.client.DiscordChannel;
-import com.andreidodu.elisyshomeautomation.dao.DeviceRepository;
-import com.andreidodu.elisyshomeautomation.dao.MotionDetectionRepository;
-import com.andreidodu.elisyshomeautomation.dao.MotionSensorConfigurationRepository;
+import com.andreidodu.elisyshomeautomation.repository.DeviceRepository;
+import com.andreidodu.elisyshomeautomation.repository.MotionDetectionRepository;
+import com.andreidodu.elisyshomeautomation.repository.MotionSensorConfigurationRepository;
 import com.andreidodu.elisyshomeautomation.dto.request.SensorConfigurationRequestDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.DiscordMessageDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.MotionSensorConfigurationDTO;

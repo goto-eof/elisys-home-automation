@@ -1,11 +1,11 @@
 package com.andreidodu.elisyshomeautomation.service.impl;
 
-import com.andreidodu.elisyshomeautomation.dao.DeviceRepository;
+import com.andreidodu.elisyshomeautomation.repository.DeviceRepository;
 import com.andreidodu.elisyshomeautomation.model.Alive;
 import com.andreidodu.elisyshomeautomation.model.Device;
 import com.andreidodu.elisyshomeautomation.service.DeviceService;
 import com.andreidodu.elisyshomeautomation.service.IAmAliveService;
-import com.andreidodu.elisyshomeautomation.dao.IAmAliveRepository;
+import com.andreidodu.elisyshomeautomation.repository.IAmAliveRepository;
 import com.andreidodu.elisyshomeautomation.dto.request.IAmAliveRequestDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.ResponseStatusDTO;
 import jakarta.transaction.Transactional;

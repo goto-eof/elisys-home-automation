@@ -1,6 +1,5 @@
-package com.andreidodu.elisyshomeautomation.dao;
+package com.andreidodu.elisyshomeautomation.repository;
 
-import com.andreidodu.elisyshomeautomation.model.Alive;
 import com.andreidodu.elisyshomeautomation.model.Device;
 import org.springframework.data.repository.CrudRepository;
 
