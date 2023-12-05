@@ -6,7 +6,7 @@ for the following projects:
 - [**Elisys ESP32 Motion Detector (Rust)**](https://github.com/goto-eof/esp32-motion-detector-and-server-notifier-rust)
 - [**Elisys ESP32 Weather Station (Rust)**](https://github.com/goto-eof/elisys-esp32-weather-station-client-rust)
 - [**Elisys ESP32 Relay Client (Rust)**](https://github.com/goto-eof/elisys-esp32-relay-client-rust)
-- [**Elisys ESP32 Alarm Clock (Rust)**](https://github.com/goto-eof/elisys-esp32-alarm-clock-rust)
+- [**Elisys ESP32 Alarm Clock (Rust)**](https://github.com/goto-eof/elisys-esp32-alarm-clock-rust) (WIP)
 
 Currently, Elisys Home Automation Server supports the motion, temperature, humidity and pressure sensors, so that it allows to
 store and retrieve the data provided by a several sensors controlled by a ESP32 device (or Raspberry Pi).
