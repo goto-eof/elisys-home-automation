@@ -16,6 +16,7 @@ public class WeatherCustomRepository {
 
     private final EntityManager entityManager;
 
+    // TODO test it
     public Weather findMinTemperatureByDateBetween(final String macAddress, Date dateStart, Date dateEnd) {
         JPAQueryFactory queryFactory = new JPAQueryFactory(entityManager);
         QWeather qWeather = QWeather.weather;
