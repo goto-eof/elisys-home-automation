@@ -8,7 +8,8 @@ for the following projects:
 - [**Elisys ESP32 Relay Client (Rust)**](https://github.com/goto-eof/elisys-esp32-relay-client-rust)
 - [**Elisys ESP32 Alarm Clock (Rust)**](https://github.com/goto-eof/elisys-esp32-alarm-clock-rust) (WIP)
 
-Currently, Elisys Home Automation Server supports the motion, temperature, humidity and pressure sensors, so that it allows to
+Currently, Elisys Home Automation Server supports the motion, temperature, humidity and pressure sensors, so that it
+allows to
 store and retrieve the data provided by a several sensors controlled by a ESP32 device (or Raspberry Pi).
 Moreover, E.H.A.S. provides the functionality to control remotely a Relay device and to control an Alarm Clock (WIP).
 
@@ -90,10 +91,10 @@ The API documentation can be found at the following URI (after server starts):
 
 [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
 
-This project is a Work In Progress.
-
-If you found a bug please contact me [here](https://andre-i.eu/#contactme).
-
 # Note
 
 There is a postman collection in the root project directory that can be imported in your postman environment.
+
+This project is a Work In Progress.
+
+If you found a bug please contact me [here](https://andre-i.eu/#contactme).
