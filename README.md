@@ -9,30 +9,29 @@ for the following projects:
 - [**Elisys ESP32 Alarm Clock (Rust)**](https://github.com/goto-eof/elisys-esp32-alarm-clock-rust)
 
 Currently, Elisys Home Automation Server supports the motion/temperature/humidity/pressure sensors, so that it allows to
-store and retrieve the
-data provided by a several sensors controlled by a ESP32 device (or Raspberry Pi).
-Moreover, E.H.A.S. provides the functionality to control remotely a Relay device and to control an Alarm Clock (WIP). 
+store and retrieve the data provided by a several sensors controlled by a ESP32 device (or Raspberry Pi).
+Moreover, E.H.A.S. provides the functionality to control remotely a Relay device and to control an Alarm Clock (WIP).
 
 In brief E.H.A.S. allows to:
 
 - retrieve data from a Motion detector
-  - supply the configuration for the motion sensor when it starts for the first time;
-  - send notifications via Discord when a motion is detected, so that when a post request is handled;
-  - keep trace about the sensor status:  alive/disabled.
+    - supply the configuration for the motion sensor when it starts for the first time;
+    - send notifications via Discord when a motion is detected, so that when a post request is handled;
+    - keep trace about the sensor status:  alive/disabled.
 
-- retrieve data from a Weather station  
-  - store temperature/humidity/pressure from sensors
-  - provide the last temperature/humidity/pressure values
-  - provide the list of temperature/humidity/pressure values by date
-  - provide the average of temperature/humidity/pressure by date
-  - provide the minimum temperature by date
-  - provide the maximum temperature by date
+- retrieve data from a Weather station
+    - store temperature/humidity/pressure from sensors
+    - provide the last temperature/humidity/pressure values
+    - provide the list of temperature/humidity/pressure values by date
+    - provide the average of temperature/humidity/pressure by date
+    - provide the minimum temperature by date
+    - provide the maximum temperature by date
 
 - control remotely a Relay
-  - control remotely a Relay
+    - control remotely a Relay
 
 - control remotely an Alarm Clock (WIP)
-  - enable/disable alarms
+    - enable/disable alarms
 
 # Technologies
 
@@ -49,7 +48,7 @@ Configure IntelliJ IDEA in this way:
 ![IDE](images/ide_config.png)
 
 Before run the application for the first time it is necessary to configure these properties in `application.properties`
-file:
+file in order to make motion sensor work properly:
 
 ```
 feign.discord.message.post=/api/webhooks/846237846238746328746/HELLO_WORLD
@@ -94,7 +93,6 @@ The API documentation can be found at the following URI (after server starts):
 This project is a Work In Progress.
 
 If you found a bug please contact me [here](https://andre-i.eu/#contactme).
-
 
 # Note
 
