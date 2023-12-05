@@ -6,11 +6,14 @@ for the following projects:
 - [**Elisys ESP32 Motion Detector (Rust)**](https://github.com/goto-eof/esp32-motion-detector-and-server-notifier-rust)
 - [**Elisys ESP32 Weather Station (Rust)**](https://github.com/goto-eof/elisys-esp32-weather-station-client-rust)
 - [**Elisys ESP32 Relay Client (Rust)**](https://github.com/goto-eof/elisys-esp32-relay-client-rust)
+- [**Elisys ESP32 Alarm Clock (Rust)**](https://github.com/goto-eof/elisys-esp32-alarm-clock-rust)
 
 Currently, Elisys Home Automation Server supports the motion/temperature/humidity/pressure sensors, so that it allows to
 store and retrieve the
 data provided by a several sensors controlled by a ESP32 device (or Raspberry Pi).
-Moreover, E.H.A.S. provides the functionality to control remotely a Relay device. In particular, it allows to:
+Moreover, E.H.A.S. provides the functionality to control remotely a Relay device and to control an Alarm Clock (WIP). 
+
+In brief E.H.A.S. allows to:
 
 - retrieve data from a Motion detector
   - supply the configuration for the motion sensor when it starts for the first time;
@@ -27,6 +30,9 @@ Moreover, E.H.A.S. provides the functionality to control remotely a Relay device
 
 - control remotely a Relay
   - control remotely a Relay
+
+- control remotely an Alarm Clock (WIP)
+  - enable/disable alarms
 
 # Technologies
 
