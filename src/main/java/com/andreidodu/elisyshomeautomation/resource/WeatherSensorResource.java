@@ -42,12 +42,12 @@ public interface WeatherSensorResource {
     ResponseEntity<WeatherDTO> calculateAverageByDateInterval(@RequestBody WeatherByDateIntervalRequestDTO weatherByDateRequestDTO);
 
     @Operation(summary = "Retrieve minimum temperature by date")
-    @PostMapping(value = "/minimumTemperature")
-    ResponseEntity<WeatherDTO> getMinimumTemperature(@RequestBody WeatherByDateRequestDTO weatherByDateRequestDTO);
+    @PostMapping(value = "/minimumTemperatureByDate")
+    ResponseEntity<WeatherDTO> getMinimumTemperatureByDate(@RequestBody WeatherByDateRequestDTO weatherByDateRequestDTO);
 
     @Operation(summary = "Retrieve maximum temperature by date")
-    @PostMapping(value = "/maximumTemperature")
-    ResponseEntity<WeatherDTO> getMaximumTemperature(@RequestBody WeatherByDateRequestDTO weatherByDateRequestDTO);
+    @PostMapping(value = "/maximumTemperatureByDate")
+    ResponseEntity<WeatherDTO> getMaximumTemperatureByDate(@RequestBody WeatherByDateRequestDTO weatherByDateRequestDTO);
 
     @Operation(summary = "Retrieve today minimum temperature")
     @PostMapping(value = "/todayMinimumTemperature")
@@ -56,4 +56,20 @@ public interface WeatherSensorResource {
     @Operation(summary = "Retrieve today maximum temperature")
     @PostMapping(value = "/todayMaximumTemperature")
     ResponseEntity<WeatherDTO> getTodayMaximumTemperature(@RequestBody SensorRequestCommonDTO dto);
+
+    @Operation(summary = "Retrieve today minimum humidity")
+    @PostMapping(value = "/todayMinimumHumidity")
+    ResponseEntity<WeatherDTO> getTodayMinimumHumidity(@RequestBody  SensorRequestCommonDTO dto);
+
+    @Operation(summary = "Retrieve today maximum humidity")
+    @PostMapping(value = "/todayMaximumHumidity")
+    ResponseEntity<WeatherDTO> getTodayMaximumHumidity(@RequestBody  SensorRequestCommonDTO dto);
+
+    @Operation(summary = "Retrieve minimum humidity by date")
+    @PostMapping(value = "/minimumHumidityByDate")
+    ResponseEntity<WeatherDTO> getMinimumHumidityByDate(@RequestBody WeatherByDateRequestDTO dto);
+
+    @Operation(summary = "Retrieve maximum humidity by date")
+    @PostMapping(value = "/maximumHumidityByDate")
+    ResponseEntity<WeatherDTO> getMaximumHumidityByDate(@RequestBody WeatherByDateRequestDTO dto);
 }

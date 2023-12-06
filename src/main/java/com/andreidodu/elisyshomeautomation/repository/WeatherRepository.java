@@ -13,7 +13,7 @@ public interface WeatherRepository extends CrudRepository<Weather, Long> {
 
     Weather findTopByDevice_MacAddressOrderByIdDesc(String macAddress);
 
-    Optional<Weather> findTopByDevice_macAddressAndCreatedDateBetweenAndTemperatureNotNullOrderByTemperatureAsc(String macAddress, Date dateStart, Date dateEnd);
+    // Optional<Weather> findTopByDevice_macAddressAndCreatedDateBetweenAndTemperatureNotNullOrderByTemperatureAsc(String macAddress, Date dateStart, Date dateEnd);
 
-    Optional<Weather> findTopByDevice_macAddressAndCreatedDateBetweenAndTemperatureNotNullOrderByTemperatureDesc(String macAddress, Date dateStart, Date dateEnd);
+    // Optional<Weather> findTopByDevice_macAddressAndCreatedDateBetweenAndTemperatureNotNullOrderByTemperatureDesc(String macAddress, Date dateStart, Date dateEnd);
 }

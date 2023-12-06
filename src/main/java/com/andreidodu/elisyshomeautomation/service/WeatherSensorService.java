@@ -20,6 +20,10 @@ public interface WeatherSensorService {
 
     WeatherDTO getMaximumTemperature(String macAddress, Date date);
 
+    WeatherDTO getMinimumHumidity(String macAddress, Date date);
+
+    WeatherDTO getMaximumHumidity(String macAddress, Date date);
+
     WeatherDTO getLast(String macAddress);
 
     WeatherSensorConfigurationDTO getConfiguration(SensorConfigurationRequestDTO motionSensorConfigurationRequestDTO);

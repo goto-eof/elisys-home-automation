@@ -35,7 +35,7 @@
                 <constraints nullable="true"/>
             </column>
             <column name="device_id" type="bigint">
-                <constraints nullable="false"/>
+                <constraints nullable="false" unique="true"/>
             </column>
             <column name="insert_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
             <column name="update_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
@@ -73,7 +73,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="device_id" type="bigint">
-                <constraints nullable="false"/>
+                <constraints nullable="false" unique="true"/>
             </column>
             <column name="insert_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
             <column name="update_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
@@ -168,7 +168,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="device_id" type="bigint">
-                <constraints nullable="false"/>
+                <constraints nullable="false" unique="true"/>
             </column>
             <column name="crontab" type="varchar(255)">
                 <constraints nullable="false"/>
@@ -200,7 +200,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="device_id" type="bigint">
-                <constraints nullable="false"/>
+                <constraints nullable="false" unique="true"/>
             </column>
             <column name="insert_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
             <column name="update_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
@@ -213,6 +213,70 @@
                                  onUpdate="RESTRICT"
                                  referencedColumnNames="id"
                                  referencedTableName="${tablePrefix}device"
+                                 validate="true"/>
+    </changeSet>
+
+
+    <changeSet author="Andrei Dodu" id="2023-12-06-001">
+        <createTable tableName="${tablePrefix}alarm_clock_configuration">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="timezone_seconds" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="alarm_interval_minutes" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="i_am_alive_endpoint" type="varchar(2000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="i_am_alive_interval_seconds" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="device_id" type="bigint">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="insert_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
+            <column name="update_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
+            <column name="version" type="INT"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="device_id"
+                                 baseTableName="${tablePrefix}alarm_clock_configuration"
+                                 constraintName="fk_alarm_clock_config_device"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="${tablePrefix}device"
+                                 validate="true"/>
+    </changeSet>
+
+
+    <changeSet author="Andrei Dodu" id="2023-12-06-002">
+        <createTable tableName="${tablePrefix}alarm_clock_configuration_cron">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="cron" type="varchar(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="alarm_clock_configuration_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="insert_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
+            <column name="update_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}"/>
+            <column name="version" type="INT"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="alarm_clock_configuration_id"
+                                 baseTableName="${tablePrefix}alarm_clock_configuration_cron"
+                                 constraintName="fk_alarm_clock_config_cron_device"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="${tablePrefix}alarm_clock_configuration"
                                  validate="true"/>
     </changeSet>
 

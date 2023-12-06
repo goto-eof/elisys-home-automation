@@ -39,5 +39,8 @@ public class Device extends ModelCommon {
     private WeatherSensorConfiguration weatherSensorConfiguration;
 
     @OneToMany(mappedBy = "device")
-    private List<Weather> weather;
+    private List<Weather> weatherList;
+
+    @OneToMany(mappedBy = "device")
+    private List<AlarmClockConfiguration> alarmClockConfigurationList;
 }

@@ -11,9 +11,9 @@ public interface DeviceMapper {
 
     DeviceDTO toDTO(Device model);
 
-    @Mapping(target = "alive",ignore = true)
-    @Mapping(target = "motionSensorConfiguration",ignore = true)
-    @Mapping(target = "weatherSensorConfiguration",ignore = true)
-    @Mapping(target = "weather",ignore = true)
+    @Mapping(target = "alive", ignore = true)
+    @Mapping(target = "motionSensorConfiguration", ignore = true)
+    @Mapping(target = "weatherSensorConfiguration", ignore = true)
+    @Mapping(target = "weatherList", ignore = true)
     Device toModel(DeviceDTO dto);
 }

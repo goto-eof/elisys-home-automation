@@ -14,7 +14,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"macAddress\":\"ciao\"\n}",
+					"raw": "{\n    \"macAddress\": \"00:B7:00:4D:00:E1\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -45,7 +45,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"macAddress\":\"ciao\"\n}",
+					"raw": "{\n    \"macAddress\": \"00:B7:00:4D:00:E1\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -76,7 +76,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"macAddress\":\"ciao\"\n}",
+					"raw": "{\n    \"macAddress\": \"00:B7:00:4D:00:E1\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -107,7 +107,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"macAddress\": \"ciao\",\n    \"temperature\": 5.9,\n    \"humidity\": 2.5,\n    \"pressure\": 3.4,\n    \"light\": false,\n    \"lux\": 0.1\n}",
+					"raw": "{\n    \"macAddress\": \"00:B7:00:4D:00:E1\",\n    \"temperature\": 5.9,\n    \"humidity\": 2.5,\n    \"pressure\": 3.4,\n    \"light\": false,\n    \"lux\": 0.1\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -138,7 +138,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"macAddress\": \"mondo\",\n    \"temperature\": 1.1,\n    \"humidity\": 2.2,\n    \"pressure\": 3.3\n}",
+					"raw": "{\n    \"macAddress\": \"00:B7:00:4D:00:E1\",\n    \"temperature\": 1.1,\n    \"humidity\": 2.2,\n    \"pressure\": 3.3\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -169,7 +169,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"macAddress\": \"ciao\"\n}",
+					"raw": "{\n    \"macAddress\": \"00:B7:00:4D:00:E1\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -200,7 +200,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"macAddress\": \"ciao\",\n    \"date\":\"2023-12-01T00:00:09.227+00:00\"\n}",
+					"raw": "{\n    \"macAddress\": \"00:B7:00:4D:00:E1\",\n    \"date\":\"2023-12-01T00:00:09.227+00:00\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -231,7 +231,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"macAddress\": \"ciao\",\n    \"date\":\"2023-12-03T00:00:01.000+00:00\"\n}",
+					"raw": "{\n    \"macAddress\": \"00:B7:00:4D:00:E1\",\n    \"date\":\"2023-12-03T00:00:01.000+00:00\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -262,7 +262,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"macAddress\": \"ciao\",\n    \"date\":\"2023-12-03T00:00:09.227+00:00\"\n}",
+					"raw": "{\n    \"macAddress\": \"00:B7:00:4D:00:E1\",\n    \"date\":\"2023-12-03T00:00:09.227+00:00\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -293,7 +293,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"macAddress\": \"ciao\"\n}",
+					"raw": "{\n    \"macAddress\": \"00:B7:00:4D:00:E1\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -324,7 +324,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"macAddress\": \"ciao\"\n}",
+					"raw": "{\n    \"macAddress\": \"00:B7:00:4D:00:E1\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -355,7 +355,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"macAddress\": \"ciao\",\n    \"date\":\"2023-12-01T00:00:00.000+00:00\"\n}",
+					"raw": "{\n    \"macAddress\": \"00:B7:00:4D:00:E1\",\n    \"date\":\"2023-12-01T00:00:00.000+00:00\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -386,7 +386,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"macAddress\": \"ciao\",\n    \"dateStart\":\"2023-11-30T23:21:09.227+00:00\",\n    \"dateEnd\":\"2023-12-30T23:21:09.227+00:00\"\n}",
+					"raw": "{\n    \"macAddress\": \"00:B7:00:4D:00:E1\",\n    \"dateStart\":\"2023-11-30T23:21:09.227+00:00\",\n    \"dateEnd\":\"2023-12-30T23:21:09.227+00:00\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -417,7 +417,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"macAddress\": \"zanzan\"\n}",
+					"raw": "{\n    \"macAddress\": \"00:B7:00:4D:00:E1\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -425,10 +425,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/relay/configuration",
+					"raw": "http://192.168.1.102:8080/api/v1/relay/configuration",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"192",
+						"168",
+						"1",
+						"102"
 					],
 					"port": "8080",
 					"path": [
@@ -448,7 +451,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"macAddress\": \"tao\"\n}",
+					"raw": "{\n    \"macAddress\": \"00:B7:00:4D:00:E1\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -479,7 +482,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"macAddress\": \"tao\"\n}",
+					"raw": "{\n    \"macAddress\": \"00:B7:00:4D:00:E1\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -498,6 +501,99 @@
 						"v1",
 						"relay",
 						"disable"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "weather | todayMaximumHumidity Copy 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"macAddress\": \"00:B7:00:4D:00:E1\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/weather-sensor/todayMaximumHumidity",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"weather-sensor",
+						"todayMaximumHumidity"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "weather | todayMinimumHumidity Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"macAddress\": \"00:B7:00:4D:00:E1\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/weather-sensor/todayMinimumHumidity",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"weather-sensor",
+						"todayMinimumHumidity"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "alarm-clock | configuration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"macAddress\": \"00:B7:00:4D:00:E1\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/alarm-clock/configuration",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"alarm-clock",
+						"configuration"
 					]
 				}
 			},

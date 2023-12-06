@@ -1,6 +1,7 @@
 package com.andreidodu.elisyshomeautomation.service.impl;
 
 import com.andreidodu.elisyshomeautomation.repository.DeviceRepository;
+import com.andreidodu.elisyshomeautomation.repository.WeatherCustomRepository;
 import com.andreidodu.elisyshomeautomation.repository.WeatherRepository;
 import com.andreidodu.elisyshomeautomation.repository.WeatherSensorConfigurationRepository;
 import com.andreidodu.elisyshomeautomation.dto.request.SensorConfigurationRequestDTO;
@@ -58,6 +59,7 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
     private final WeatherRepository weatherRepository;
     private final WeatherMapper weatherMapper;
     private final DeviceService deviceService;
+    private final WeatherCustomRepository weatherCustomRepository;
 
     @Override
     public WeatherDTO insert(final WeatherDTO dto) {
@@ -106,7 +108,7 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
         Date dateStart = DateUtil.calculateStartDate(date);
         Date dateEnd = DateUtil.calculateEndDate(date);
         log.info("mac_address: " + macAddress + " - dateStart: " + dateStart + " - dateEnd: " + dateEnd);
-        Optional<Weather> weatherOptional = this.weatherRepository.findTopByDevice_macAddressAndCreatedDateBetweenAndTemperatureNotNullOrderByTemperatureAsc(macAddress, dateStart, dateEnd);
+        Optional<Weather> weatherOptional = this.weatherCustomRepository.findMinTemperatureByDateBetween(macAddress, dateStart, dateEnd);
         return weatherOptional.map(weatherMapper::toDTO).orElseThrow(() -> new ApplicationException("no record found"));
     }
 
@@ -115,7 +117,25 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
         Date dateStart = DateUtil.calculateStartDate(date);
         Date dateEnd = DateUtil.calculateEndDate(date);
         log.info("mac_address: " + macAddress + " - dateStart: " + dateStart + " - dateEnd: " + dateEnd);
-        Optional<Weather> weatherOptional = this.weatherRepository.findTopByDevice_macAddressAndCreatedDateBetweenAndTemperatureNotNullOrderByTemperatureDesc(macAddress, dateStart, dateEnd);
+        Optional<Weather> weatherOptional = this.weatherCustomRepository.findMaxTemperatureByDateBetween(macAddress, dateStart, dateEnd);
+        return weatherOptional.map(weatherMapper::toDTO).orElseThrow(() -> new ApplicationException("no record found"));
+    }
+
+    @Override
+    public WeatherDTO getMinimumHumidity(final String macAddress, final Date date) {
+        Date dateStart = DateUtil.calculateStartDate(date);
+        Date dateEnd = DateUtil.calculateEndDate(date);
+        log.info("mac_address: " + macAddress + " - dateStart: " + dateStart + " - dateEnd: " + dateEnd);
+        Optional<Weather> weatherOptional = this.weatherCustomRepository.findMinHumidityByDateBetween(macAddress, dateStart, dateEnd);
+        return weatherOptional.map(weatherMapper::toDTO).orElseThrow(() -> new ApplicationException("no record found"));
+    }
+
+    @Override
+    public WeatherDTO getMaximumHumidity(final String macAddress, final Date date) {
+        Date dateStart = DateUtil.calculateStartDate(date);
+        Date dateEnd = DateUtil.calculateEndDate(date);
+        log.info("mac_address: " + macAddress + " - dateStart: " + dateStart + " - dateEnd: " + dateEnd);
+        Optional<Weather> weatherOptional = this.weatherCustomRepository.findMaxHumidityByDateBetween(macAddress, dateStart, dateEnd);
         return weatherOptional.map(weatherMapper::toDTO).orElseThrow(() -> new ApplicationException("no record found"));
     }
 

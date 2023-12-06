@@ -54,12 +54,12 @@ public class WeatherSensorResourceImpl implements WeatherSensorResource {
     }
 
     @Override
-    public ResponseEntity<WeatherDTO> getMinimumTemperature(WeatherByDateRequestDTO dto) {
+    public ResponseEntity<WeatherDTO> getMinimumTemperatureByDate(WeatherByDateRequestDTO dto) {
         return ResponseEntity.ok(this.weatherSensorService.getMinimumTemperature(dto.getMacAddress(), dto.getDate()));
     }
 
     @Override
-    public ResponseEntity<WeatherDTO> getMaximumTemperature(WeatherByDateRequestDTO dto) {
+    public ResponseEntity<WeatherDTO> getMaximumTemperatureByDate(WeatherByDateRequestDTO dto) {
         return ResponseEntity.ok(this.weatherSensorService.getMaximumTemperature(dto.getMacAddress(), dto.getDate()));
     }
 
@@ -71,6 +71,26 @@ public class WeatherSensorResourceImpl implements WeatherSensorResource {
     @Override
     public ResponseEntity<WeatherDTO> getTodayMaximumTemperature(SensorRequestCommonDTO dto) {
         return ResponseEntity.ok(this.weatherSensorService.getMaximumTemperature(dto.getMacAddress(), new Date()));
+    }
+
+    @Override
+    public ResponseEntity<WeatherDTO> getTodayMinimumHumidity(SensorRequestCommonDTO dto) {
+        return ResponseEntity.ok(this.weatherSensorService.getMinimumHumidity(dto.getMacAddress(), new Date()));
+    }
+
+    @Override
+    public ResponseEntity<WeatherDTO> getTodayMaximumHumidity(SensorRequestCommonDTO dto) {
+        return ResponseEntity.ok(this.weatherSensorService.getMaximumHumidity(dto.getMacAddress(), new Date()));
+    }
+
+    @Override
+    public ResponseEntity<WeatherDTO> getMinimumHumidityByDate(WeatherByDateRequestDTO dto) {
+        return ResponseEntity.ok(this.weatherSensorService.getMinimumHumidity(dto.getMacAddress(), dto.getDate()));
+    }
+
+    @Override
+    public ResponseEntity<WeatherDTO> getMaximumHumidityByDate(WeatherByDateRequestDTO dto) {
+        return ResponseEntity.ok(this.weatherSensorService.getMaximumHumidity(dto.getMacAddress(), dto.getDate()));
     }
 
 }
