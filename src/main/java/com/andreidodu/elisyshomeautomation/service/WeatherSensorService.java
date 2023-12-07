@@ -32,4 +32,6 @@ public interface WeatherSensorService {
     WeatherSensorConfigurationDTO getConfiguration(SensorConfigurationRequestDTO motionSensorConfigurationRequestDTO);
 
     WeatherSummaryDTO retrieveTodaySummary(String macAddress);
+
+    WeatherSummaryDTO retrieveLastNightSummary(String macAddress);
 }

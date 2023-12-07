@@ -17,6 +17,7 @@ import com.andreidodu.elisyshomeautomation.model.WeatherSensorConfiguration;
 import com.andreidodu.elisyshomeautomation.service.DeviceService;
 import com.andreidodu.elisyshomeautomation.service.WeatherSensorService;
 import com.andreidodu.elisyshomeautomation.util.DateUtil;
+import com.andreidodu.elisyshomeautomation.util.NumberUtil;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -111,16 +112,17 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
         List<WeatherDTO> dtoList = this.getAllByDateInterval(macAddress, dateStart, dateEnd);
         WeatherDTO weatherDTO = calculateAverageFromList(dtoList);
         WeatherDTO last = getLast(macAddress);
-        final Double avgTemperature = weatherDTO.getTemperature();
-        final Double avgHumidity = weatherDTO.getHumidity();
-        final Double minTemperature = calculateMinimumTemperature(dtoList);
-        final Double minHumidity = calculateMinimumHumidity(dtoList);
-        final Double maxTemperature = calculateMaximumTemperature(dtoList);
-        final Double maxHumidity = calculateMaximumHumidity(dtoList);
-        final Double lastTemperature = last.getTemperature();
-        final Double lastHumidity = last.getHumidity();
+        final Double avgTemperature = NumberUtil.normalize(weatherDTO.getTemperature());
+        final Double avgHumidity = NumberUtil.normalize(weatherDTO.getHumidity());
+        final Double minTemperature = NumberUtil.normalize(calculateMinimumTemperature(dtoList));
+        final Double minHumidity = NumberUtil.normalize(calculateMinimumHumidity(dtoList));
+        final Double maxTemperature = NumberUtil.normalize(calculateMaximumTemperature(dtoList));
+        final Double maxHumidity = NumberUtil.normalize(calculateMaximumHumidity(dtoList));
+        final Double lastTemperature = NumberUtil.normalize(last.getTemperature());
+        final Double lastHumidity = NumberUtil.normalize(last.getHumidity());
         return new WeatherSummaryDTO(macAddress, lastTemperature, lastHumidity, minTemperature, minHumidity, maxTemperature, maxHumidity, avgTemperature, avgHumidity);
     }
+
 
     private Double calculateMinimumTemperature(List<WeatherDTO> dtoList) {
         return dtoList.stream()
@@ -250,6 +252,11 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
     @Override
     public WeatherSummaryDTO retrieveTodaySummary(String macAddress) {
         return retrieveSummary(macAddress, DateUtil.getTodayDateWithHour(9), DateUtil.getTodayDateWithHour(21));
+    }
+
+    @Override
+    public WeatherSummaryDTO retrieveLastNightSummary(String macAddress) {
+        return retrieveSummary(macAddress, DateUtil.getYesterdayDateWithHour(21), DateUtil.getTodayDateWithHour(9));
     }
 
     private WeatherSensorConfigurationDTO loadDefaultConfiguration(String macAddress) {

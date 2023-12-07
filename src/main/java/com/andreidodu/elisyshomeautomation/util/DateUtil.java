@@ -39,4 +39,19 @@ public class DateUtil {
         calendar.setTimeZone(TimeZone.getDefault());
         return  calendar.getTime();
     }
+
+    public static Date getYesterdayDateWithHour(int hour) {
+        Calendar now = Calendar.getInstance();
+        now.setTime(new Date());
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, now.get(Calendar.YEAR));
+        calendar.set(Calendar.MONTH, now.get(Calendar.MONTH));
+        calendar.add(Calendar.DAY_OF_MONTH, -1);
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.setTimeZone(TimeZone.getDefault());
+        return  calendar.getTime();
+    }
 }

@@ -74,7 +74,11 @@ public interface WeatherSensorResource {
     @PostMapping(value = "/maximumHumidityByDate")
     ResponseEntity<WeatherDTO> getMaximumHumidityByDate(@RequestBody WeatherByDateRequestDTO dto);
 
-    @Operation(summary = "Weather summary by date")
+    @Operation(summary = "Weather summary by date (day)")
     @PostMapping(value = "/todaySummary")
     ResponseEntity<WeatherSummaryDTO> getTodaySummary(@RequestBody WeatherByDateRequestDTO dto);
+
+    @Operation(summary = "Weather summary by date (night)")
+    @PostMapping(value = "/lastNightSummary")
+    ResponseEntity<WeatherSummaryDTO> getLastNightSummary(@RequestBody WeatherByDateRequestDTO dto);
 }
