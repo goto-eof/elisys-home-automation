@@ -6,6 +6,7 @@ import com.andreidodu.elisyshomeautomation.dto.request.WeatherByDateIntervalRequ
 import com.andreidodu.elisyshomeautomation.dto.request.WeatherByDateRequestDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.WeatherDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.WeatherSensorConfigurationDTO;
+import com.andreidodu.elisyshomeautomation.dto.response.WeatherSummaryDTO;
 import com.andreidodu.elisyshomeautomation.resource.WeatherSensorResource;
 import com.andreidodu.elisyshomeautomation.service.WeatherSensorService;
 import lombok.RequiredArgsConstructor;
@@ -49,7 +50,7 @@ public class WeatherSensorResourceImpl implements WeatherSensorResource {
     }
 
     @Override
-    public ResponseEntity<WeatherDTO> calculateAverageByDateInterval(WeatherByDateIntervalRequestDTO dto) {
+    public ResponseEntity<WeatherDTO> calculateAverageByDateInterval(@RequestBody WeatherByDateIntervalRequestDTO dto) {
         return ResponseEntity.ok(this.weatherSensorService.calculateAverageByIntervalDate(dto.getMacAddress(), dto.getDateStart(), dto.getDateEnd()));
     }
 
@@ -91,6 +92,11 @@ public class WeatherSensorResourceImpl implements WeatherSensorResource {
     @Override
     public ResponseEntity<WeatherDTO> getMaximumHumidityByDate(WeatherByDateRequestDTO dto) {
         return ResponseEntity.ok(this.weatherSensorService.getMaximumHumidity(dto.getMacAddress(), dto.getDate()));
+    }
+
+    @Override
+    public ResponseEntity<WeatherSummaryDTO> getTodaySummary(WeatherByDateRequestDTO dto) {
+        return ResponseEntity.ok(this.weatherSensorService.retrieveTodaySummary(dto.getMacAddress()));
     }
 
 }

@@ -411,6 +411,37 @@
 			"response": []
 		},
 		{
+			"name": "weather | todaySummary",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"macAddress\": \"A0:00:65:4D:00:A8\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/weather-sensor/todaySummary",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"weather-sensor",
+						"todaySummary"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "relay | configuration",
 			"request": {
 				"method": "POST",

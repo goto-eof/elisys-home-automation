@@ -1,5 +1,6 @@
 package com.andreidodu.elisyshomeautomation.service.impl;
 
+import com.andreidodu.elisyshomeautomation.dto.response.WeatherSummaryDTO;
 import com.andreidodu.elisyshomeautomation.repository.DeviceRepository;
 import com.andreidodu.elisyshomeautomation.repository.WeatherCustomRepository;
 import com.andreidodu.elisyshomeautomation.repository.WeatherRepository;
@@ -83,6 +84,7 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
     }
 
     private List<WeatherDTO> getAllByDateInterval(final String macAddress, final Date dateStart, Date dateEnd) {
+        System.out.println("dateStart: " + dateStart + "  -  dateEnd: " + dateEnd);
         List<Weather> weatherList = this.weatherRepository.findByCreatedDateBetweenAndDevice_macAddress(dateStart, dateEnd, macAddress);
         return this.weatherMapper.toDTO(weatherList);
     }
@@ -102,6 +104,56 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
         weatherDTO.setMacAddress(macAddress);
         return weatherDTO;
     }
+
+
+    @Override
+    public WeatherSummaryDTO retrieveSummary(String macAddress, Date dateStart, Date dateEnd) {
+        List<WeatherDTO> dtoList = this.getAllByDateInterval(macAddress, dateStart, dateEnd);
+        WeatherDTO weatherDTO = calculateAverageFromList(dtoList);
+        WeatherDTO last = getLast(macAddress);
+        final Double avgTemperature = weatherDTO.getTemperature();
+        final Double avgHumidity = weatherDTO.getHumidity();
+        final Double minTemperature = calculateMinimumTemperature(dtoList);
+        final Double minHumidity = calculateMinimumHumidity(dtoList);
+        final Double maxTemperature = calculateMaximumTemperature(dtoList);
+        final Double maxHumidity = calculateMaximumHumidity(dtoList);
+        final Double lastTemperature = last.getTemperature();
+        final Double lastHumidity = last.getHumidity();
+        return new WeatherSummaryDTO(macAddress, lastTemperature, lastHumidity, minTemperature, minHumidity, maxTemperature, maxHumidity, avgTemperature, avgHumidity);
+    }
+
+    private Double calculateMinimumTemperature(List<WeatherDTO> dtoList) {
+        return dtoList.stream()
+                .filter(item -> item.getTemperature() != null)
+                .map(WeatherDTO::getTemperature)
+                .min(Double::compareTo)
+                .orElse(0.0);
+    }
+
+    private Double calculateMaximumTemperature(List<WeatherDTO> dtoList) {
+        return dtoList.stream()
+                .filter(item -> item.getTemperature() != null)
+                .map(WeatherDTO::getTemperature)
+                .max(Double::compareTo)
+                .orElse(0.0);
+    }
+
+    private Double calculateMinimumHumidity(List<WeatherDTO> dtoList) {
+        return dtoList.stream()
+                .filter(item -> item.getHumidity() != null)
+                .map(WeatherDTO::getHumidity)
+                .min(Double::compareTo)
+                .orElse(0.0);
+    }
+
+    private Double calculateMaximumHumidity(List<WeatherDTO> dtoList) {
+        return dtoList.stream()
+                .filter(item -> item.getHumidity() != null)
+                .map(WeatherDTO::getHumidity)
+                .max(Double::compareTo)
+                .orElse(0.0);
+    }
+
 
     @Override
     public WeatherDTO getMinimumTemperature(final String macAddress, final Date date) {
@@ -169,8 +221,8 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
 
     @Override
     public WeatherDTO getLast(final String macAddress) {
-        Weather weather = this.weatherRepository.findTopByDevice_MacAddressOrderByIdDesc(macAddress);
-        return this.weatherMapper.toDTO(weather);
+        Optional<Weather> weather = this.weatherRepository.findTopByDevice_MacAddressOrderByIdDesc(macAddress);
+        return this.weatherMapper.toDTO(weather.orElse(new Weather()));
     }
 
 
@@ -193,6 +245,11 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
         WeatherSensorConfigurationDTO result = this.sensorConfigurationMapper.toDTO(this.sensorConfigurationRepository.save(model));
         log.info(result.toString());
         return result;
+    }
+
+    @Override
+    public WeatherSummaryDTO retrieveTodaySummary(String macAddress) {
+        return retrieveSummary(macAddress, DateUtil.getTodayDateWithHour(9), DateUtil.getTodayDateWithHour(21));
     }
 
     private WeatherSensorConfigurationDTO loadDefaultConfiguration(String macAddress) {

@@ -3,6 +3,7 @@ package com.andreidodu.elisyshomeautomation.service;
 import com.andreidodu.elisyshomeautomation.dto.request.SensorConfigurationRequestDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.WeatherDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.WeatherSensorConfigurationDTO;
+import com.andreidodu.elisyshomeautomation.dto.response.WeatherSummaryDTO;
 
 import java.util.Date;
 import java.util.List;
@@ -16,6 +17,8 @@ public interface WeatherSensorService {
 
     WeatherDTO calculateAverageByIntervalDate(String macAddress, Date dateStart, Date dateEnd);
 
+    WeatherSummaryDTO retrieveSummary(String macAddress, Date dateStart, Date dateEnd);
+
     WeatherDTO getMinimumTemperature(String macAddress, Date date);
 
     WeatherDTO getMaximumTemperature(String macAddress, Date date);
@@ -28,4 +31,5 @@ public interface WeatherSensorService {
 
     WeatherSensorConfigurationDTO getConfiguration(SensorConfigurationRequestDTO motionSensorConfigurationRequestDTO);
 
+    WeatherSummaryDTO retrieveTodaySummary(String macAddress);
 }

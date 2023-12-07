@@ -6,6 +6,7 @@ import com.andreidodu.elisyshomeautomation.dto.request.WeatherByDateIntervalRequ
 import com.andreidodu.elisyshomeautomation.dto.request.WeatherByDateRequestDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.WeatherDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.WeatherSensorConfigurationDTO;
+import com.andreidodu.elisyshomeautomation.dto.response.WeatherSummaryDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -72,4 +73,8 @@ public interface WeatherSensorResource {
     @Operation(summary = "Retrieve maximum humidity by date")
     @PostMapping(value = "/maximumHumidityByDate")
     ResponseEntity<WeatherDTO> getMaximumHumidityByDate(@RequestBody WeatherByDateRequestDTO dto);
+
+    @Operation(summary = "Weather summary by date")
+    @PostMapping(value = "/todaySummary")
+    ResponseEntity<WeatherSummaryDTO> getTodaySummary(@RequestBody WeatherByDateRequestDTO dto);
 }
