@@ -85,7 +85,6 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
     }
 
     private List<WeatherDTO> getAllByDateInterval(final String macAddress, final Date dateStart, Date dateEnd) {
-        System.out.println("dateStart: " + dateStart + "  -  dateEnd: " + dateEnd);
         List<Weather> weatherList = this.weatherRepository.findByCreatedDateBetweenAndDevice_macAddress(dateStart, dateEnd, macAddress);
         return this.weatherMapper.toDTO(weatherList);
     }

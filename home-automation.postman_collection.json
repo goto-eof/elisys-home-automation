@@ -239,7 +239,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/weather-sensor/minimumTemperature",
+					"raw": "http://localhost:8080/api/v1/weather-sensor/minimumTemperatureByDate",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -249,7 +249,7 @@
 						"api",
 						"v1",
 						"weather-sensor",
-						"minimumTemperature"
+						"minimumTemperatureByDate"
 					]
 				}
 			},
@@ -270,7 +270,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/weather-sensor/maximumTemperature",
+					"raw": "http://localhost:8080/api/v1/weather-sensor/maximumTemperatureByDate",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -280,7 +280,7 @@
 						"api",
 						"v1",
 						"weather-sensor",
-						"maximumTemperature"
+						"maximumTemperatureByDate"
 					]
 				}
 			},
