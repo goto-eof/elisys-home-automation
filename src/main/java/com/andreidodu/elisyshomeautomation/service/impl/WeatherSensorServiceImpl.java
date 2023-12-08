@@ -215,9 +215,9 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
             }
         }
         WeatherDTO result = new WeatherDTO();
-        result.setHumidity(humidity / humidityCount);
-        result.setTemperature(temperature / temperatureCount);
-        result.setPressure(pressure / pressureCount);
+        result.setHumidity(NumberUtil.normalize(humidity / humidityCount));
+        result.setTemperature(NumberUtil.normalize(temperature / temperatureCount));
+        result.setPressure(NumberUtil.normalize(pressure / pressureCount));
         return result;
     }
 
@@ -252,6 +252,11 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
     @Override
     public WeatherSummaryDTO retrieveTodaySummary(String macAddress) {
         return retrieveSummary(macAddress, DateUtil.getTodayDateWithHour(9), DateUtil.getTodayDateWithHour(21));
+    }
+
+    @Override
+    public WeatherSummaryDTO retrieveYesterdayDaySummary(String macAddress) {
+        return retrieveSummary(macAddress, DateUtil.getYesterdayDateWithHour(9), DateUtil.getYesterdayDateWithHour(21));
     }
 
     @Override

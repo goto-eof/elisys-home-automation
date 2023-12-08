@@ -33,5 +33,7 @@ public interface WeatherSensorService {
 
     WeatherSummaryDTO retrieveTodaySummary(String macAddress);
 
+    WeatherSummaryDTO retrieveYesterdayDaySummary(String macAddress);
+
     WeatherSummaryDTO retrieveLastNightSummary(String macAddress);
 }

@@ -100,6 +100,11 @@ public class WeatherSensorResourceImpl implements WeatherSensorResource {
     }
 
     @Override
+    public ResponseEntity<WeatherSummaryDTO> getYesterdayDaySummary(WeatherByDateRequestDTO dto) {
+        return ResponseEntity.ok(this.weatherSensorService.retrieveYesterdayDaySummary(dto.getMacAddress()));
+    }
+
+    @Override
     public ResponseEntity<WeatherSummaryDTO> getLastNightSummary(WeatherByDateRequestDTO dto) {
         return ResponseEntity.ok(this.weatherSensorService.retrieveLastNightSummary(dto.getMacAddress()));
     }
