@@ -442,6 +442,68 @@
 			"response": []
 		},
 		{
+			"name": "weather | yesterdayDaySummary",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"macAddress\": \"A0:00:65:00:89:00\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/weather-sensor/yesterdayDaySummary",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"weather-sensor",
+						"yesterdayDaySummary"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "weather | tonightSummary Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"macAddress\": \"00:B7:00:4D:00:A8\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/weather-sensor/lastNightSummary",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"weather-sensor",
+						"lastNightSummary"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "relay | configuration",
 			"request": {
 				"method": "POST",
