@@ -321,6 +321,12 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
         return getAllByDate(dto.getMacAddress(), DateUtil.calculate24hAgo(now), now, Optional.of(maxChartElements));
     }
 
+    @Override
+    public WeatherSummaryDTO getLast24hSummary(SensorRequestCommonDTO dto) {
+        final Date now = new Date();
+        return this.retrieveSummary(dto.getMacAddress(), DateUtil.calculate24hAgo(now), now);
+    }
+
     private WeatherSensorConfigurationDTO loadDefaultConfiguration(String macAddress) {
         WeatherSensorConfigurationDTO dto = new WeatherSensorConfigurationDTO();
         dto.setAlertEndpoint(alertEndpoint);

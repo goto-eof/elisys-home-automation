@@ -136,4 +136,9 @@ public class WeatherSensorResourceImpl implements WeatherSensorResource {
         return ResponseEntity.ok(this.weatherSensorService.getLast24h(dto));
     }
 
+    @Override
+    public ResponseEntity<WeatherSummaryDTO> getLast24hSummary(WeatherByDateRequestDTO dto) {
+        return ResponseEntity.ok(this.weatherSensorService.getLast24hSummary(dto));
+    }
+
 }

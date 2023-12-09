@@ -42,4 +42,6 @@ public interface WeatherSensorService {
     WeatherSummaryDTO retrieveLastNightSummary(String macAddress);
 
     List<WeatherDTO> getLast24h(SensorRequestCommonDTO dto);
+
+    WeatherSummaryDTO getLast24hSummary(SensorRequestCommonDTO dto);
 }
