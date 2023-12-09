@@ -60,7 +60,7 @@ public class AlarmClockConfigurationServiceImpl implements AlarmClockConfigurati
     private AlarmClockConfigurationResponseDTO createNewConfiguration(AlarmClockConfigurationRequestDTO configurationRequestDTO) {
         Optional<Device> deviceOptional = this.deviceRepository.findByMacAddress(configurationRequestDTO.getMacAddress());
         if (deviceOptional.isEmpty()) {
-            this.deviceService.createNewDevice(configurationRequestDTO.getMacAddress(), DEVICE_NAME, configurationRequestDTO.getMacAddress());
+            this.deviceService.createNewDevice(DeviceType.AlarmClock, configurationRequestDTO.getMacAddress(), DEVICE_NAME, configurationRequestDTO.getMacAddress());
             deviceOptional = this.deviceRepository.findByMacAddress(configurationRequestDTO.getMacAddress());
         }
         AlarmClockConfigurationResponseDTO dto = loadDefaultConfiguration(configurationRequestDTO.getMacAddress());

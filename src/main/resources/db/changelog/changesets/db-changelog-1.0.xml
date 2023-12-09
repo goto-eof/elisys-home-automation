@@ -280,4 +280,12 @@
                                  validate="true"/>
     </changeSet>
 
+    <changeSet author="Andrei Dodu" id="2023-12-09-001">
+        <addColumn tableName="${tablePrefix}device">
+            <column name="type"
+                    type="varchar(50)"/>
+        </addColumn>
+    </changeSet>
+
+
 </databaseChangeLog>

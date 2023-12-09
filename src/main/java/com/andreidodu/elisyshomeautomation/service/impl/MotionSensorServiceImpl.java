@@ -1,6 +1,7 @@
 package com.andreidodu.elisyshomeautomation.service.impl;
 
 import com.andreidodu.elisyshomeautomation.client.DiscordChannel;
+import com.andreidodu.elisyshomeautomation.model.DeviceType;
 import com.andreidodu.elisyshomeautomation.repository.DeviceRepository;
 import com.andreidodu.elisyshomeautomation.repository.MotionDetectionRepository;
 import com.andreidodu.elisyshomeautomation.repository.MotionSensorConfigurationRepository;
@@ -90,7 +91,7 @@ public class MotionSensorServiceImpl implements MotionSensorService {
         }
         Optional<Device> deviceOptional = this.deviceRepository.findByMacAddress(motionSensorConfigurationRequestDTO.getMacAddress());
         if (deviceOptional.isEmpty()) {
-            this.deviceService.createNewDevice(motionSensorConfigurationRequestDTO.getMacAddress(), DEVICE_NAME, motionSensorConfigurationRequestDTO.getMacAddress());
+            this.deviceService.createNewDevice(DeviceType.MotionDetector, motionSensorConfigurationRequestDTO.getMacAddress(), DEVICE_NAME, motionSensorConfigurationRequestDTO.getMacAddress());
             deviceOptional = this.deviceRepository.findByMacAddress(motionSensorConfigurationRequestDTO.getMacAddress());
         }
         MotionSensorConfigurationDTO dto = loadDefaultConfiguration(motionSensorConfigurationRequestDTO.getMacAddress());

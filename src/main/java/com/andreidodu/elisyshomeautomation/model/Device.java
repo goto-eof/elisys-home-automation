@@ -43,4 +43,7 @@ public class Device extends ModelCommon {
 
     @OneToMany(mappedBy = "device")
     private List<AlarmClockConfiguration> alarmClockConfigurationList;
+
+    @Enumerated(EnumType.STRING)
+    private DeviceType type;
 }

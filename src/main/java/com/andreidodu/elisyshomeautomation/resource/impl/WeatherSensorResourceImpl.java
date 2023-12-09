@@ -1,5 +1,6 @@
 package com.andreidodu.elisyshomeautomation.resource.impl;
 
+import com.andreidodu.elisyshomeautomation.dto.DeviceDTO;
 import com.andreidodu.elisyshomeautomation.dto.common.SensorRequestCommonDTO;
 import com.andreidodu.elisyshomeautomation.dto.request.SensorConfigurationRequestDTO;
 import com.andreidodu.elisyshomeautomation.dto.request.WeatherByDateIntervalRequestDTO;
@@ -7,7 +8,9 @@ import com.andreidodu.elisyshomeautomation.dto.request.WeatherByDateRequestDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.WeatherDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.WeatherSensorConfigurationDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.WeatherSummaryDTO;
+import com.andreidodu.elisyshomeautomation.model.DeviceType;
 import com.andreidodu.elisyshomeautomation.resource.WeatherSensorResource;
+import com.andreidodu.elisyshomeautomation.service.DeviceService;
 import com.andreidodu.elisyshomeautomation.service.WeatherSensorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +25,7 @@ import java.util.List;
 public class WeatherSensorResourceImpl implements WeatherSensorResource {
 
     final private WeatherSensorService weatherSensorService;
+    final private DeviceService deviceService;
 
     @Override
     public ResponseEntity<WeatherSensorConfigurationDTO> getConfiguration(SensorConfigurationRequestDTO configurationRequestDTO) {
@@ -107,6 +111,11 @@ public class WeatherSensorResourceImpl implements WeatherSensorResource {
     @Override
     public ResponseEntity<WeatherSummaryDTO> getLastNightSummary(WeatherByDateRequestDTO dto) {
         return ResponseEntity.ok(this.weatherSensorService.retrieveLastNightSummary(dto.getMacAddress()));
+    }
+
+    @Override
+    public ResponseEntity<List<DeviceDTO>> getWeatherStations() {
+        return ResponseEntity.ok(this.deviceService.retrieveDevicesByType(DeviceType.WeatherStation));
     }
 
 }

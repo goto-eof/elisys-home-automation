@@ -91,6 +91,9 @@ The API documentation can be found at the following URI (after server starts):
 
 [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
 
+# Pictures (front-end)
+![Temperature monitor - kitchen](images/kitchen.png)
+
 # Note
 
 There is a postman collection in the root project directory that can be imported in your postman environment.

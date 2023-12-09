@@ -5,11 +5,15 @@ import com.andreidodu.elisyshomeautomation.model.Device;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface DeviceMapper {
 
 
     DeviceDTO toDTO(Device model);
+
+    List<DeviceDTO> toDTO(List<Device> model);
 
     @Mapping(target = "alive", ignore = true)
     @Mapping(target = "motionSensorConfiguration", ignore = true)

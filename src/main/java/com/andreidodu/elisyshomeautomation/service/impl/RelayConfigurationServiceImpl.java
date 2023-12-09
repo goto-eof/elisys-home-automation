@@ -1,5 +1,6 @@
 package com.andreidodu.elisyshomeautomation.service.impl;
 
+import com.andreidodu.elisyshomeautomation.model.DeviceType;
 import com.andreidodu.elisyshomeautomation.repository.DeviceRepository;
 import com.andreidodu.elisyshomeautomation.repository.RelayConfigurationRepository;
 import com.andreidodu.elisyshomeautomation.dto.request.RelayConfigurationRequestDTO;
@@ -47,7 +48,7 @@ public class RelayConfigurationServiceImpl implements RelayConfigurationService 
     private RelayConfigurationResponseDTO createNewConfiguration(RelayConfigurationRequestDTO configurationRequestDTO, Function<String, RelayConfigurationResponseDTO> function) {
         Optional<Device> deviceOptional = this.deviceRepository.findByMacAddress(configurationRequestDTO.getMacAddress());
         if (deviceOptional.isEmpty()) {
-            this.deviceService.createNewDevice(configurationRequestDTO.getMacAddress(), DEVICE_NAME, configurationRequestDTO.getMacAddress());
+            this.deviceService.createNewDevice(DeviceType.Relay, configurationRequestDTO.getMacAddress(), DEVICE_NAME, configurationRequestDTO.getMacAddress());
             deviceOptional = this.deviceRepository.findByMacAddress(configurationRequestDTO.getMacAddress());
         }
         RelayConfigurationResponseDTO dto = function.apply(configurationRequestDTO.getMacAddress());

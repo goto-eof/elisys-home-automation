@@ -1,6 +1,7 @@
 package com.andreidodu.elisyshomeautomation.service.impl;
 
 import com.andreidodu.elisyshomeautomation.dto.response.WeatherSummaryDTO;
+import com.andreidodu.elisyshomeautomation.model.DeviceType;
 import com.andreidodu.elisyshomeautomation.repository.DeviceRepository;
 import com.andreidodu.elisyshomeautomation.repository.WeatherCustomRepository;
 import com.andreidodu.elisyshomeautomation.repository.WeatherRepository;
@@ -68,7 +69,7 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
         Weather model = this.weatherMapper.toModel(dto);
         Optional<Device> deviceOptional = this.deviceRepository.findByMacAddress(dto.getMacAddress());
         if (deviceOptional.isEmpty()) {
-            this.deviceService.createNewDevice(dto.getMacAddress(), DEVICE_NAME, dto.getMacAddress());
+            this.deviceService.createNewDevice(DeviceType.WeatherStation, dto.getMacAddress(), DEVICE_NAME, dto.getMacAddress());
             deviceOptional = this.deviceRepository.findByMacAddress(dto.getMacAddress());
         }
         model.setDevice(deviceOptional.get());
@@ -237,7 +238,7 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
         }
         Optional<Device> deviceOptional = this.deviceRepository.findByMacAddress(sensorConfigurationRequestDTO.getMacAddress());
         if (deviceOptional.isEmpty()) {
-            this.deviceService.createNewDevice(sensorConfigurationRequestDTO.getMacAddress(), DEVICE_NAME, sensorConfigurationRequestDTO.getMacAddress());
+            this.deviceService.createNewDevice(DeviceType.WeatherStation, sensorConfigurationRequestDTO.getMacAddress(), DEVICE_NAME, sensorConfigurationRequestDTO.getMacAddress());
             deviceOptional = this.deviceRepository.findByMacAddress(sensorConfigurationRequestDTO.getMacAddress());
         }
         WeatherSensorConfigurationDTO dto = loadDefaultConfiguration(sensorConfigurationRequestDTO.getMacAddress());
