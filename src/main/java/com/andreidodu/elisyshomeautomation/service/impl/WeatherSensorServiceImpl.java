@@ -1,5 +1,6 @@
 package com.andreidodu.elisyshomeautomation.service.impl;
 
+import com.andreidodu.elisyshomeautomation.dto.common.SensorRequestCommonDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.WeatherSummaryDTO;
 import com.andreidodu.elisyshomeautomation.model.DeviceType;
 import com.andreidodu.elisyshomeautomation.repository.DeviceRepository;
@@ -25,9 +26,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 @Slf4j
 @Service
@@ -36,6 +39,9 @@ import java.util.Optional;
 public class WeatherSensorServiceImpl implements WeatherSensorService {
 
     public static final String DEVICE_NAME = "weather sensor";
+
+    @Value("${app.configuration.default.max.chart.elements}")
+    private int maxChartElements;
     @Value("${app.configuration.default.temperature.sensor.unit.of.measure}")
     private String temperatureSensorUnitOfMeasure;
 
@@ -78,11 +84,27 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
     }
 
     @Override
-    public List<WeatherDTO> getAllByDate(final String macAddress, final Date date) {
-        Date startDate = DateUtil.calculateStartDate(date);
-        Date endDate = DateUtil.calculateEndDate(date);
-        List<Weather> weatherList = this.weatherRepository.findByCreatedDateBetweenAndDevice_macAddress(startDate, endDate, macAddress);
-        return this.weatherMapper.toDTO(weatherList);
+    public List<WeatherDTO> getAllByDate(final String macAddress, final Date dateStart, final Date dateEnd, Optional<Integer> numberOfItemsToBeExtracted) {
+        if (numberOfItemsToBeExtracted.isPresent() && numberOfItemsToBeExtracted.get() == 0) {
+            throw new ApplicationException("Invalid input: numberOfItemsToBeExtracted = 0");
+        }
+
+        List<Weather> weatherList = this.weatherRepository.findByCreatedDateBetweenAndDevice_macAddress(dateStart, dateEnd, macAddress);
+        if (numberOfItemsToBeExtracted.isEmpty()) {
+            return this.weatherMapper.toDTO(weatherList);
+        }
+
+        long length = weatherList.size();
+        long slice = length / (numberOfItemsToBeExtracted.get() - 1);
+        List<Weather> wheatherListFinal = IntStream.range(0, weatherList.size())
+                .filter(i -> i % slice == 0)
+                .mapToObj(weatherList::get)
+                .toList();
+        if (!weatherList.isEmpty() && wheatherListFinal.get(wheatherListFinal.size() - 1) != weatherList.get(weatherList.size() - 1)) {
+            wheatherListFinal = new ArrayList<>(wheatherListFinal);
+            wheatherListFinal.add(weatherList.get(weatherList.size() - 1));
+        }
+        return this.weatherMapper.toDTO(wheatherListFinal);
     }
 
     private List<WeatherDTO> getAllByDateInterval(final String macAddress, final Date dateStart, Date dateEnd) {
@@ -92,7 +114,9 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
 
     @Override
     public WeatherDTO calculateAverageByDate(final String macAddress, final Date date) {
-        List<WeatherDTO> dtoList = this.getAllByDate(macAddress, date);
+        Date startDate = DateUtil.calculateStartDate(date);
+        Date endDate = DateUtil.calculateEndDate(date);
+        List<WeatherDTO> dtoList = this.getAllByDate(macAddress, startDate, endDate, Optional.empty());
         WeatherDTO weatherDTO = calculateAverageFromList(dtoList);
         weatherDTO.setMacAddress(macAddress);
         return weatherDTO;
@@ -124,9 +148,8 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
         final Double lastLux = last.getLux();
         final Double lastTemperature = NumberUtil.normalize(last.getTemperature());
         final Double lastHumidity = NumberUtil.normalize(last.getHumidity());
-        return new WeatherSummaryDTO(macAddress, lastTemperature, lastHumidity, minTemperature, minHumidity, maxTemperature, maxHumidity, avgTemperature, avgHumidity, minLux, lastLux,maxLux, avgLux);
+        return new WeatherSummaryDTO(macAddress, lastTemperature, lastHumidity, minTemperature, minHumidity, maxTemperature, maxHumidity, avgTemperature, avgHumidity, minLux, lastLux, maxLux, avgLux);
     }
-
 
 
     private Double calculateMinimumLux(List<WeatherDTO> dtoList) {
@@ -144,6 +167,7 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
                 .max(Double::compareTo)
                 .orElse(0.0);
     }
+
     private Double calculateMinimumTemperature(List<WeatherDTO> dtoList) {
         return dtoList.stream()
                 .filter(item -> item.getTemperature() != null)
@@ -289,6 +313,12 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
     @Override
     public WeatherSummaryDTO retrieveLastNightSummary(String macAddress) {
         return retrieveSummary(macAddress, DateUtil.getYesterdayDateWithHour(21), DateUtil.getTodayDateWithHour(9));
+    }
+
+    @Override
+    public List<WeatherDTO> getLast24h(SensorRequestCommonDTO dto) {
+        final Date now = new Date();
+        return getAllByDate(dto.getMacAddress(), DateUtil.calculate24hAgo(now), now, Optional.of(maxChartElements));
     }
 
     private WeatherSensorConfigurationDTO loadDefaultConfiguration(String macAddress) {

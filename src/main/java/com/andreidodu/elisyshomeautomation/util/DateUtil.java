@@ -36,7 +36,6 @@ public class DateUtil {
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
-        calendar.setTimeZone(TimeZone.getDefault());
         return  calendar.getTime();
     }
 
@@ -52,6 +51,13 @@ public class DateUtil {
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
         calendar.setTimeZone(TimeZone.getDefault());
+        return  calendar.getTime();
+    }
+
+    public static Date calculate24hAgo(Date now) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(now);
+        calendar.add(Calendar.DAY_OF_MONTH, -1);
         return  calendar.getTime();
     }
 }

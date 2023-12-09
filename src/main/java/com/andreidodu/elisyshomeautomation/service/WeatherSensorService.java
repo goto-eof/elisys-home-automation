@@ -1,17 +1,21 @@
 package com.andreidodu.elisyshomeautomation.service;
 
+import com.andreidodu.elisyshomeautomation.dto.common.SensorRequestCommonDTO;
 import com.andreidodu.elisyshomeautomation.dto.request.SensorConfigurationRequestDTO;
+import com.andreidodu.elisyshomeautomation.dto.request.WeatherByDateRequestDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.WeatherDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.WeatherSensorConfigurationDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.WeatherSummaryDTO;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public interface WeatherSensorService {
     WeatherDTO insert(WeatherDTO dto);
 
-    List<WeatherDTO> getAllByDate(String macAddress, Date date);
+
+    List<WeatherDTO> getAllByDate(String macAddress, Date dateStart, Date dateEnd, Optional<Integer> numberOfItemsToBeExtracted);
 
     WeatherDTO calculateAverageByDate(String macAddress, Date date);
 
@@ -36,4 +40,6 @@ public interface WeatherSensorService {
     WeatherSummaryDTO retrieveYesterdayDaySummary(String macAddress);
 
     WeatherSummaryDTO retrieveLastNightSummary(String macAddress);
+
+    List<WeatherDTO> getLast24h(SensorRequestCommonDTO dto);
 }

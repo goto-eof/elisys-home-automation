@@ -12,20 +12,27 @@ import com.andreidodu.elisyshomeautomation.model.DeviceType;
 import com.andreidodu.elisyshomeautomation.resource.WeatherSensorResource;
 import com.andreidodu.elisyshomeautomation.service.DeviceService;
 import com.andreidodu.elisyshomeautomation.service.WeatherSensorService;
+import com.andreidodu.elisyshomeautomation.util.DateUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
 public class WeatherSensorResourceImpl implements WeatherSensorResource {
 
+    @Value("${app.configuration.default.max.chart.elements}")
+    private int maxChartElements;
+
     final private WeatherSensorService weatherSensorService;
     final private DeviceService deviceService;
+
 
     @Override
     public ResponseEntity<WeatherSensorConfigurationDTO> getConfiguration(SensorConfigurationRequestDTO configurationRequestDTO) {
@@ -42,10 +49,11 @@ public class WeatherSensorResourceImpl implements WeatherSensorResource {
         return ResponseEntity.ok(this.weatherSensorService.getLast(dto.getMacAddress()));
     }
 
-
     @Override
     public ResponseEntity<List<WeatherDTO>> getAllByDate(@RequestBody WeatherByDateRequestDTO dto) {
-        return ResponseEntity.ok(this.weatherSensorService.getAllByDate(dto.getMacAddress(), dto.getDate()));
+        Date startDate = DateUtil.calculateStartDate(dto.getDate());
+        Date endDate = DateUtil.calculateEndDate(dto.getDate());
+        return ResponseEntity.ok(this.weatherSensorService.getAllByDate(dto.getMacAddress(), startDate, endDate, Optional.of(maxChartElements)));
     }
 
     @Override
@@ -116,6 +124,16 @@ public class WeatherSensorResourceImpl implements WeatherSensorResource {
     @Override
     public ResponseEntity<List<DeviceDTO>> getWeatherStations() {
         return ResponseEntity.ok(this.deviceService.retrieveDevicesByType(DeviceType.WeatherStation));
+    }
+
+    @Override
+    public ResponseEntity<DeviceDTO> getWeatherStation(SensorRequestCommonDTO sensorRequestCommonDTO) {
+        return ResponseEntity.ok(this.deviceService.retrieveDevice(sensorRequestCommonDTO));
+    }
+
+    @Override
+    public ResponseEntity<List<WeatherDTO>> getLast24h(SensorRequestCommonDTO dto) {
+        return ResponseEntity.ok(this.weatherSensorService.getLast24h(dto));
     }
 
 }

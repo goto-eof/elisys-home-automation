@@ -1,7 +1,9 @@
 package com.andreidodu.elisyshomeautomation.service.impl;
 
+import com.andreidodu.elisyshomeautomation.dto.common.SensorRequestCommonDTO;
 import com.andreidodu.elisyshomeautomation.dto.request.DeviceRegistrationDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.ResponseStatusDTO;
+import com.andreidodu.elisyshomeautomation.exception.ApplicationException;
 import com.andreidodu.elisyshomeautomation.model.DeviceType;
 import com.andreidodu.elisyshomeautomation.repository.DeviceRepository;
 import com.andreidodu.elisyshomeautomation.dto.DeviceDTO;
@@ -64,5 +66,18 @@ public class DeviceServiceImpl implements DeviceService {
     public List<DeviceDTO> retrieveDevicesByType(DeviceType type) {
         List<Device> devices = deviceRepository.findByType(type);
         return deviceMapper.toDTO(devices);
+    }
+
+    @Override
+    public DeviceDTO retrieveDevice(SensorRequestCommonDTO sensorRequestCommonDTO) {
+        Optional<Device> deviceOptional = deviceRepository.findByMacAddress(sensorRequestCommonDTO.getMacAddress());
+        if (deviceOptional.isEmpty()) {
+            throw new ApplicationException("Entity not found");
+        }
+        Device device = deviceOptional.get();
+        if (!DeviceType.WeatherStation.equals(device.getType())) {
+            throw new ApplicationException("Invalid device type");
+        }
+        return deviceMapper.toDTO(device);
     }
 }
