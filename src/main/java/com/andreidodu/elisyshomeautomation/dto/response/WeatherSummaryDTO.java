@@ -20,8 +20,12 @@ public class WeatherSummaryDTO extends SensorResponseCommonDTO {
     private Double maxHumidity;
     private Double avgTemperature;
     private Double avgHumidity;
+    private Double minLux;
+    private Double lastLux;
+    private Double maxLux;
+    private Double avgLux;
 
-    public WeatherSummaryDTO(String macAddress, Double lastTemperature, Double lastHumidity, Double minTemperature, Double minHumidity, Double maxTemperature, Double maxHumidity, Double avgTemperature, Double avgHumidity) {
+    public WeatherSummaryDTO(String macAddress, Double lastTemperature, Double lastHumidity, Double minTemperature, Double minHumidity, Double maxTemperature, Double maxHumidity, Double avgTemperature, Double avgHumidity, Double minLux, Double lastLux, Double maxLux, Double avgLux) {
         super(macAddress);
         this.lastTemperature = lastTemperature;
         this.lastHumidity = lastHumidity;
@@ -31,5 +35,9 @@ public class WeatherSummaryDTO extends SensorResponseCommonDTO {
         this.maxHumidity = maxHumidity;
         this.avgTemperature = avgTemperature;
         this.avgHumidity = avgHumidity;
+        this.minLux = minLux;
+        this.lastLux = lastLux;
+        this.maxLux = maxLux;
+        this.avgLux = avgLux;
     }
 }

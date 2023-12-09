@@ -93,9 +93,11 @@ The API documentation can be found at the following URI (after server starts):
 
 # Pictures
 ### Front-end | Weather Station | Temperature
-![Temperature monitor - kitchen](images/temperature.png)
+![Temperature monitor](images/temperature.png)
 ### Front-end | Weather Station | Humidity
-![Temperature monitor - kitchen](images/humidity.png)
+![Humidity monitor](images/humidity.png)
+### Front-end | Weather Station | Light (Lux)
+![Light monitor](images/light_lux.png)
 
 # Note
 

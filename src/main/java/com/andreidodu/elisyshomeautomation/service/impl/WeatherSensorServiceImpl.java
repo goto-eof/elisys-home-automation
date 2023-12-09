@@ -110,20 +110,40 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
     @Override
     public WeatherSummaryDTO retrieveSummary(String macAddress, Date dateStart, Date dateEnd) {
         List<WeatherDTO> dtoList = this.getAllByDateInterval(macAddress, dateStart, dateEnd);
-        WeatherDTO weatherDTO = calculateAverageFromList(dtoList);
+        WeatherDTO averageDTO = calculateAverageFromList(dtoList);
         WeatherDTO last = getLast(macAddress);
-        final Double avgTemperature = NumberUtil.normalize(weatherDTO.getTemperature());
-        final Double avgHumidity = NumberUtil.normalize(weatherDTO.getHumidity());
+        final Double avgTemperature = NumberUtil.normalize(averageDTO.getTemperature());
+        final Double avgHumidity = NumberUtil.normalize(averageDTO.getHumidity());
         final Double minTemperature = NumberUtil.normalize(calculateMinimumTemperature(dtoList));
         final Double minHumidity = NumberUtil.normalize(calculateMinimumHumidity(dtoList));
         final Double maxTemperature = NumberUtil.normalize(calculateMaximumTemperature(dtoList));
         final Double maxHumidity = NumberUtil.normalize(calculateMaximumHumidity(dtoList));
+        final Double avgLux = NumberUtil.normalize(averageDTO.getLux());
+        final Double maxLux = NumberUtil.normalize(calculateMaximumLux(dtoList));
+        final Double minLux = NumberUtil.normalize(calculateMinimumLux(dtoList));
+        final Double lastLux = last.getLux();
         final Double lastTemperature = NumberUtil.normalize(last.getTemperature());
         final Double lastHumidity = NumberUtil.normalize(last.getHumidity());
-        return new WeatherSummaryDTO(macAddress, lastTemperature, lastHumidity, minTemperature, minHumidity, maxTemperature, maxHumidity, avgTemperature, avgHumidity);
+        return new WeatherSummaryDTO(macAddress, lastTemperature, lastHumidity, minTemperature, minHumidity, maxTemperature, maxHumidity, avgTemperature, avgHumidity, minLux, lastLux,maxLux, avgLux);
     }
 
 
+
+    private Double calculateMinimumLux(List<WeatherDTO> dtoList) {
+        return dtoList.stream()
+                .filter(item -> item.getLux() != null)
+                .map(WeatherDTO::getLux)
+                .min(Double::compareTo)
+                .orElse(0.0);
+    }
+
+    private Double calculateMaximumLux(List<WeatherDTO> dtoList) {
+        return dtoList.stream()
+                .filter(item -> item.getLux() != null)
+                .map(WeatherDTO::getLux)
+                .max(Double::compareTo)
+                .orElse(0.0);
+    }
     private Double calculateMinimumTemperature(List<WeatherDTO> dtoList) {
         return dtoList.stream()
                 .filter(item -> item.getTemperature() != null)
@@ -197,9 +217,11 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
         double humidity = 0.0;
         double temperature = 0.0;
         double pressure = 0.0;
+        double lux = 0.0;
         int humidityCount = 0;
         int temperatureCount = 0;
         int pressureCount = 0;
+        int luxCount = 0;
         for (WeatherDTO weatherDTO : dtoList) {
             if (weatherDTO.getHumidity() != null) {
                 humidityCount++;
@@ -213,11 +235,16 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
                 pressureCount++;
                 pressure += weatherDTO.getPressure();
             }
+            if (weatherDTO.getLux() != null) {
+                luxCount++;
+                lux += weatherDTO.getLux();
+            }
         }
         WeatherDTO result = new WeatherDTO();
         result.setHumidity(NumberUtil.normalize(humidity / humidityCount));
         result.setTemperature(NumberUtil.normalize(temperature / temperatureCount));
         result.setPressure(NumberUtil.normalize(pressure / pressureCount));
+        result.setLux(NumberUtil.normalize(lux / luxCount));
         return result;
     }
 
