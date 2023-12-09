@@ -91,9 +91,11 @@ The API documentation can be found at the following URI (after server starts):
 
 [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
 
-# Pictures (front-end)
-### Weather Station
-![Temperature monitor - kitchen](images/kitchen.png)
+# Pictures
+### Front-end | Weather Station | Temperature
+![Temperature monitor - kitchen](images/temperature.png)
+### Front-end | Weather Station | Humidity
+![Temperature monitor - kitchen](images/humidity.png)
 
 # Note
 
