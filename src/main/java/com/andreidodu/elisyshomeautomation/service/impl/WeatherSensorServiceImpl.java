@@ -100,15 +100,18 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
 
         long length = weatherList.size();
         long slice = length / (numberOfItemsToBeExtracted.get() - 1);
-        List<Weather> wheatherListFinal = IntStream.range(0, weatherList.size())
-                .filter(i -> i % slice == 0)
-                .mapToObj(weatherList::get)
-                .toList();
-        if (!weatherList.isEmpty() && wheatherListFinal.get(wheatherListFinal.size() - 1) != weatherList.get(weatherList.size() - 1)) {
-            wheatherListFinal = new ArrayList<>(wheatherListFinal);
-            wheatherListFinal.add(weatherList.get(weatherList.size() - 1));
+        if (slice > 0) {
+            List<Weather> wheatherListFinal = IntStream.range(0, weatherList.size())
+                    .filter(i -> i % slice == 0)
+                    .mapToObj(weatherList::get)
+                    .toList();
+            if (!weatherList.isEmpty() && wheatherListFinal.get(wheatherListFinal.size() - 1) != weatherList.get(weatherList.size() - 1)) {
+                wheatherListFinal = new ArrayList<>(wheatherListFinal);
+                wheatherListFinal.add(weatherList.get(weatherList.size() - 1));
+            }
+            return this.weatherMapper.toDTO(wheatherListFinal);
         }
-        return this.weatherMapper.toDTO(wheatherListFinal);
+        return this.weatherMapper.toDTO(weatherList);
     }
 
     private List<WeatherDTO> getAllByDateInterval(final String macAddress, final Date dateStart, Date dateEnd) {
