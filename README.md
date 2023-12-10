@@ -8,7 +8,8 @@ for the following projects:
 - [**Elisys ESP32 Relay Client (Rust)**](https://github.com/goto-eof/elisys-esp32-relay-client-rust)
 - [**Elisys ESP32 Alarm Clock (Rust)**](https://github.com/goto-eof/elisys-esp32-alarm-clock-rust)
 
-There is also a basic implementation of the front end side, and it is called [Elisys Home Automation Client (TypeScript)](https://github.com/goto-eof/elisys-home-automation-client-typescript).
+There is also a basic implementation of the front end side, and it is called 
+- [Elisys Home Automation Client (TypeScript)](https://github.com/goto-eof/elisys-home-automation-client-typescript).
 
 Currently, Elisys Home Automation Server supports the motion, temperature, humidity and pressure sensors, so that it
 allows to
