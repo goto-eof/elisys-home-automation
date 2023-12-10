@@ -14,7 +14,7 @@ There is also a basic implementation of the front end side, and it is called
 Currently, Elisys Home Automation Server supports the motion, temperature, humidity and pressure sensors, so that it
 allows to
 store and retrieve the data provided by a several sensors controlled by a ESP32 device (or Raspberry Pi).
-Moreover, E.H.A.S. provides the functionality to control remotely a Relay device and to control an Alarm Clock (WIP).
+Moreover, E.H.A.S. provides the functionality to control remotely a Relay device and to control an Alarm Clock.
 
 In brief E.H.A.S. allows to:
 
@@ -34,7 +34,7 @@ In brief E.H.A.S. allows to:
 - control remotely a Relay
     - control remotely a Relay
 
-- control remotely an Alarm Clock (WIP)
+- control remotely an Alarm Clock
     - enable/disable alarms
 
 # Technologies
