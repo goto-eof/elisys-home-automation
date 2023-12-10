@@ -17,6 +17,7 @@ import com.andreidodu.elisyshomeautomation.model.Device;
 import com.andreidodu.elisyshomeautomation.model.Weather;
 import com.andreidodu.elisyshomeautomation.model.WeatherSensorConfiguration;
 import com.andreidodu.elisyshomeautomation.service.DeviceService;
+import com.andreidodu.elisyshomeautomation.service.IAmAliveService;
 import com.andreidodu.elisyshomeautomation.service.WeatherSensorService;
 import com.andreidodu.elisyshomeautomation.util.DateUtil;
 import com.andreidodu.elisyshomeautomation.util.NumberUtil;
@@ -69,6 +70,7 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
     private final WeatherMapper weatherMapper;
     private final DeviceService deviceService;
     private final WeatherCustomRepository weatherCustomRepository;
+    private final IAmAliveService iAmAliveService;
 
     @Override
     public WeatherDTO insert(final WeatherDTO dto) {
@@ -80,8 +82,10 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
         }
         model.setDevice(deviceOptional.get());
         Weather savedModel = this.weatherRepository.save(model);
+        iAmAliveService.updateByMacAddress(dto.getMacAddress());
         return this.weatherMapper.toDTO(savedModel);
     }
+
 
     @Override
     public List<WeatherDTO> getAllByDate(final String macAddress, final Date dateStart, final Date dateEnd, Optional<Integer> numberOfItemsToBeExtracted) {

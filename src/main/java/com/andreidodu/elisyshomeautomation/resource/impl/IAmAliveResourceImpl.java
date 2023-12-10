@@ -16,7 +16,7 @@ public class IAmAliveResourceImpl  implements IAmAliveResource {
     final private IAmAliveService iAmAliveService;
 
     public ResponseEntity<ResponseStatusDTO> check(@RequestBody IAmAliveRequestDTO iAmAliveRequestDTO) {
-        return ResponseEntity.ok(iAmAliveService.check(iAmAliveRequestDTO));
+        return ResponseEntity.ok(iAmAliveService.update(iAmAliveRequestDTO));
     }
 
 }

@@ -29,7 +29,7 @@ public class IAmAliveServiceImpl implements IAmAliveService {
     final private DeviceRepository deviceRepository;
     final private DeviceService deviceService;
 
-    public ResponseStatusDTO check(final IAmAliveRequestDTO iAmAliveRequestDTO) {
+    public ResponseStatusDTO update(final IAmAliveRequestDTO iAmAliveRequestDTO) {
         Optional<Alive> aliveOptional = iAmAliveRepository.findByDevice_MacAddress(iAmAliveRequestDTO.getMacAddress());
         ResponseStatusDTO status = new ResponseStatusDTO();
         if (aliveOptional.isPresent()) {
@@ -57,6 +57,13 @@ public class IAmAliveServiceImpl implements IAmAliveService {
     private void updateAliveModel(Alive alive) {
         alive.setLastAckTimestamp(new Date());
         iAmAliveRepository.save(alive);
+    }
+
+    @Override
+    public void updateByMacAddress(final String macAddress) {
+        IAmAliveRequestDTO request = new IAmAliveRequestDTO();
+        request.setMacAddress(macAddress);
+        this.update(request);
     }
 
 }

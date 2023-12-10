@@ -9,6 +9,7 @@ import com.andreidodu.elisyshomeautomation.mapper.RelayConfigurationMapper;
 import com.andreidodu.elisyshomeautomation.model.Device;
 import com.andreidodu.elisyshomeautomation.model.RelayConfiguration;
 import com.andreidodu.elisyshomeautomation.service.DeviceService;
+import com.andreidodu.elisyshomeautomation.service.IAmAliveService;
 import com.andreidodu.elisyshomeautomation.service.RelayConfigurationService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +31,7 @@ public class RelayConfigurationServiceImpl implements RelayConfigurationService 
     private final RelayConfigurationMapper relayConfigurationMapper;
     private final DeviceRepository deviceRepository;
     final private DeviceService deviceService;
-
+    final private IAmAliveService iAmAliveService;
 
     @Override
     public RelayConfigurationResponseDTO getConfiguration(RelayConfigurationRequestDTO configurationRequestDTO) {
@@ -42,6 +43,7 @@ public class RelayConfigurationServiceImpl implements RelayConfigurationService 
         }
         RelayConfigurationResponseDTO result = createNewConfiguration(configurationRequestDTO, this::loadDefaultConfiguration);
         log.info(result.toString());
+        iAmAliveService.updateByMacAddress(configurationRequestDTO.getMacAddress());
         return result;
     }
 
@@ -64,9 +66,12 @@ public class RelayConfigurationServiceImpl implements RelayConfigurationService 
             RelayConfiguration relayConfiguration = configurationOptional.get();
             relayConfiguration.setPowerOn(switchOn);
             RelayConfiguration newRelayConfiguration = this.relayConfigurationRepository.save(relayConfiguration);
+            iAmAliveService.updateByMacAddress(configurationRequestDTO.getMacAddress());
             return relayConfigurationMapper.toDTO(newRelayConfiguration);
         }
-        return createNewConfiguration(configurationRequestDTO, (String macAddress) -> loadDefaultConfiguration(macAddress, switchOn));
+        RelayConfigurationResponseDTO configuration = createNewConfiguration(configurationRequestDTO, (String macAddress) -> loadDefaultConfiguration(macAddress, switchOn));
+        iAmAliveService.updateByMacAddress(configurationRequestDTO.getMacAddress());
+        return configuration;
     }
 
     private RelayConfigurationResponseDTO loadDefaultConfiguration(String macAddress) {

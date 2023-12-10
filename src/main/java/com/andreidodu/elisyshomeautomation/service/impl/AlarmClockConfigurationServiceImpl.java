@@ -8,6 +8,7 @@ import com.andreidodu.elisyshomeautomation.model.*;
 import com.andreidodu.elisyshomeautomation.repository.*;
 import com.andreidodu.elisyshomeautomation.service.AlarmClockConfigurationService;
 import com.andreidodu.elisyshomeautomation.service.DeviceService;
+import com.andreidodu.elisyshomeautomation.service.IAmAliveService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +29,7 @@ public class AlarmClockConfigurationServiceImpl implements AlarmClockConfigurati
     private final AlarmClockConfigurationMapper mapper;
     private final DeviceRepository deviceRepository;
     private final DeviceService deviceService;
+    private final IAmAliveService iAmAliveService;
 
     @Value("${app.configuration.default.alarm-clock.alarm-interval-minutes}")
     private Integer defaultAlarmIntervalMinutes;
@@ -50,10 +52,12 @@ public class AlarmClockConfigurationServiceImpl implements AlarmClockConfigurati
         if (configurationOptional.isPresent()) {
             AlarmClockConfigurationResponseDTO result = mapper.toDTO(configurationOptional.get());
             log.info(result.toString());
+            iAmAliveService.updateByMacAddress(configurationRequestDTO.getMacAddress());
             return result;
         }
         AlarmClockConfigurationResponseDTO result = createNewConfiguration(configurationRequestDTO);
         log.info(result.toString());
+        iAmAliveService.updateByMacAddress(configurationRequestDTO.getMacAddress());
         return result;
     }
 

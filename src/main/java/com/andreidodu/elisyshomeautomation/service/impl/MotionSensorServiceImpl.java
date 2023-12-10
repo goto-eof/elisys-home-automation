@@ -13,6 +13,7 @@ import com.andreidodu.elisyshomeautomation.model.Device;
 import com.andreidodu.elisyshomeautomation.model.MotionDetection;
 import com.andreidodu.elisyshomeautomation.model.MotionSensorConfiguration;
 import com.andreidodu.elisyshomeautomation.service.DeviceService;
+import com.andreidodu.elisyshomeautomation.service.IAmAliveService;
 import com.andreidodu.elisyshomeautomation.service.MotionSensorService;
 import com.andreidodu.elisyshomeautomation.dto.request.AlertRequestDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.ResponseStatusDTO;
@@ -53,6 +54,7 @@ public class MotionSensorServiceImpl implements MotionSensorService {
     final private DiscordChannel discordChannel;
     final private MotionDetectionRepository motionDetectionRepository;
     final private DeviceService deviceService;
+    final private IAmAliveService iAmAliveService;
 
     public ResponseStatusDTO alert(final AlertRequestDTO alertRequestDTO) {
         ResponseStatusDTO status = new ResponseStatusDTO();
@@ -70,6 +72,7 @@ public class MotionSensorServiceImpl implements MotionSensorService {
             status.setStatus(false);
             log.error("Unable to communicate with Discord: {}", e.getMessage());
         }
+        iAmAliveService.updateByMacAddress(alertRequestDTO.getMacAddress());
         return status;
     }
 
@@ -99,6 +102,7 @@ public class MotionSensorServiceImpl implements MotionSensorService {
         model.setDevice(deviceOptional.get());
         MotionSensorConfigurationDTO result = this.sensorConfigurationMapper.toDTO(this.motionSensorConfigurationRepository.save(model));
         log.info(result.toString());
+        iAmAliveService.updateByMacAddress(motionSensorConfigurationRequestDTO.getMacAddress());
         return result;
     }
 
