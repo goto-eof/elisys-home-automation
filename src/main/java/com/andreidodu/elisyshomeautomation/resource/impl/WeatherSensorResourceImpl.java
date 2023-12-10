@@ -127,11 +127,6 @@ public class WeatherSensorResourceImpl implements WeatherSensorResource {
     }
 
     @Override
-    public ResponseEntity<DeviceDTO> getWeatherStation(SensorRequestCommonDTO sensorRequestCommonDTO) {
-        return ResponseEntity.ok(this.deviceService.retrieveDevice(sensorRequestCommonDTO));
-    }
-
-    @Override
     public ResponseEntity<List<WeatherDTO>> getLast24h(SensorRequestCommonDTO dto) {
         return ResponseEntity.ok(this.weatherSensorService.getLast24h(dto));
     }

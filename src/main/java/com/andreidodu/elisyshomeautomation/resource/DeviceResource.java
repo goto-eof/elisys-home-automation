@@ -1,5 +1,7 @@
 package com.andreidodu.elisyshomeautomation.resource;
 
+import com.andreidodu.elisyshomeautomation.dto.DeviceDTO;
+import com.andreidodu.elisyshomeautomation.dto.common.SensorRequestCommonDTO;
 import com.andreidodu.elisyshomeautomation.dto.request.DeviceRegistrationDTO;
 import com.andreidodu.elisyshomeautomation.dto.request.IAmAliveRequestDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.ResponseStatusDTO;
@@ -14,4 +16,9 @@ public interface DeviceResource {
     @Operation(summary = "Device registration")
     @PostMapping(value = "/register")
     ResponseEntity<ResponseStatusDTO> register(@RequestBody DeviceRegistrationDTO deviceRegistrationDTO);
+
+    @Operation(summary = "Retrieve device by macAddress")
+    @PostMapping(value = "/device")
+    ResponseEntity<DeviceDTO> getDevice(@RequestBody SensorRequestCommonDTO sensorRequestCommonDTO);
+
 }

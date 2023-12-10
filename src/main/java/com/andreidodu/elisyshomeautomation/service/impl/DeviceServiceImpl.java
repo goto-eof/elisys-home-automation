@@ -75,7 +75,7 @@ public class DeviceServiceImpl implements DeviceService {
             throw new ApplicationException("Entity not found");
         }
         Device device = deviceOptional.get();
-        if (!DeviceType.WeatherStation.equals(device.getType())) {
+        if (!sensorRequestCommonDTO.getType().equals(device.getType())) {
             throw new ApplicationException("Invalid device type");
         }
         return deviceMapper.toDTO(device);

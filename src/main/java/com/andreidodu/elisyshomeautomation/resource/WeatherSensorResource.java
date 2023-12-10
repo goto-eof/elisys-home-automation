@@ -93,10 +93,6 @@ public interface WeatherSensorResource {
     @GetMapping(value = "/devices")
     ResponseEntity<List<DeviceDTO>> getWeatherStations();
 
-    @Operation(summary = "Retrieve weather station by macAddress")
-    @PostMapping(value = "/device")
-    ResponseEntity<DeviceDTO> getWeatherStation(@RequestBody SensorRequestCommonDTO sensorRequestCommonDTO);
-
     @Operation(summary = "Weather last 24 hours")
     @PostMapping(value = "/last24h")
     ResponseEntity<List<WeatherDTO>> getLast24h(@RequestBody SensorRequestCommonDTO dto);

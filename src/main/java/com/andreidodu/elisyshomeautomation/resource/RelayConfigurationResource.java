@@ -1,5 +1,6 @@
 package com.andreidodu.elisyshomeautomation.resource;
 
+import com.andreidodu.elisyshomeautomation.dto.DeviceDTO;
 import com.andreidodu.elisyshomeautomation.dto.common.SensorRequestCommonDTO;
 import com.andreidodu.elisyshomeautomation.dto.request.RelayConfigurationRequestDTO;
 import com.andreidodu.elisyshomeautomation.dto.request.WeatherByDateIntervalRequestDTO;
@@ -8,6 +9,7 @@ import com.andreidodu.elisyshomeautomation.dto.response.RelayConfigurationRespon
 import com.andreidodu.elisyshomeautomation.dto.response.WeatherDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,5 +31,8 @@ public interface RelayConfigurationResource {
     @PostMapping(value = "/disable")
     ResponseEntity<RelayConfigurationResponseDTO> disable(@RequestBody RelayConfigurationRequestDTO configurationRequestDTO);
 
+    @Operation(summary = "Retrieve all relays")
+    @GetMapping(value = "/devices")
+    ResponseEntity<List<DeviceDTO>> getDevices();
 
 }
