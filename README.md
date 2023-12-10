@@ -37,6 +37,10 @@ In brief E.H.A.S. allows to:
 - control remotely an Alarm Clock
     - enable/disable alarms
 
+# Architecture
+![architecture](images/elisys-architecture.png)
+
+
 # Technologies
 
 Elisys Home Automation was implemented using Java, Spring Boot, MapStruct, Lombok, OpenApi, Feign, Liquibase, Hibernate
