@@ -1,8 +1,6 @@
 package com.andreidodu.elisyshomeautomation.repository;
 
-import com.andreidodu.elisyshomeautomation.model.QWeather;
 import com.andreidodu.elisyshomeautomation.model.Weather;
-import com.querydsl.core.types.OrderSpecifier;
 
 import java.util.Date;
 import java.util.Optional;

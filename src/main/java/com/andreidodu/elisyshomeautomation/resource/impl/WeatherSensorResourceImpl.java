@@ -27,8 +27,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class WeatherSensorResourceImpl implements WeatherSensorResource {
 
-    @Value("${app.configuration.default.max.chart.elements}")
-    private int maxChartElements;
+    @Value("${app.configuration.default.max.chart.elements.24h}")
+    private int maxChartElements24h;
 
     final private WeatherSensorService weatherSensorService;
     final private DeviceService deviceService;
@@ -53,7 +53,7 @@ public class WeatherSensorResourceImpl implements WeatherSensorResource {
     public ResponseEntity<List<WeatherDTO>> getAllByDate(@RequestBody WeatherByDateRequestDTO dto) {
         Date startDate = DateUtil.calculateStartDate(dto.getDate());
         Date endDate = DateUtil.calculateEndDate(dto.getDate());
-        return ResponseEntity.ok(this.weatherSensorService.getAllByDate(dto.getMacAddress(), startDate, endDate, Optional.of(maxChartElements)));
+        return ResponseEntity.ok(this.weatherSensorService.getAllByDate(dto.getMacAddress(), startDate, endDate, Optional.of(maxChartElements24h)));
     }
 
     @Override
@@ -134,6 +134,26 @@ public class WeatherSensorResourceImpl implements WeatherSensorResource {
     @Override
     public ResponseEntity<WeatherSummaryDTO> getLast24hSummary(WeatherByDateRequestDTO dto) {
         return ResponseEntity.ok(this.weatherSensorService.getLast24hSummary(dto));
+    }
+
+    @Override
+    public ResponseEntity<List<WeatherDTO>> getLast7d(SensorRequestCommonDTO dto) {
+        return ResponseEntity.ok(this.weatherSensorService.getLast7d(dto));
+    }
+
+    @Override
+    public ResponseEntity<WeatherSummaryDTO> getLast7dSummary(WeatherByDateRequestDTO dto) {
+        return ResponseEntity.ok(this.weatherSensorService.getLast7dSummary(dto));
+    }
+
+    @Override
+    public ResponseEntity<List<WeatherDTO>> getLastMonth(SensorRequestCommonDTO dto) {
+        return ResponseEntity.ok(this.weatherSensorService.getLast1m(dto));
+    }
+
+    @Override
+    public ResponseEntity<WeatherSummaryDTO> getLastMonthSummary(WeatherByDateRequestDTO dto) {
+        return ResponseEntity.ok(this.weatherSensorService.getLast1mSummary(dto));
     }
 
 }

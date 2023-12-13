@@ -44,4 +44,12 @@ public interface WeatherSensorService {
     List<WeatherDTO> getLast24h(SensorRequestCommonDTO dto);
 
     WeatherSummaryDTO getLast24hSummary(SensorRequestCommonDTO dto);
+
+    List<WeatherDTO> getLast7d(SensorRequestCommonDTO dto);
+
+    WeatherSummaryDTO getLast7dSummary(SensorRequestCommonDTO dto);
+
+    List<WeatherDTO> getLast1m(SensorRequestCommonDTO dto);
+
+    WeatherSummaryDTO getLast1mSummary(SensorRequestCommonDTO dto);
 }

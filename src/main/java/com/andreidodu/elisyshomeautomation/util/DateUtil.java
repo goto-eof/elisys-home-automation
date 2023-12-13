@@ -60,4 +60,18 @@ public class DateUtil {
         calendar.add(Calendar.DAY_OF_MONTH, -1);
         return  calendar.getTime();
     }
+
+    public static Date calculate7dAgo(Date now) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(now);
+        calendar.add(Calendar.DAY_OF_MONTH, -7);
+        return  calendar.getTime();
+    }
+
+    public static Date calculate1mAgo(Date now) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(now);
+        calendar.add(Calendar.MONTH, -1);
+        return  calendar.getTime();
+    }
 }

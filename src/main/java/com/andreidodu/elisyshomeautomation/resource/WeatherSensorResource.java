@@ -97,8 +97,27 @@ public interface WeatherSensorResource {
     @PostMapping(value = "/last24h")
     ResponseEntity<List<WeatherDTO>> getLast24h(@RequestBody SensorRequestCommonDTO dto);
 
-    @Operation(summary = "Retrieve las 24 hours summary")
+    @Operation(summary = "Retrieve last 24 hours summary")
     @PostMapping(value = "/last24hSummary")
     ResponseEntity<WeatherSummaryDTO> getLast24hSummary(@RequestBody WeatherByDateRequestDTO dto);
+
+
+    @Operation(summary = "Weather last 7 days")
+    @PostMapping(value = "/last7d")
+    ResponseEntity<List<WeatherDTO>> getLast7d(@RequestBody SensorRequestCommonDTO dto);
+
+    @Operation(summary = "Retrieve last 7 days summary")
+    @PostMapping(value = "/last7dSummary")
+    ResponseEntity<WeatherSummaryDTO> getLast7dSummary(@RequestBody WeatherByDateRequestDTO dto);
+
+
+    @Operation(summary = "Weather last month")
+    @PostMapping(value = "/lastMonth")
+    ResponseEntity<List<WeatherDTO>> getLastMonth(@RequestBody SensorRequestCommonDTO dto);
+
+    @Operation(summary = "Retrieve last month summary")
+    @PostMapping(value = "/lastMonthSummary")
+    ResponseEntity<WeatherSummaryDTO> getLastMonthSummary(@RequestBody WeatherByDateRequestDTO dto);
+
 
 }
