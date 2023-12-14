@@ -27,7 +27,7 @@ public class Weather extends ModelCommon {
     private Boolean light;
     private Double lux;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "device_id", referencedColumnName = "id", nullable = false)
     private Device device;
 }

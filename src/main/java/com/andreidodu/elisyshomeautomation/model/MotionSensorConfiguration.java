@@ -32,7 +32,7 @@ public class MotionSensorConfiguration extends ModelCommon {
 
     private String crontab;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "device_id", referencedColumnName = "id")
     private Device device;
 

@@ -24,17 +24,8 @@ public class AlarmClockConfigurationCron extends ModelCommon {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "alarm_clock_configuration_id", referencedColumnName = "id")
     private AlarmClockConfiguration configuration;
 
-    @Override
-    public String toString() {
-        return "AlarmClockConfigurationCron{" +
-                "id=" + id +
-                ", cron='" + cron + '\'' +
-                ", description='" + description + '\'' +
-                ", configuration=" + configuration +
-                '}';
-    }
 }

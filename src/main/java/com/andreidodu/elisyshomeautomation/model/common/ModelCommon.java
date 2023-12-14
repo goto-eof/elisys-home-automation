@@ -1,29 +1,27 @@
 package com.andreidodu.elisyshomeautomation.model.common;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Column;
-import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.Version;
+import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.util.Date;
 
 @MappedSuperclass
-public class ModelCommon {
+public abstract class ModelCommon {
 
-    @Getter
     @CreatedDate
+    @Getter
     @Column(name = "insert_date", updatable = false, insertable = false)
     protected Date createdDate;
 
     @JsonIgnore
     @LastModifiedDate
-    @Column(name = "update_date", updatable = true, insertable = false)
+    @Column(name = "update_date", insertable = false)
     protected Date lastModifiedDate;
 
     @Version
+    @Column(name = "version")
     private int version;
 }

@@ -9,10 +9,10 @@ import com.andreidodu.elisyshomeautomation.service.IAmAliveService;
 import com.andreidodu.elisyshomeautomation.repository.IAmAliveRepository;
 import com.andreidodu.elisyshomeautomation.dto.request.IAmAliveRequestDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.ResponseStatusDTO;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.Optional;
@@ -29,11 +29,14 @@ public class IAmAliveServiceImpl implements IAmAliveService {
     final private DeviceRepository deviceRepository;
     final private DeviceService deviceService;
 
+    @Override
     public ResponseStatusDTO update(final IAmAliveRequestDTO iAmAliveRequestDTO) {
         Optional<Alive> aliveOptional = iAmAliveRepository.findByDevice_MacAddress(iAmAliveRequestDTO.getMacAddress());
         ResponseStatusDTO status = new ResponseStatusDTO();
         if (aliveOptional.isPresent()) {
-            updateAliveModel(aliveOptional.get());
+            Alive alive = aliveOptional.get();
+            alive.setLastAckTimestamp(new Date());
+            iAmAliveRepository.save(alive);
             status.setStatus(true);
             return status;
         }
@@ -42,28 +45,41 @@ public class IAmAliveServiceImpl implements IAmAliveService {
             this.deviceService.createNewDevice(DeviceType.Uknown, iAmAliveRequestDTO.getMacAddress(), DEVICE_NAME, iAmAliveRequestDTO.getMacAddress());
             deviceOptional = this.deviceRepository.findByMacAddress(iAmAliveRequestDTO.getMacAddress());
         }
-        createAliveModelAndSave(deviceOptional.get());
+        Alive alive = createAliveModel(deviceOptional.get());
+        iAmAliveRepository.save(alive);
         status.setStatus(true);
         return status;
     }
 
-    private void createAliveModelAndSave(Device device) {
+    private Alive createAliveModel(Device device) {
         Alive alive = new Alive();
         alive.setDevice(device);
         alive.setLastAckTimestamp(new Date());
-        iAmAliveRepository.save(alive);
-    }
-
-    private void updateAliveModel(Alive alive) {
-        alive.setLastAckTimestamp(new Date());
-        iAmAliveRepository.save(alive);
+        return alive;
     }
 
     @Override
     public void updateByMacAddress(final String macAddress) {
-        IAmAliveRequestDTO request = new IAmAliveRequestDTO();
-        request.setMacAddress(macAddress);
-        this.update(request);
+        IAmAliveRequestDTO iAmAliveRequestDTO = new IAmAliveRequestDTO();
+        iAmAliveRequestDTO.setMacAddress(macAddress);
+        Optional<Alive> aliveOptional = iAmAliveRepository.findByDevice_MacAddress(iAmAliveRequestDTO.getMacAddress());
+        ResponseStatusDTO status = new ResponseStatusDTO();
+        if (aliveOptional.isPresent()) {
+            Alive alive = aliveOptional.get();
+            alive.setLastAckTimestamp(new Date());
+            iAmAliveRepository.save(alive);
+            status.setStatus(true);
+            return;
+        }
+        Optional<Device> deviceOptional = this.deviceRepository.findByMacAddress(iAmAliveRequestDTO.getMacAddress());
+        if (deviceOptional.isEmpty()) {
+            this.deviceService.createNewDevice(DeviceType.Uknown, iAmAliveRequestDTO.getMacAddress(), DEVICE_NAME, iAmAliveRequestDTO.getMacAddress());
+            deviceOptional = this.deviceRepository.findByMacAddress(iAmAliveRequestDTO.getMacAddress());
+        }
+        Alive alive = createAliveModel(deviceOptional.get());
+        iAmAliveRepository.save(alive);
+        status.setStatus(true);
+        //return status;
     }
 
 }

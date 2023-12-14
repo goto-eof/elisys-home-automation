@@ -25,4 +25,9 @@ public class DeviceResourceImpl implements DeviceResource {
     public ResponseEntity<DeviceDTO> getDevice(SensorRequestCommonDTO sensorRequestCommonDTO) {
         return ResponseEntity.ok(this.deviceService.retrieveDevice(sensorRequestCommonDTO));
     }
+
+    @Override
+    public ResponseEntity<DeviceDTO> update(Long id, DeviceDTO dto) {
+        return ResponseEntity.ok(this.deviceService.update(id, dto));
+    }
 }

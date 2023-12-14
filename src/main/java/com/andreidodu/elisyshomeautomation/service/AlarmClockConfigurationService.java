@@ -5,4 +5,6 @@ import com.andreidodu.elisyshomeautomation.dto.response.AlarmClockConfigurationR
 
 public interface AlarmClockConfigurationService {
     AlarmClockConfigurationResponseDTO getConfiguration(AlarmClockConfigurationRequestDTO configurationRequestDTO);
+
+    AlarmClockConfigurationResponseDTO update(Long id, AlarmClockConfigurationResponseDTO dto);
 }

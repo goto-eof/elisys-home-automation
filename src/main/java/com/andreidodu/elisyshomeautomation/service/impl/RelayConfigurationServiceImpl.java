@@ -11,10 +11,10 @@ import com.andreidodu.elisyshomeautomation.model.RelayConfiguration;
 import com.andreidodu.elisyshomeautomation.service.DeviceService;
 import com.andreidodu.elisyshomeautomation.service.IAmAliveService;
 import com.andreidodu.elisyshomeautomation.service.RelayConfigurationService;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 import java.util.function.Function;

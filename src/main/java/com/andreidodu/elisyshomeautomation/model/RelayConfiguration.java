@@ -20,7 +20,7 @@ public class RelayConfiguration extends ModelCommon {
 
     private Boolean powerOn;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "device_id", referencedColumnName = "id", nullable = false)
     private Device device;
 }

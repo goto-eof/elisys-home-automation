@@ -21,9 +21,10 @@ public class Alive extends ModelCommon {
     private Long id;
 
     @Column(name = "last_ack_timestamp", nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date lastAckTimestamp;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "device_id", referencedColumnName = "id")
     private Device device;
 }

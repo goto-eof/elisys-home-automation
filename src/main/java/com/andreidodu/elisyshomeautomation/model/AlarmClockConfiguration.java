@@ -32,21 +32,11 @@ public class AlarmClockConfiguration extends ModelCommon {
     @Column(name = "alarm_interval_minutes", nullable = false)
     private Integer alarmIntervalMinutes;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "device_id", referencedColumnName = "id")
     private Device device;
 
-    @OneToMany(mappedBy = "configuration")
+    @OneToMany(mappedBy = "configuration", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AlarmClockConfigurationCron> cronList;
-    @Override
-    public String toString() {
-        return "AlarmClockConfiguration{" +
-                "id=" + id +
-                ", timezoneSeconds=" + timezoneSeconds +
-                //", iAmAliveEndpoint='" + iAmAliveEndpoint + '\'' +
-                //", iAmAliveIntervalSeconds=" + iAmAliveIntervalSeconds +
-                ", alarmIntervalSeconds=" + alarmIntervalMinutes +
-                ", device=" + device.getMacAddress() +
-                '}';
-    }
+
 }

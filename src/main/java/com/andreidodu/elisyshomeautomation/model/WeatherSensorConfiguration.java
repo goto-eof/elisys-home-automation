@@ -38,7 +38,7 @@ public class WeatherSensorConfiguration extends ModelCommon {
     @Column(name = "timezone_offset_sec", nullable = false)
     private Integer timezoneOffsetSec;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "device_id", referencedColumnName = "id")
     private Device device;
 

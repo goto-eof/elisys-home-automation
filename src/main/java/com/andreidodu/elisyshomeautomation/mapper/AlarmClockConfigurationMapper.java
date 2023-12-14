@@ -4,8 +4,7 @@ import com.andreidodu.elisyshomeautomation.dto.response.AlarmClockConfigurationC
 import com.andreidodu.elisyshomeautomation.dto.response.AlarmClockConfigurationResponseDTO;
 import com.andreidodu.elisyshomeautomation.model.AlarmClockConfiguration;
 import com.andreidodu.elisyshomeautomation.model.AlarmClockConfigurationCron;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.mapstruct.*;
 
 @Mapper(componentModel = "spring")
 public interface AlarmClockConfigurationMapper {
@@ -18,4 +17,11 @@ public interface AlarmClockConfigurationMapper {
 
     @Mapping(target = "configuration", ignore = true)
     AlarmClockConfigurationCron toModel(AlarmClockConfigurationCronResponseDTO dto);
+
+    void update1(@MappingTarget AlarmClockConfigurationCron entity, AlarmClockConfigurationCronResponseDTO dto);
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE, nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
+    @Mapping(target = "cronList", ignore = true)
+    void update(@MappingTarget AlarmClockConfiguration entity, AlarmClockConfigurationResponseDTO dto);
+
 }

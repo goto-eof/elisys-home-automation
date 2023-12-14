@@ -1,9 +1,9 @@
 package com.andreidodu.elisyshomeautomation.repository;
 
 import com.andreidodu.elisyshomeautomation.model.AlarmClockConfigurationCron;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public interface AlarmClockConfigurationCronRepository extends CrudRepository<AlarmClockConfigurationCron, Long> {
+public interface AlarmClockConfigurationCronRepository extends JpaRepository<AlarmClockConfigurationCron, Long> {
 
 }

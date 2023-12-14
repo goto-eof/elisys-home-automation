@@ -287,5 +287,10 @@
         </addColumn>
     </changeSet>
 
-
+    <changeSet author="Andrei Dodu" id="2023-12-14-001">
+        <modifyDataType tableName="${tablePrefix}alive"
+                        columnName="last_ack_timestamp"
+                        newDataType="DATETIME"
+        />
+    </changeSet>
 </databaseChangeLog>

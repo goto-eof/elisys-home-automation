@@ -10,10 +10,10 @@ import com.andreidodu.elisyshomeautomation.dto.DeviceDTO;
 import com.andreidodu.elisyshomeautomation.mapper.DeviceMapper;
 import com.andreidodu.elisyshomeautomation.model.Device;
 import com.andreidodu.elisyshomeautomation.service.DeviceService;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -79,5 +79,17 @@ public class DeviceServiceImpl implements DeviceService {
             throw new ApplicationException("Invalid device type");
         }
         return deviceMapper.toDTO(device);
+    }
+
+    @Override
+    public DeviceDTO update(Long id, DeviceDTO dto) {
+        Optional<Device> modelOptional = this.deviceRepository.findById(id);
+        if (modelOptional.isEmpty()) {
+            throw new ApplicationException("Device not found");
+        }
+        Device model = modelOptional.get();
+        this.deviceMapper.update(model, dto);
+        Device newModel = this.deviceRepository.save(model);
+        return this.deviceMapper.toDTO(newModel);
     }
 }

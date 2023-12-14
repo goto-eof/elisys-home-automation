@@ -23,7 +23,7 @@ public class MotionDetection extends ModelCommon {
     @Column(name = "last_timestamp", nullable = false)
     private Date lastTimestamp;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "device_id", referencedColumnName = "id")
     private Device device;
 }

@@ -21,18 +21,19 @@ import com.andreidodu.elisyshomeautomation.service.IAmAliveService;
 import com.andreidodu.elisyshomeautomation.service.WeatherSensorService;
 import com.andreidodu.elisyshomeautomation.util.DateUtil;
 import com.andreidodu.elisyshomeautomation.util.NumberUtil;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.stream.IntStream;
 
 @Slf4j
 @Service
-@Transactional
+@Transactional(propagation = Propagation.REQUIRED)
 @RequiredArgsConstructor
 public class WeatherSensorServiceImpl implements WeatherSensorService {
 
