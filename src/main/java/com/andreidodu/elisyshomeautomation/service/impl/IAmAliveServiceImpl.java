@@ -23,7 +23,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class IAmAliveServiceImpl implements IAmAliveService {
 
-    private final static String DEVICE_NAME = "uknown device";
+    private final static String DEVICE_NAME = "Unknown device";
 
     final private IAmAliveRepository iAmAliveRepository;
     final private DeviceRepository deviceRepository;
@@ -63,12 +63,10 @@ public class IAmAliveServiceImpl implements IAmAliveService {
         IAmAliveRequestDTO iAmAliveRequestDTO = new IAmAliveRequestDTO();
         iAmAliveRequestDTO.setMacAddress(macAddress);
         Optional<Alive> aliveOptional = iAmAliveRepository.findByDevice_MacAddress(iAmAliveRequestDTO.getMacAddress());
-        ResponseStatusDTO status = new ResponseStatusDTO();
         if (aliveOptional.isPresent()) {
             Alive alive = aliveOptional.get();
             alive.setLastAckTimestamp(new Date());
             iAmAliveRepository.save(alive);
-            status.setStatus(true);
             return;
         }
         Optional<Device> deviceOptional = this.deviceRepository.findByMacAddress(iAmAliveRequestDTO.getMacAddress());
@@ -78,8 +76,6 @@ public class IAmAliveServiceImpl implements IAmAliveService {
         }
         Alive alive = createAliveModel(deviceOptional.get());
         iAmAliveRepository.save(alive);
-        status.setStatus(true);
-        //return status;
     }
 
 }

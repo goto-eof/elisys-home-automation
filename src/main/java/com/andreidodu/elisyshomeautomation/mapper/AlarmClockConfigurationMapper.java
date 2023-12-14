@@ -18,7 +18,7 @@ public interface AlarmClockConfigurationMapper {
     @Mapping(target = "configuration", ignore = true)
     AlarmClockConfigurationCron toModel(AlarmClockConfigurationCronResponseDTO dto);
 
-    void update1(@MappingTarget AlarmClockConfigurationCron entity, AlarmClockConfigurationCronResponseDTO dto);
+    void updateCron(@MappingTarget AlarmClockConfigurationCron entity, AlarmClockConfigurationCronResponseDTO dto);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE, nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
     @Mapping(target = "cronList", ignore = true)

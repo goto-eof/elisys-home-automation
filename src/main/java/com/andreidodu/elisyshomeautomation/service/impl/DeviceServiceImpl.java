@@ -61,7 +61,6 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
 
-    // TODO in the future filter also by owner (user)
     @Override
     public List<DeviceDTO> retrieveDevicesByType(DeviceType type) {
         List<Device> devices = deviceRepository.findByType(type);
@@ -70,24 +69,24 @@ public class DeviceServiceImpl implements DeviceService {
 
     @Override
     public DeviceDTO retrieveDevice(SensorRequestCommonDTO sensorRequestCommonDTO) {
-        Optional<Device> deviceOptional = deviceRepository.findByMacAddress(sensorRequestCommonDTO.getMacAddress());
-        if (deviceOptional.isEmpty()) {
-            throw new ApplicationException("Entity not found");
-        }
-        Device device = deviceOptional.get();
+        Device device = deviceRepository.findByMacAddress(sensorRequestCommonDTO.getMacAddress())
+                .orElseThrow(() -> new ApplicationException("Entity not found"));
+
+        validateSensorType(sensorRequestCommonDTO, device);
+
+        return deviceMapper.toDTO(device);
+    }
+
+    private static void validateSensorType(SensorRequestCommonDTO sensorRequestCommonDTO, Device device) {
         if (!sensorRequestCommonDTO.getType().equals(device.getType())) {
             throw new ApplicationException("Invalid device type");
         }
-        return deviceMapper.toDTO(device);
     }
 
     @Override
     public DeviceDTO update(Long id, DeviceDTO dto) {
-        Optional<Device> modelOptional = this.deviceRepository.findById(id);
-        if (modelOptional.isEmpty()) {
-            throw new ApplicationException("Device not found");
-        }
-        Device model = modelOptional.get();
+        Device model = this.deviceRepository.findById(id).orElseThrow(() ->
+                new ApplicationException("Device not found"));
         this.deviceMapper.update(model, dto);
         Device newModel = this.deviceRepository.save(model);
         return this.deviceMapper.toDTO(newModel);

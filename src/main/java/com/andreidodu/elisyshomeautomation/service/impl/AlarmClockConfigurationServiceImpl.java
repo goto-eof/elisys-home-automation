@@ -68,19 +68,27 @@ public class AlarmClockConfigurationServiceImpl implements AlarmClockConfigurati
     @Override
     public AlarmClockConfigurationResponseDTO update(Long id, AlarmClockConfigurationResponseDTO dto) {
         validateDTOForUpdate(id, dto);
-        Optional<AlarmClockConfiguration> modelOptional = this.repository.findByDevice_MacAddress(dto.getMacAddress());
-        validateModelForUpdate(modelOptional);
-        AlarmClockConfiguration model = modelOptional.get();
+
+        AlarmClockConfiguration model = this.repository.findByDevice_MacAddress(dto.getMacAddress())
+                .orElseThrow(() -> new ApplicationException("Entity not found"));
+
         this.mapper.update(model, dto);
+
+        updateConfigCronList(dto, model);
+
+        AlarmClockConfiguration newModel = this.repository.save(model);
+
+        return this.mapper.toDTO(newModel);
+    }
+
+    private void updateConfigCronList(AlarmClockConfigurationResponseDTO dto, AlarmClockConfiguration model) {
         List<AlarmClockConfigurationCron> cronList = model.getCronList();
-        cronList.forEach(item -> {
-            Optional<AlarmClockConfigurationCronResponseDTO> dtoCron = dto.getCronList().stream().filter(i -> item.getId().equals(i.getId())).findFirst();
-            dtoCron.ifPresent(alarmClockConfigurationCronResponseDTO -> mapper.update1(item, alarmClockConfigurationCronResponseDTO));
-        });
-        List<Long> ids = dto.getCronList().stream().map(AlarmClockConfigurationCronResponseDTO::getId).toList();
+        updateItemsInConfigCronList(dto, cronList);
+        removeItemsFromConfigCronList(dto, cronList);
+        addNewItemsToCronList(dto, model);
+    }
 
-        cronList.removeIf(item -> !ids.contains(item.getId()));
-
+    private void addNewItemsToCronList(AlarmClockConfigurationResponseDTO dto, AlarmClockConfiguration model) {
         for (AlarmClockConfigurationCronResponseDTO alarmClockConfigurationCronResponseDTO : dto.getCronList()) {
             if (alarmClockConfigurationCronResponseDTO.getId() == null) {
                 AlarmClockConfigurationCron cronModel = this.mapper.toModel(alarmClockConfigurationCronResponseDTO);
@@ -88,15 +96,21 @@ public class AlarmClockConfigurationServiceImpl implements AlarmClockConfigurati
                 this.alarmClockConfigurationCronRepository.save(cronModel);
             }
         }
-
-        AlarmClockConfiguration newModel = this.repository.save(model);
-        return this.mapper.toDTO(newModel);
     }
 
-    private static void validateModelForUpdate(Optional<AlarmClockConfiguration> modelOptional) {
-        if (modelOptional.isEmpty()) {
-            throw new ApplicationException("Entity not found");
-        }
+    private static void removeItemsFromConfigCronList(AlarmClockConfigurationResponseDTO dto, List<AlarmClockConfigurationCron> cronList) {
+        List<Long> ids = dto.getCronList().stream().map(AlarmClockConfigurationCronResponseDTO::getId).toList();
+        cronList.removeIf(item -> !ids.contains(item.getId()));
+    }
+
+    private void updateItemsInConfigCronList(AlarmClockConfigurationResponseDTO dto, List<AlarmClockConfigurationCron> cronList) {
+        cronList.forEach(item -> {
+            dto.getCronList()
+                    .stream()
+                    .filter(i -> item.getId().equals(i.getId()))
+                    .findFirst()
+                    .ifPresent(cron -> mapper.updateCron(item, cron));
+        });
     }
 
     private static void validateDTOForUpdate(Long id, AlarmClockConfigurationResponseDTO dto) {

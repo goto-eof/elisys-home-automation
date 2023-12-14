@@ -2,7 +2,9 @@ package com.andreidodu.elisyshomeautomation.model;
 
 import com.andreidodu.elisyshomeautomation.model.common.ModelCommon;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
