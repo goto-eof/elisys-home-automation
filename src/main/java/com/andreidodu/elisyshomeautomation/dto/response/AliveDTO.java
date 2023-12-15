@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
@@ -11,5 +12,5 @@ import java.util.Date;
 public class AliveDTO {
     private Long id;
     private String macAddress;
-    private Date lastAckTimestamp;
+    private LocalDateTime lastAckTimestamp;
 }

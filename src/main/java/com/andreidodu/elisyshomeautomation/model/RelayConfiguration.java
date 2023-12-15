@@ -10,7 +10,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "ha_relay_configuration")
 @Getter
 @Setter
-@EntityListeners(AuditingEntityListener.class)
 public class RelayConfiguration extends ModelCommon {
 
     @Id
@@ -20,7 +19,7 @@ public class RelayConfiguration extends ModelCommon {
 
     private Boolean powerOn;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "device_id", referencedColumnName = "id", nullable = false)
     private Device device;
 }

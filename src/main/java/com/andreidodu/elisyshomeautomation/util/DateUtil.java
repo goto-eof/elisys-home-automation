@@ -1,5 +1,7 @@
 package com.andreidodu.elisyshomeautomation.util;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
@@ -36,7 +38,7 @@ public class DateUtil {
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
-        return  calendar.getTime();
+        return calendar.getTime();
     }
 
     public static Date getYesterdayDateWithHour(int hour) {
@@ -51,27 +53,34 @@ public class DateUtil {
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
         calendar.setTimeZone(TimeZone.getDefault());
-        return  calendar.getTime();
+        return calendar.getTime();
     }
 
     public static Date calculate24hAgo(Date now) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(now);
         calendar.add(Calendar.DAY_OF_MONTH, -1);
-        return  calendar.getTime();
+        return calendar.getTime();
     }
 
     public static Date calculate7dAgo(Date now) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(now);
         calendar.add(Calendar.DAY_OF_MONTH, -7);
-        return  calendar.getTime();
+        return calendar.getTime();
     }
 
     public static Date calculate1mAgo(Date now) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(now);
         calendar.add(Calendar.MONTH, -1);
-        return  calendar.getTime();
+        return calendar.getTime();
+    }
+
+
+    public static LocalDateTime toLocalDateTime(Date date) {
+        return date.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDateTime();
     }
 }

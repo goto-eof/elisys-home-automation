@@ -18,10 +18,6 @@ public interface DeviceMapper {
 
     List<DeviceDTO> toDTO(List<Device> model);
 
-    @Mapping(target = "alive", ignore = true)
-    @Mapping(target = "motionSensorConfiguration", ignore = true)
-    @Mapping(target = "weatherSensorConfiguration", ignore = true)
-    @Mapping(target = "weatherList", ignore = true)
     Device toModel(DeviceDTO dto);
 
     void update(@MappingTarget Device entity, DeviceDTO dto);

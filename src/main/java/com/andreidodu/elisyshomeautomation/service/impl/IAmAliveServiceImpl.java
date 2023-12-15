@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Optional;
 
@@ -35,7 +36,7 @@ public class IAmAliveServiceImpl implements IAmAliveService {
         ResponseStatusDTO status = new ResponseStatusDTO();
         if (aliveOptional.isPresent()) {
             Alive alive = aliveOptional.get();
-            alive.setLastAckTimestamp(new Date());
+            alive.setLastAckTimestamp(LocalDateTime.now());
             iAmAliveRepository.save(alive);
             status.setStatus(true);
             return status;
@@ -54,25 +55,23 @@ public class IAmAliveServiceImpl implements IAmAliveService {
     private Alive createAliveModel(Device device) {
         Alive alive = new Alive();
         alive.setDevice(device);
-        alive.setLastAckTimestamp(new Date());
+        alive.setLastAckTimestamp(LocalDateTime.now());
         return alive;
     }
 
     @Override
     public void updateByMacAddress(final String macAddress) {
-        IAmAliveRequestDTO iAmAliveRequestDTO = new IAmAliveRequestDTO();
-        iAmAliveRequestDTO.setMacAddress(macAddress);
-        Optional<Alive> aliveOptional = iAmAliveRepository.findByDevice_MacAddress(iAmAliveRequestDTO.getMacAddress());
+        Optional<Alive> aliveOptional = iAmAliveRepository.findByDevice_MacAddress(macAddress);
         if (aliveOptional.isPresent()) {
             Alive alive = aliveOptional.get();
-            alive.setLastAckTimestamp(new Date());
+            alive.setLastAckTimestamp(LocalDateTime.now());
             iAmAliveRepository.save(alive);
             return;
         }
-        Optional<Device> deviceOptional = this.deviceRepository.findByMacAddress(iAmAliveRequestDTO.getMacAddress());
+        Optional<Device> deviceOptional = this.deviceRepository.findByMacAddress(macAddress);
         if (deviceOptional.isEmpty()) {
-            this.deviceService.createNewDevice(DeviceType.Uknown, iAmAliveRequestDTO.getMacAddress(), DEVICE_NAME, iAmAliveRequestDTO.getMacAddress());
-            deviceOptional = this.deviceRepository.findByMacAddress(iAmAliveRequestDTO.getMacAddress());
+            this.deviceService.createNewDevice(DeviceType.Uknown, macAddress, DEVICE_NAME, macAddress);
+            deviceOptional = this.deviceRepository.findByMacAddress(macAddress);
         }
         Alive alive = createAliveModel(deviceOptional.get());
         iAmAliveRepository.save(alive);

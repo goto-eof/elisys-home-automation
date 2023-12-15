@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@EnableJpaAuditing
 @EntityScan("com.andreidodu.elisyshomeautomation.model")
 @EnableTransactionManagement
 @EnableJpaRepositories("com.andreidodu.elisyshomeautomation.repository")

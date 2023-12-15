@@ -12,7 +12,6 @@ import java.util.Date;
 @Table(name = "ha_motion_detection")
 @Getter
 @Setter
-@EntityListeners(AuditingEntityListener.class)
 public class MotionDetection extends ModelCommon {
 
     @Id

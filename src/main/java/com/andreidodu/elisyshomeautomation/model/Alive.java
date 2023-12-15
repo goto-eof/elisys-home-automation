@@ -4,15 +4,13 @@ import com.andreidodu.elisyshomeautomation.model.common.ModelCommon;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "ha_alive")
 @Getter
 @Setter
-@EntityListeners(AuditingEntityListener.class)
 public class Alive extends ModelCommon {
 
     @Id
@@ -21,8 +19,7 @@ public class Alive extends ModelCommon {
     private Long id;
 
     @Column(name = "last_ack_timestamp", nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date lastAckTimestamp;
+    private LocalDateTime lastAckTimestamp;
 
     @OneToOne
     @JoinColumn(name = "device_id", referencedColumnName = "id")

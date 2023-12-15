@@ -9,6 +9,7 @@ import com.andreidodu.elisyshomeautomation.repository.DeviceRepository;
 import com.andreidodu.elisyshomeautomation.dto.DeviceDTO;
 import com.andreidodu.elisyshomeautomation.mapper.DeviceMapper;
 import com.andreidodu.elisyshomeautomation.model.Device;
+import com.andreidodu.elisyshomeautomation.repository.IAmAliveRepository;
 import com.andreidodu.elisyshomeautomation.service.DeviceService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,16 +27,21 @@ public class DeviceServiceImpl implements DeviceService {
 
     private final DeviceRepository deviceRepository;
     private final DeviceMapper deviceMapper;
+    private final IAmAliveRepository iAmAliveRepository;
 
     @Override
     public DeviceDTO createNewDevice(final DeviceType type, final String macAddress, final String name, final String description) {
-        Device model = new Device();
-        model.setMacAddress(macAddress);
-        model.setDescription(description);
-        model.setName(name);
-        model.setType(type);
-        Device device = this.deviceRepository.save(model);
-        return this.deviceMapper.toDTO(device);
+        Optional<Device> optional = deviceRepository.findByMacAddress(macAddress);
+        if (optional.isEmpty()) {
+            Device model = new Device();
+            model.setMacAddress(macAddress);
+            model.setDescription(description);
+            model.setName(name);
+            model.setType(type);
+            Device device = this.deviceRepository.save(model);
+            return this.deviceMapper.toDTO(device);
+        }
+        return this.deviceMapper.toDTO(optional.get());
     }
 
     @Override
@@ -74,7 +80,12 @@ public class DeviceServiceImpl implements DeviceService {
 
         validateSensorType(sensorRequestCommonDTO, device);
 
-        return deviceMapper.toDTO(device);
+        DeviceDTO dto = deviceMapper.toDTO(device);
+
+        this.iAmAliveRepository.findByDevice_MacAddress(sensorRequestCommonDTO.getMacAddress())
+                .ifPresent(alive -> dto.setLastAck(alive.getLastAckTimestamp()));
+
+        return dto;
     }
 
     private static void validateSensorType(SensorRequestCommonDTO sensorRequestCommonDTO, Device device) {

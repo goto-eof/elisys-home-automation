@@ -4,7 +4,6 @@ import com.andreidodu.elisyshomeautomation.model.common.ModelCommon;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.List;
 
@@ -12,7 +11,6 @@ import java.util.List;
 @Table(name = "ha_alarm_clock_configuration")
 @Getter
 @Setter
-@EntityListeners(AuditingEntityListener.class)
 public class AlarmClockConfiguration extends ModelCommon {
 
     @Id

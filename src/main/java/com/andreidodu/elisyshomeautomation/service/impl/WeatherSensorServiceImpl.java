@@ -33,7 +33,7 @@ import java.util.stream.IntStream;
 
 @Slf4j
 @Service
-@Transactional(propagation = Propagation.REQUIRED)
+@Transactional
 @RequiredArgsConstructor
 public class WeatherSensorServiceImpl implements WeatherSensorService {
 

@@ -59,8 +59,15 @@ public class AlarmClockConfigurationServiceImpl implements AlarmClockConfigurati
             iAmAliveService.updateByMacAddress(configurationRequestDTO.getMacAddress());
             return result;
         }
-        AlarmClockConfigurationResponseDTO result = createNewConfiguration(configurationRequestDTO);
-        log.info(result.toString());
+        Optional<Device> deviceOptional = this.deviceRepository.findByMacAddress(configurationRequestDTO.getMacAddress());
+        if (deviceOptional.isEmpty()) {
+            this.deviceService.createNewDevice(DeviceType.AlarmClock, configurationRequestDTO.getMacAddress(), DEVICE_NAME, configurationRequestDTO.getMacAddress());
+            deviceOptional = this.deviceRepository.findByMacAddress(configurationRequestDTO.getMacAddress());
+        }
+        AlarmClockConfigurationResponseDTO dto = loadDefaultConfiguration(configurationRequestDTO.getMacAddress());
+        AlarmClockConfiguration model = mapper.toModel(dto);
+        model.setDevice(deviceOptional.get());
+        AlarmClockConfigurationResponseDTO result = this.mapper.toDTO(this.repository.save(model));
         iAmAliveService.updateByMacAddress(configurationRequestDTO.getMacAddress());
         return result;
     }
@@ -127,17 +134,6 @@ public class AlarmClockConfigurationServiceImpl implements AlarmClockConfigurati
         }
     }
 
-    public AlarmClockConfigurationResponseDTO createNewConfiguration(AlarmClockConfigurationRequestDTO configurationRequestDTO) {
-        Optional<Device> deviceOptional = this.deviceRepository.findByMacAddress(configurationRequestDTO.getMacAddress());
-        if (deviceOptional.isEmpty()) {
-            this.deviceService.createNewDevice(DeviceType.AlarmClock, configurationRequestDTO.getMacAddress(), DEVICE_NAME, configurationRequestDTO.getMacAddress());
-            deviceOptional = this.deviceRepository.findByMacAddress(configurationRequestDTO.getMacAddress());
-        }
-        AlarmClockConfigurationResponseDTO dto = loadDefaultConfiguration(configurationRequestDTO.getMacAddress());
-        AlarmClockConfiguration model = mapper.toModel(dto);
-        model.setDevice(deviceOptional.get());
-        return this.mapper.toDTO(this.repository.save(model));
-    }
 
     private AlarmClockConfigurationResponseDTO loadDefaultConfiguration(String macAddress) {
         AlarmClockConfigurationResponseDTO dto = new AlarmClockConfigurationResponseDTO();

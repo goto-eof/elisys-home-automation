@@ -29,7 +29,7 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-@Transactional(propagation = Propagation.REQUIRED)
+@Transactional
 @RequiredArgsConstructor
 public class MotionSensorServiceImpl implements MotionSensorService {
 

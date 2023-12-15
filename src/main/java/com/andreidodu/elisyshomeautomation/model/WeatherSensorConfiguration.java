@@ -10,7 +10,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "ha_weather_sensor_configuration")
 @Getter
 @Setter
-@EntityListeners(AuditingEntityListener.class)
 public class WeatherSensorConfiguration extends ModelCommon {
 
     @Id

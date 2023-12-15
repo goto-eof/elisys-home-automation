@@ -11,5 +11,7 @@ import org.mapstruct.Mapping;
 public interface WeatherSensorConfigurationMapper {
     @Mapping(source = "device.macAddress", target = "macAddress")
     WeatherSensorConfigurationDTO toDTO(WeatherSensorConfiguration model);
+
+    @Mapping(target = "device", ignore = true)
     WeatherSensorConfiguration toModel(WeatherSensorConfigurationDTO dto);
 }

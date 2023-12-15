@@ -12,7 +12,6 @@ import java.util.Date;
 @Table(name = "ha_weather")
 @Getter
 @Setter
-@EntityListeners(AuditingEntityListener.class)
 public class Weather extends ModelCommon {
 
     @Id

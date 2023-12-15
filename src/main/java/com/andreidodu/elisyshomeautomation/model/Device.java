@@ -14,7 +14,6 @@ import java.util.List;
 @Table(name = "ha_device")
 @Getter
 @Setter
-@EntityListeners(AuditingEntityListener.class)
 public class Device extends ModelCommon {
 
     @Id
@@ -31,20 +30,28 @@ public class Device extends ModelCommon {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @OneToOne(mappedBy = "device")
+    @OneToOne(mappedBy = "device", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, optional = true)
     private Alive alive;
 
-    @OneToOne(mappedBy = "device")
+    @OneToOne(mappedBy = "device", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, optional = true)
+    private AlarmClockConfiguration alarmClockConfiguration;
+
+    @OneToOne(mappedBy = "device", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, optional = true)
+    private WeatherSensorConfiguration weatherSensorConfiguration;
+
+    @OneToOne(mappedBy = "device", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, optional = true)
     private MotionSensorConfiguration motionSensorConfiguration;
 
-    @OneToOne(mappedBy = "device")
-    private WeatherSensorConfiguration weatherSensorConfiguration;
+    @OneToOne(mappedBy = "device", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, optional = true)
+    private RelayConfiguration relayConfiguration;
 
     @OneToMany(mappedBy = "device")
     private List<Weather> weatherList;
-
-    @OneToMany(mappedBy = "device")
-    private List<AlarmClockConfiguration> alarmClockConfigurationList;
 
     @Enumerated(EnumType.STRING)
     private DeviceType type;

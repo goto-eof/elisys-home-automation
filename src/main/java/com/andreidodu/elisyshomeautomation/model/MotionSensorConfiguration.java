@@ -10,7 +10,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "ha_motion_sensor_configuration")
 @Getter
 @Setter
-@EntityListeners(AuditingEntityListener.class)
 public class MotionSensorConfiguration extends ModelCommon {
 
     @Id
@@ -35,7 +34,6 @@ public class MotionSensorConfiguration extends ModelCommon {
     @OneToOne
     @JoinColumn(name = "device_id", referencedColumnName = "id")
     private Device device;
-
 
     @Override
     public String toString() {
