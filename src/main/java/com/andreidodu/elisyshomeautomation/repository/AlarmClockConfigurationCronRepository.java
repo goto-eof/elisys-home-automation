@@ -1,6 +1,6 @@
 package com.andreidodu.elisyshomeautomation.repository;
 
-import com.andreidodu.elisyshomeautomation.model.AlarmClockConfigurationCron;
+import com.andreidodu.elisyshomeautomation.entity.AlarmClockConfigurationCron;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

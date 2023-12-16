@@ -1,7 +1,7 @@
 package com.andreidodu.elisyshomeautomation.mapper;
 
 import com.andreidodu.elisyshomeautomation.dto.response.AliveDTO;
-import com.andreidodu.elisyshomeautomation.model.Alive;
+import com.andreidodu.elisyshomeautomation.entity.Alive;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

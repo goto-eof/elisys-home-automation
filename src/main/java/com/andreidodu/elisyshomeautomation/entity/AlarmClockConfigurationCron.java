@@ -1,15 +1,19 @@
-package com.andreidodu.elisyshomeautomation.model;
+package com.andreidodu.elisyshomeautomation.entity;
 
-import com.andreidodu.elisyshomeautomation.model.common.ModelCommon;
+import com.andreidodu.elisyshomeautomation.entity.common.ModelCommon;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.io.Serializable;
 
 @Entity
 @Table(name = "ha_alarm_clock_configuration_cron")
 @Getter
 @Setter
-public class AlarmClockConfigurationCron extends ModelCommon {
+@EntityListeners(AuditingEntityListener.class)
+public class AlarmClockConfigurationCron extends ModelCommon implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

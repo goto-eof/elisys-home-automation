@@ -1,9 +1,7 @@
 package com.andreidodu.elisyshomeautomation.mapper;
 
-import com.andreidodu.elisyshomeautomation.dto.response.MotionSensorConfigurationDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.WeatherSensorConfigurationDTO;
-import com.andreidodu.elisyshomeautomation.model.MotionSensorConfiguration;
-import com.andreidodu.elisyshomeautomation.model.WeatherSensorConfiguration;
+import com.andreidodu.elisyshomeautomation.entity.WeatherSensorConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

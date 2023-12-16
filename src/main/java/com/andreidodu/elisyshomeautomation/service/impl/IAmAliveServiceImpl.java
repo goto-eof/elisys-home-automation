@@ -1,9 +1,9 @@
 package com.andreidodu.elisyshomeautomation.service.impl;
 
-import com.andreidodu.elisyshomeautomation.model.DeviceType;
+import com.andreidodu.elisyshomeautomation.entity.DeviceType;
 import com.andreidodu.elisyshomeautomation.repository.DeviceRepository;
-import com.andreidodu.elisyshomeautomation.model.Alive;
-import com.andreidodu.elisyshomeautomation.model.Device;
+import com.andreidodu.elisyshomeautomation.entity.Alive;
+import com.andreidodu.elisyshomeautomation.entity.Device;
 import com.andreidodu.elisyshomeautomation.service.DeviceService;
 import com.andreidodu.elisyshomeautomation.service.IAmAliveService;
 import com.andreidodu.elisyshomeautomation.repository.IAmAliveRepository;
@@ -12,11 +12,12 @@ import com.andreidodu.elisyshomeautomation.dto.response.ResponseStatusDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Optional;
+import java.util.Random;
 
 @Slf4j
 @Service
@@ -60,12 +61,17 @@ public class IAmAliveServiceImpl implements IAmAliveService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.MANDATORY)
     public void updateByMacAddress(final String macAddress) {
         Optional<Alive> aliveOptional = iAmAliveRepository.findByDevice_MacAddress(macAddress);
         if (aliveOptional.isPresent()) {
             Alive alive = aliveOptional.get();
             alive.setLastAckTimestamp(LocalDateTime.now());
+            iAmAliveRepository.flush();
+            ;
             iAmAliveRepository.save(alive);
+            iAmAliveRepository.flush();
+            ;
             return;
         }
         Optional<Device> deviceOptional = this.deviceRepository.findByMacAddress(macAddress);

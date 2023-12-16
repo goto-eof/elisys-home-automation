@@ -3,7 +3,7 @@ package com.andreidodu.elisyshomeautomation.resource.impl;
 import com.andreidodu.elisyshomeautomation.dto.DeviceDTO;
 import com.andreidodu.elisyshomeautomation.dto.request.AlarmClockConfigurationRequestDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.AlarmClockConfigurationResponseDTO;
-import com.andreidodu.elisyshomeautomation.model.DeviceType;
+import com.andreidodu.elisyshomeautomation.entity.DeviceType;
 import com.andreidodu.elisyshomeautomation.resource.AlarmClockResource;
 import com.andreidodu.elisyshomeautomation.service.AlarmClockConfigurationService;
 import com.andreidodu.elisyshomeautomation.service.DeviceService;

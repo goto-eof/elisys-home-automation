@@ -8,7 +8,7 @@ import com.andreidodu.elisyshomeautomation.dto.request.WeatherByDateRequestDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.WeatherDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.WeatherSensorConfigurationDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.WeatherSummaryDTO;
-import com.andreidodu.elisyshomeautomation.model.DeviceType;
+import com.andreidodu.elisyshomeautomation.entity.DeviceType;
 import com.andreidodu.elisyshomeautomation.resource.WeatherSensorResource;
 import com.andreidodu.elisyshomeautomation.service.DeviceService;
 import com.andreidodu.elisyshomeautomation.service.WeatherSensorService;

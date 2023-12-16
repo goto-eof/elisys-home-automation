@@ -1,7 +1,7 @@
 package com.andreidodu.elisyshomeautomation.service.impl;
 
 import com.andreidodu.elisyshomeautomation.client.DiscordChannel;
-import com.andreidodu.elisyshomeautomation.model.DeviceType;
+import com.andreidodu.elisyshomeautomation.entity.DeviceType;
 import com.andreidodu.elisyshomeautomation.repository.DeviceRepository;
 import com.andreidodu.elisyshomeautomation.repository.MotionDetectionRepository;
 import com.andreidodu.elisyshomeautomation.repository.MotionSensorConfigurationRepository;
@@ -9,9 +9,9 @@ import com.andreidodu.elisyshomeautomation.dto.request.SensorConfigurationReques
 import com.andreidodu.elisyshomeautomation.dto.response.DiscordMessageDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.MotionSensorConfigurationDTO;
 import com.andreidodu.elisyshomeautomation.mapper.SensorConfigurationMapper;
-import com.andreidodu.elisyshomeautomation.model.Device;
-import com.andreidodu.elisyshomeautomation.model.MotionDetection;
-import com.andreidodu.elisyshomeautomation.model.MotionSensorConfiguration;
+import com.andreidodu.elisyshomeautomation.entity.Device;
+import com.andreidodu.elisyshomeautomation.entity.MotionDetection;
+import com.andreidodu.elisyshomeautomation.entity.MotionSensorConfiguration;
 import com.andreidodu.elisyshomeautomation.service.DeviceService;
 import com.andreidodu.elisyshomeautomation.service.IAmAliveService;
 import com.andreidodu.elisyshomeautomation.service.MotionSensorService;
@@ -21,7 +21,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;

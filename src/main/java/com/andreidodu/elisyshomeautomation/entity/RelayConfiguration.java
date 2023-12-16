@@ -1,16 +1,19 @@
-package com.andreidodu.elisyshomeautomation.model;
+package com.andreidodu.elisyshomeautomation.entity;
 
-import com.andreidodu.elisyshomeautomation.model.common.ModelCommon;
+import com.andreidodu.elisyshomeautomation.entity.common.ModelCommon;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "ha_relay_configuration")
 @Getter
 @Setter
-public class RelayConfiguration extends ModelCommon {
+@EntityListeners({AuditingEntityListener.class})
+public class RelayConfiguration extends ModelCommon implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

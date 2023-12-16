@@ -1,11 +1,8 @@
 package com.andreidodu.elisyshomeautomation.mapper;
 
 import com.andreidodu.elisyshomeautomation.dto.DeviceDTO;
-import com.andreidodu.elisyshomeautomation.dto.response.AlarmClockConfigurationResponseDTO;
-import com.andreidodu.elisyshomeautomation.model.AlarmClockConfiguration;
-import com.andreidodu.elisyshomeautomation.model.Device;
+import com.andreidodu.elisyshomeautomation.entity.Device;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
 import java.util.List;

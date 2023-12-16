@@ -1,6 +1,6 @@
 package com.andreidodu.elisyshomeautomation.dto.common;
 
-import com.andreidodu.elisyshomeautomation.model.DeviceType;
+import com.andreidodu.elisyshomeautomation.entity.DeviceType;
 import lombok.Getter;
 import lombok.Setter;
 

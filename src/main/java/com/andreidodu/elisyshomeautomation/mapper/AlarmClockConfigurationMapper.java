@@ -2,8 +2,8 @@ package com.andreidodu.elisyshomeautomation.mapper;
 
 import com.andreidodu.elisyshomeautomation.dto.response.AlarmClockConfigurationCronResponseDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.AlarmClockConfigurationResponseDTO;
-import com.andreidodu.elisyshomeautomation.model.AlarmClockConfiguration;
-import com.andreidodu.elisyshomeautomation.model.AlarmClockConfigurationCron;
+import com.andreidodu.elisyshomeautomation.entity.AlarmClockConfiguration;
+import com.andreidodu.elisyshomeautomation.entity.AlarmClockConfigurationCron;
 import org.mapstruct.*;
 
 @Mapper(componentModel = "spring")

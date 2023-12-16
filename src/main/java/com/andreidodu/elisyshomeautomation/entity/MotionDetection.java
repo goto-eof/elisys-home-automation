@@ -1,18 +1,20 @@
-package com.andreidodu.elisyshomeautomation.model;
+package com.andreidodu.elisyshomeautomation.entity;
 
-import com.andreidodu.elisyshomeautomation.model.common.ModelCommon;
+import com.andreidodu.elisyshomeautomation.entity.common.ModelCommon;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "ha_motion_detection")
 @Getter
 @Setter
-public class MotionDetection extends ModelCommon {
+@EntityListeners({AuditingEntityListener.class})
+public class MotionDetection extends ModelCommon implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

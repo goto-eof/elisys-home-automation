@@ -1,6 +1,6 @@
 package com.andreidodu.elisyshomeautomation.repository;
 
-import com.andreidodu.elisyshomeautomation.model.Weather;
+import com.andreidodu.elisyshomeautomation.entity.Weather;
 
 import java.util.Date;
 import java.util.Optional;

@@ -1,6 +1,6 @@
 package com.andreidodu.elisyshomeautomation.repository;
 
-import com.andreidodu.elisyshomeautomation.model.Weather;
+import com.andreidodu.elisyshomeautomation.entity.Weather;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Date;

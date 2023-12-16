@@ -1,16 +1,19 @@
-package com.andreidodu.elisyshomeautomation.model;
+package com.andreidodu.elisyshomeautomation.entity;
 
-import com.andreidodu.elisyshomeautomation.model.common.ModelCommon;
+import com.andreidodu.elisyshomeautomation.entity.common.ModelCommon;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.io.Serializable;
+
 @Entity
-@Table(name = "ha_motion_sensor_configuration")
+@Table(name = "ha_weather_sensor_configuration")
 @Getter
 @Setter
-public class MotionSensorConfiguration extends ModelCommon {
+@EntityListeners({AuditingEntityListener.class})
+public class WeatherSensorConfiguration extends ModelCommon implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,10 +29,16 @@ public class MotionSensorConfiguration extends ModelCommon {
     @Column(name = "i_am_alive_interval_seconds", nullable = false)
     private Long iAmAliveIntervalSeconds;
 
-    @Column(name = "timezone_offset_sec", nullable = false)
-    private Integer timezoneOffsetSec;
+    @Column(name = "temperature_sensor_unit_of_measure", nullable = false)
+    private String temperatureSensorUnitOfMeasure;
+
+    @Column(name = "weather_sensor_supply_interval_seconds", nullable = false)
+    private Long weatherSensorSupplyIntervalSeconds;
 
     private String crontab;
+
+    @Column(name = "timezone_offset_sec", nullable = false)
+    private Integer timezoneOffsetSec;
 
     @OneToOne
     @JoinColumn(name = "device_id", referencedColumnName = "id")
@@ -37,13 +46,14 @@ public class MotionSensorConfiguration extends ModelCommon {
 
     @Override
     public String toString() {
-        return "SensorConfiguration{" +
+        return "WeatherSensorConfiguration{" +
                 "id=" + id +
-                ", macAddress='" + device.getMacAddress() + '\'' +
                 ", alertEndpoint='" + alertEndpoint + '\'' +
                 ", iAmAliveEndpoint='" + iAmAliveEndpoint + '\'' +
                 ", iAmAliveIntervalSeconds=" + iAmAliveIntervalSeconds +
-                ", crontab='" + crontab + '\'' +
+                ", temperatureSensorUnitOfMeasure='" + temperatureSensorUnitOfMeasure + '\'' +
+                ", weatherSensorSupplyIntervalSeconds=" + weatherSensorSupplyIntervalSeconds +
+                ", device=" + device.getMacAddress() +
                 '}';
     }
 }

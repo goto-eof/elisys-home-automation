@@ -1,9 +1,7 @@
 package com.andreidodu.elisyshomeautomation.mapper;
 
 import com.andreidodu.elisyshomeautomation.dto.response.RelayConfigurationResponseDTO;
-import com.andreidodu.elisyshomeautomation.dto.response.WeatherDTO;
-import com.andreidodu.elisyshomeautomation.model.RelayConfiguration;
-import com.andreidodu.elisyshomeautomation.model.Weather;
+import com.andreidodu.elisyshomeautomation.entity.RelayConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

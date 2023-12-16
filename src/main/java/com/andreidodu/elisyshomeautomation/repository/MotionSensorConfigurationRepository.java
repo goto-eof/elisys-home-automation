@@ -1,6 +1,6 @@
 package com.andreidodu.elisyshomeautomation.repository;
 
-import com.andreidodu.elisyshomeautomation.model.MotionSensorConfiguration;
+import com.andreidodu.elisyshomeautomation.entity.MotionSensorConfiguration;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

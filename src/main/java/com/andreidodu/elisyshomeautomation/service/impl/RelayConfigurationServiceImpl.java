@@ -1,13 +1,13 @@
 package com.andreidodu.elisyshomeautomation.service.impl;
 
-import com.andreidodu.elisyshomeautomation.model.DeviceType;
+import com.andreidodu.elisyshomeautomation.entity.DeviceType;
 import com.andreidodu.elisyshomeautomation.repository.DeviceRepository;
 import com.andreidodu.elisyshomeautomation.repository.RelayConfigurationRepository;
 import com.andreidodu.elisyshomeautomation.dto.request.RelayConfigurationRequestDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.RelayConfigurationResponseDTO;
 import com.andreidodu.elisyshomeautomation.mapper.RelayConfigurationMapper;
-import com.andreidodu.elisyshomeautomation.model.Device;
-import com.andreidodu.elisyshomeautomation.model.RelayConfiguration;
+import com.andreidodu.elisyshomeautomation.entity.Device;
+import com.andreidodu.elisyshomeautomation.entity.RelayConfiguration;
 import com.andreidodu.elisyshomeautomation.service.DeviceService;
 import com.andreidodu.elisyshomeautomation.service.IAmAliveService;
 import com.andreidodu.elisyshomeautomation.service.RelayConfigurationService;

@@ -1,17 +1,9 @@
-buildscript {
-    ext {
-        queryDslVersion = '4.2.2'
-    }
-}
-
-
 plugins {
     id 'java'
     id 'org.springframework.boot' version '3.2.0'
-    id 'io.spring.dependency-management' version '1.1.3'
     id 'idea'
 }
-
+apply plugin: 'io.spring.dependency-management'
 
 
 idea {
@@ -22,7 +14,7 @@ idea {
 }
 
 group = 'com.andreidodu'
-version = '0.6.0-SNAPSHOT'
+version = '1.0.0'
 
 java {
     sourceCompatibility = '17'
@@ -34,42 +26,31 @@ compileJava {
 
 repositories {
     mavenCentral()
-    jcenter()
 }
 
 dependencies {
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+    annotationProcessor("com.querydsl:querydsl-apt:5.0.0:jakarta")
+    annotationProcessor("jakarta.persistence:jakarta.persistence-api:3.1.0")
+
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:4.1.0'
+    implementation 'org.liquibase:liquibase-core:4.25.0'
+    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+    implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
+    implementation 'com.h2database:h2:2.2.224'
+
     runtimeOnly 'org.postgresql:postgresql:42.7.1'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:4.1.0'
-
     compileOnly 'org.projectlombok:lombok:1.18.30'
-    annotationProcessor 'org.projectlombok:lombok:1.18.30'
-
-    implementation 'org.liquibase:liquibase-core:4.25.0'
-    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
-    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
 
     testCompileOnly 'org.projectlombok:lombok:1.18.30'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
-
-    implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
-    annotationProcessor("com.querydsl:querydsl-apt:5.0.0:jakarta") // the `jakarta` qualifier
-    annotationProcessor("jakarta.persistence:jakarta.persistence-api:3.1.0") // `jakarta` annotations should be included
-
-    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
-
-}
-
-tasks.named('bootBuildImage') {
-    builder = 'paketobuildpacks/builder-jammy-base:latest'
-}
-
-tasks.named('test') {
-    useJUnitPlatform()
 }
 
 bootJar {

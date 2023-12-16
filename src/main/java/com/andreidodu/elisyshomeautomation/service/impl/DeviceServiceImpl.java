@@ -4,11 +4,11 @@ import com.andreidodu.elisyshomeautomation.dto.common.SensorRequestCommonDTO;
 import com.andreidodu.elisyshomeautomation.dto.request.DeviceRegistrationDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.ResponseStatusDTO;
 import com.andreidodu.elisyshomeautomation.exception.ApplicationException;
-import com.andreidodu.elisyshomeautomation.model.DeviceType;
+import com.andreidodu.elisyshomeautomation.entity.DeviceType;
 import com.andreidodu.elisyshomeautomation.repository.DeviceRepository;
 import com.andreidodu.elisyshomeautomation.dto.DeviceDTO;
 import com.andreidodu.elisyshomeautomation.mapper.DeviceMapper;
-import com.andreidodu.elisyshomeautomation.model.Device;
+import com.andreidodu.elisyshomeautomation.entity.Device;
 import com.andreidodu.elisyshomeautomation.repository.IAmAliveRepository;
 import com.andreidodu.elisyshomeautomation.service.DeviceService;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 @RequiredArgsConstructor
 public class DeviceServiceImpl implements DeviceService {
 
@@ -83,7 +83,7 @@ public class DeviceServiceImpl implements DeviceService {
         DeviceDTO dto = deviceMapper.toDTO(device);
 
         this.iAmAliveRepository.findByDevice_MacAddress(sensorRequestCommonDTO.getMacAddress())
-                .ifPresent(alive -> dto.setLastAck(alive.getLastAckTimestamp()));
+                .ifPresent(alive -> dto.setLastAck(alive.getLastModifiedDate()));
 
         return dto;
     }

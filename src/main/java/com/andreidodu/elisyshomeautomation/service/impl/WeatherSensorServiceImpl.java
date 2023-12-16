@@ -2,7 +2,7 @@ package com.andreidodu.elisyshomeautomation.service.impl;
 
 import com.andreidodu.elisyshomeautomation.dto.common.SensorRequestCommonDTO;
 import com.andreidodu.elisyshomeautomation.dto.response.WeatherSummaryDTO;
-import com.andreidodu.elisyshomeautomation.model.DeviceType;
+import com.andreidodu.elisyshomeautomation.entity.DeviceType;
 import com.andreidodu.elisyshomeautomation.repository.DeviceRepository;
 import com.andreidodu.elisyshomeautomation.repository.WeatherCustomRepository;
 import com.andreidodu.elisyshomeautomation.repository.WeatherRepository;
@@ -13,9 +13,9 @@ import com.andreidodu.elisyshomeautomation.dto.response.WeatherSensorConfigurati
 import com.andreidodu.elisyshomeautomation.exception.ApplicationException;
 import com.andreidodu.elisyshomeautomation.mapper.WeatherMapper;
 import com.andreidodu.elisyshomeautomation.mapper.WeatherSensorConfigurationMapper;
-import com.andreidodu.elisyshomeautomation.model.Device;
-import com.andreidodu.elisyshomeautomation.model.Weather;
-import com.andreidodu.elisyshomeautomation.model.WeatherSensorConfiguration;
+import com.andreidodu.elisyshomeautomation.entity.Device;
+import com.andreidodu.elisyshomeautomation.entity.Weather;
+import com.andreidodu.elisyshomeautomation.entity.WeatherSensorConfiguration;
 import com.andreidodu.elisyshomeautomation.service.DeviceService;
 import com.andreidodu.elisyshomeautomation.service.IAmAliveService;
 import com.andreidodu.elisyshomeautomation.service.WeatherSensorService;
@@ -25,7 +25,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;

@@ -1,17 +1,20 @@
-package com.andreidodu.elisyshomeautomation.model;
+package com.andreidodu.elisyshomeautomation.entity;
 
-import com.andreidodu.elisyshomeautomation.model.common.ModelCommon;
+import com.andreidodu.elisyshomeautomation.entity.common.ModelCommon;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "ha_alarm_clock_configuration")
 @Getter
 @Setter
-public class AlarmClockConfiguration extends ModelCommon {
+@EntityListeners(AuditingEntityListener.class)
+public class AlarmClockConfiguration extends ModelCommon implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +34,7 @@ public class AlarmClockConfiguration extends ModelCommon {
     private Integer alarmIntervalMinutes;
 
     @OneToOne
-    @JoinColumn(name = "device_id", referencedColumnName = "id")
+    @JoinColumn(name = "device_id", referencedColumnName = "id", unique = true)
     private Device device;
 
     @OneToMany(mappedBy = "configuration", cascade = CascadeType.ALL, orphanRemoval = true)

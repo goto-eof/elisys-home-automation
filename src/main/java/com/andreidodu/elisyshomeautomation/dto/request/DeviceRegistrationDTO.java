@@ -1,7 +1,7 @@
 package com.andreidodu.elisyshomeautomation.dto.request;
 
 import com.andreidodu.elisyshomeautomation.dto.common.SensorRequestCommonDTO;
-import com.andreidodu.elisyshomeautomation.model.DeviceType;
+import com.andreidodu.elisyshomeautomation.entity.DeviceType;
 import lombok.Getter;
 import lombok.Setter;
 

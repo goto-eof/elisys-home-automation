@@ -1,6 +1,6 @@
 package com.andreidodu.elisyshomeautomation.repository;
 
-import com.andreidodu.elisyshomeautomation.model.RelayConfiguration;
+import com.andreidodu.elisyshomeautomation.entity.RelayConfiguration;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

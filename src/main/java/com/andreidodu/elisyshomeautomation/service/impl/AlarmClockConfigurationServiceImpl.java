@@ -5,7 +5,10 @@ import com.andreidodu.elisyshomeautomation.dto.response.AlarmClockConfigurationC
 import com.andreidodu.elisyshomeautomation.dto.response.AlarmClockConfigurationResponseDTO;
 import com.andreidodu.elisyshomeautomation.exception.ApplicationException;
 import com.andreidodu.elisyshomeautomation.mapper.AlarmClockConfigurationMapper;
-import com.andreidodu.elisyshomeautomation.model.*;
+import com.andreidodu.elisyshomeautomation.entity.AlarmClockConfiguration;
+import com.andreidodu.elisyshomeautomation.entity.Device;
+import com.andreidodu.elisyshomeautomation.entity.DeviceType;
+import com.andreidodu.elisyshomeautomation.entity.AlarmClockConfigurationCron;
 import com.andreidodu.elisyshomeautomation.repository.*;
 import com.andreidodu.elisyshomeautomation.service.AlarmClockConfigurationService;
 import com.andreidodu.elisyshomeautomation.service.DeviceService;
@@ -14,6 +17,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -50,6 +55,7 @@ public class AlarmClockConfigurationServiceImpl implements AlarmClockConfigurati
 
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRES_NEW)
     public AlarmClockConfigurationResponseDTO getConfiguration(AlarmClockConfigurationRequestDTO configurationRequestDTO) {
         Optional<AlarmClockConfiguration> configurationOptional = repository.findByDevice_MacAddress(configurationRequestDTO.getMacAddress());
         if (configurationOptional.isPresent()) {

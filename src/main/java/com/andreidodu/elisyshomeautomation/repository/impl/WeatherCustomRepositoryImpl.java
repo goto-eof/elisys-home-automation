@@ -1,7 +1,7 @@
 package com.andreidodu.elisyshomeautomation.repository.impl;
 
-import com.andreidodu.elisyshomeautomation.model.QWeather;
-import com.andreidodu.elisyshomeautomation.model.Weather;
+import com.andreidodu.elisyshomeautomation.entity.QWeather;
+import com.andreidodu.elisyshomeautomation.entity.Weather;
 import com.andreidodu.elisyshomeautomation.repository.WeatherCustomRepository;
 import com.andreidodu.elisyshomeautomation.util.DateUtil;
 import com.querydsl.core.BooleanBuilder;
@@ -11,7 +11,6 @@ import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Optional;
 
@@ -26,8 +25,8 @@ public class WeatherCustomRepositoryImpl implements WeatherCustomRepository {
         QWeather qWeather = QWeather.weather;
         BooleanBuilder booleanBuilder = new BooleanBuilder();
         booleanBuilder.and(qWeather.device.macAddress.eq(macAddress));
-        booleanBuilder.and(qWeather.createdDate.goe(dateStart.toInstant()));
-        booleanBuilder.and(qWeather.createdDate.loe(dateEnd.toInstant()));
+        booleanBuilder.and(qWeather.createdDate.goe(DateUtil.toLocalDateTime(dateStart)));
+        booleanBuilder.and(qWeather.createdDate.loe(DateUtil.toLocalDateTime(dateEnd)));
         booleanBuilder.and(qWeather.temperature.isNotNull());
         return Optional.ofNullable(queryFactory
                 .select(qWeather)

@@ -1,7 +1,7 @@
 package com.andreidodu.elisyshomeautomation.repository;
 
-import com.andreidodu.elisyshomeautomation.model.Device;
-import com.andreidodu.elisyshomeautomation.model.DeviceType;
+import com.andreidodu.elisyshomeautomation.entity.Device;
+import com.andreidodu.elisyshomeautomation.entity.DeviceType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
