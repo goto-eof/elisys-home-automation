@@ -24,9 +24,9 @@ public class Device extends ModelCommon implements Serializable {
     @Column(name = "description", nullable = false)
     private String description;
 
-//    @OneToOne(mappedBy = "device", cascade = CascadeType.ALL,
-//            fetch = FetchType.LAZY, optional = true)
-//    private Alive alive;
+    @OneToOne(mappedBy = "device", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, optional = true)
+    private Alive alive;
 //
 //    @OneToOne(mappedBy = "device", cascade = CascadeType.ALL,
 //            fetch = FetchType.LAZY, optional = true)
