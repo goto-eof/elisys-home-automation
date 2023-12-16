@@ -83,7 +83,7 @@ public class DeviceServiceImpl implements DeviceService {
         DeviceDTO dto = deviceMapper.toDTO(device);
 
         this.iAmAliveRepository.findByDevice_MacAddress(sensorRequestCommonDTO.getMacAddress())
-                .ifPresent(alive -> dto.setLastAck(alive.getLastModifiedDate()));
+                .ifPresent(alive -> dto.setLastAck(alive.getLastAckTimestamp()));
 
         return dto;
     }

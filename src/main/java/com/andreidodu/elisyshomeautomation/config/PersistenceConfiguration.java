@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EntityScan("com.andreidodu.elisyshomeautomation.entity")
-@EnableTransactionManagement
+//@EnableTransactionManagement
 @EnableJpaRepositories("com.andreidodu.elisyshomeautomation.repository")
 public class PersistenceConfiguration {
 

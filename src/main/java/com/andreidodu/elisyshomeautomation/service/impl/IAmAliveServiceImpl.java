@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
-import java.util.Random;
 
 @Slf4j
 @Service
@@ -44,7 +43,7 @@ public class IAmAliveServiceImpl implements IAmAliveService {
         }
         Optional<Device> deviceOptional = this.deviceRepository.findByMacAddress(iAmAliveRequestDTO.getMacAddress());
         if (deviceOptional.isEmpty()) {
-            this.deviceService.createNewDevice(DeviceType.Uknown, iAmAliveRequestDTO.getMacAddress(), DEVICE_NAME, iAmAliveRequestDTO.getMacAddress());
+            this.deviceService.createNewDevice(DeviceType.Unknown, iAmAliveRequestDTO.getMacAddress(), DEVICE_NAME, iAmAliveRequestDTO.getMacAddress());
             deviceOptional = this.deviceRepository.findByMacAddress(iAmAliveRequestDTO.getMacAddress());
         }
         Alive alive = createAliveModel(deviceOptional.get());
@@ -76,7 +75,7 @@ public class IAmAliveServiceImpl implements IAmAliveService {
         }
         Optional<Device> deviceOptional = this.deviceRepository.findByMacAddress(macAddress);
         if (deviceOptional.isEmpty()) {
-            this.deviceService.createNewDevice(DeviceType.Uknown, macAddress, DEVICE_NAME, macAddress);
+            this.deviceService.createNewDevice(DeviceType.Unknown, macAddress, DEVICE_NAME, macAddress);
             deviceOptional = this.deviceRepository.findByMacAddress(macAddress);
         }
         Alive alive = createAliveModel(deviceOptional.get());

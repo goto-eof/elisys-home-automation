@@ -4,6 +4,6 @@ public enum DeviceType {
     MotionDetector,
     WeatherStation,
     Relay,
-    Uknown,
+    Unknown,
     AlarmClock
 }
