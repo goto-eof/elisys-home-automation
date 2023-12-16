@@ -15,11 +15,6 @@ import java.io.Serializable;
 @EntityListeners(AuditingEntityListener.class)
 public class Device extends ModelCommon implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
-
     @Column(name = "mac_address", nullable = false, unique = true)
     private String macAddress;
 

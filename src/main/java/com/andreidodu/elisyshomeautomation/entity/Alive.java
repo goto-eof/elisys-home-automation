@@ -18,11 +18,6 @@ import java.util.Objects;
 @EntityListeners(AuditingEntityListener.class)
 public class Alive extends ModelCommon implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
-
     @Column(name = "last_ack_timestamp", nullable = false)
     private LocalDateTime lastAckTimestamp;
 
@@ -30,16 +25,4 @@ public class Alive extends ModelCommon implements Serializable {
     @JoinColumn(name = "device_id", referencedColumnName = "id", unique = true)
     private Device device;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Alive alive = (Alive) o;
-        return Objects.equals(id, alive.id) && Objects.equals(lastAckTimestamp, alive.lastAckTimestamp) && Objects.equals(device, alive.device);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, lastAckTimestamp, device);
-    }
 }

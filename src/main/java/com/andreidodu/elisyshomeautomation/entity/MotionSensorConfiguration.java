@@ -15,11 +15,6 @@ import java.io.Serializable;
 @EntityListeners({AuditingEntityListener.class})
 public class MotionSensorConfiguration extends ModelCommon implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
-
     @Column(name = "alert_endpoint", nullable = false)
     private String alertEndpoint;
 
@@ -38,15 +33,4 @@ public class MotionSensorConfiguration extends ModelCommon implements Serializab
     @JoinColumn(name = "device_id", referencedColumnName = "id")
     private Device device;
 
-    @Override
-    public String toString() {
-        return "SensorConfiguration{" +
-                "id=" + id +
-                ", macAddress='" + device.getMacAddress() + '\'' +
-                ", alertEndpoint='" + alertEndpoint + '\'' +
-                ", iAmAliveEndpoint='" + iAmAliveEndpoint + '\'' +
-                ", iAmAliveIntervalSeconds=" + iAmAliveIntervalSeconds +
-                ", crontab='" + crontab + '\'' +
-                '}';
-    }
 }

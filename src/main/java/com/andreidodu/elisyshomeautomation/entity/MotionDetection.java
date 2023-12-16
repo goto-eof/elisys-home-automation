@@ -16,11 +16,6 @@ import java.util.Date;
 @EntityListeners({AuditingEntityListener.class})
 public class MotionDetection extends ModelCommon implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
-
     @Column(name = "last_timestamp", nullable = false)
     private Date lastTimestamp;
 

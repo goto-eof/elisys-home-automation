@@ -16,11 +16,6 @@ import java.util.List;
 @EntityListeners(AuditingEntityListener.class)
 public class AlarmClockConfiguration extends ModelCommon implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
-
     @Column(name = "timezone_seconds", nullable = false)
     private Long timezoneSeconds;
 

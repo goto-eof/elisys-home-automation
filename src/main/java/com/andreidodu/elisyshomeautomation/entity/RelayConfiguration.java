@@ -15,11 +15,6 @@ import java.io.Serializable;
 @EntityListeners({AuditingEntityListener.class})
 public class RelayConfiguration extends ModelCommon implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
-
     private Boolean powerOn;
 
     @OneToOne
