@@ -5,7 +5,6 @@ import com.andreidodu.elisyshomeautomation.dto.response.AlarmClockConfigurationR
 import org.springframework.transaction.annotation.Transactional;
 
 public interface AlarmClockConfigurationService {
-    @Transactional
     AlarmClockConfigurationResponseDTO getConfigurationWithUpdateIAmAlive(AlarmClockConfigurationRequestDTO configurationRequestDTO, boolean updateIAmAlive);
 
     AlarmClockConfigurationResponseDTO update(Long id, AlarmClockConfigurationResponseDTO dto);
