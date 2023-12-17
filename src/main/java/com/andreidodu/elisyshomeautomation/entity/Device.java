@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "ha_device")
@@ -25,27 +26,27 @@ public class Device extends ModelCommon implements Serializable {
     private String description;
 
     @OneToOne(mappedBy = "device", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY, optional = true)
+            fetch = FetchType.LAZY)
     private Alive alive;
-//
-//    @OneToOne(mappedBy = "device", cascade = CascadeType.ALL,
-//            fetch = FetchType.LAZY, optional = true)
-//    private AlarmClockConfiguration alarmClockConfiguration;
-//
-//    @OneToOne(mappedBy = "device", cascade = CascadeType.ALL,
-//            fetch = FetchType.LAZY, optional = true)
-//    private WeatherSensorConfiguration weatherSensorConfiguration;
-//
-//    @OneToOne(mappedBy = "device", cascade = CascadeType.ALL,
-//            fetch = FetchType.LAZY, optional = true)
-//    private MotionSensorConfiguration motionSensorConfiguration;
-//
-//    @OneToOne(mappedBy = "device", cascade = CascadeType.ALL,
-//            fetch = FetchType.LAZY, optional = true)
-//    private RelayConfiguration relayConfiguration;
-//
-//    @OneToMany(mappedBy = "device")
-//    private List<Weather> weatherList;
+
+    @OneToOne(mappedBy = "device", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, optional = true)
+    private AlarmClockConfiguration alarmClockConfiguration;
+
+    @OneToOne(mappedBy = "device", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, optional = true)
+    private WeatherSensorConfiguration weatherSensorConfiguration;
+
+    @OneToOne(mappedBy = "device", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, optional = true)
+    private MotionSensorConfiguration motionSensorConfiguration;
+
+    @OneToOne(mappedBy = "device", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, optional = true)
+    private RelayConfiguration relayConfiguration;
+
+    @OneToMany(mappedBy = "device")
+    private List<Weather> weatherList;
 
     @Column(name = "type")
     @Enumerated(EnumType.STRING)
