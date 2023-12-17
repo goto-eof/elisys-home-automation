@@ -60,7 +60,7 @@ public class IAmAliveServiceImpl implements IAmAliveService {
     }
 
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public void updateByMacAddress(final String macAddress) {
         Optional<Alive> aliveOptional = iAmAliveRepository.findByDevice_MacAddress(macAddress);
         if (aliveOptional.isPresent()) {

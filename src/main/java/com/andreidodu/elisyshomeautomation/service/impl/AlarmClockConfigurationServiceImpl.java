@@ -17,8 +17,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -55,14 +53,15 @@ public class AlarmClockConfigurationServiceImpl implements AlarmClockConfigurati
 
 
     @Override
-    @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRES_NEW)
-    public AlarmClockConfigurationResponseDTO getConfiguration(AlarmClockConfigurationRequestDTO configurationRequestDTO) {
+    public AlarmClockConfigurationResponseDTO getConfigurationWithUpdateIAmAlive(AlarmClockConfigurationRequestDTO configurationRequestDTO, boolean updateIAmAlive) {
         Optional<AlarmClockConfiguration> configurationOptional = repository.findByDevice_MacAddress(configurationRequestDTO.getMacAddress());
         if (configurationOptional.isPresent()) {
             AlarmClockConfiguration configuration = configurationOptional.get();
             AlarmClockConfigurationResponseDTO result = mapper.toDTO(configuration);
             log.info(result.toString());
-            iAmAliveService.updateByMacAddress(configurationRequestDTO.getMacAddress());
+            if (updateIAmAlive) {
+                iAmAliveService.updateByMacAddress(configurationRequestDTO.getMacAddress());
+            }
             return result;
         }
         Optional<Device> deviceOptional = this.deviceRepository.findByMacAddress(configurationRequestDTO.getMacAddress());
@@ -74,7 +73,9 @@ public class AlarmClockConfigurationServiceImpl implements AlarmClockConfigurati
         AlarmClockConfiguration model = mapper.toModel(dto);
         model.setDevice(deviceOptional.get());
         AlarmClockConfigurationResponseDTO result = this.mapper.toDTO(this.repository.save(model));
-        iAmAliveService.updateByMacAddress(configurationRequestDTO.getMacAddress());
+        if (updateIAmAlive) {
+            iAmAliveService.updateByMacAddress(configurationRequestDTO.getMacAddress());
+        }
         return result;
     }
 

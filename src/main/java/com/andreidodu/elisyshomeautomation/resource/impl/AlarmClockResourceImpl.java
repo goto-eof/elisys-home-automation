@@ -23,7 +23,12 @@ public class AlarmClockResourceImpl implements AlarmClockResource {
 
     @Override
     public ResponseEntity<AlarmClockConfigurationResponseDTO> getConfiguration(@RequestBody AlarmClockConfigurationRequestDTO configurationRequestDTO) {
-        return ResponseEntity.ok(alarmClockConfigurationService.getConfiguration(configurationRequestDTO));
+        return ResponseEntity.ok(alarmClockConfigurationService.getConfigurationWithUpdateIAmAlive(configurationRequestDTO, true));
+    }
+
+    @Override
+    public ResponseEntity<AlarmClockConfigurationResponseDTO> getConfigurationNoUpdateIAmAlive(@RequestBody AlarmClockConfigurationRequestDTO configurationRequestDTO) {
+        return ResponseEntity.ok(alarmClockConfigurationService.getConfigurationWithUpdateIAmAlive(configurationRequestDTO, false));
     }
 
     @Override
