@@ -29,5 +29,5 @@ public abstract class ModelCommon {
 
     @Version
     @Temporal(TemporalType.TIMESTAMP)
-    private Instant version;
+    protected Instant version;
 }
