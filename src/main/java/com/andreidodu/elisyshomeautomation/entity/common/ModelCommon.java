@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 @MappedSuperclass
@@ -27,5 +28,6 @@ public abstract class ModelCommon {
     protected LocalDateTime lastModifiedDate;
 
     @Version
-    private Integer version;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Instant version;
 }

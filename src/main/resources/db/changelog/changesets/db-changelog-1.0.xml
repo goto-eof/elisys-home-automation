@@ -25,7 +25,7 @@
                     remarks="insert datetime of the record"/>
             <column name="update_date" type="TIMESTAMP" defaultValueComputed="${defaultTimestamp}"
                     remarks="update datetime of the record"/>
-            <column name="version" type="INT" defaultValueNumeric="0" remarks="record version"/>
+            <column name="version" type="TIMESTAMP" defaultValueComputed="${defaultTimestamp}" remarks="record version"/>
         </createTable>
     </changeSet>
 
@@ -42,7 +42,7 @@
             </column>
             <column name="insert_date" type="TIMESTAMP" defaultValueComputed="${defaultTimestamp}"/>
             <column name="update_date" type="TIMESTAMP" defaultValueComputed="${defaultTimestamp}"/>
-            <column name="version" type="INT" defaultValueNumeric="0"/>
+            <column name="version" type="TIMESTAMP" defaultValueComputed="${defaultTimestamp}"/>
         </createTable>
 
         <addForeignKeyConstraint baseColumnNames="device_id"
@@ -78,7 +78,7 @@
             </column>
             <column name="insert_date" type="TIMESTAMP" defaultValueComputed="${defaultTimestamp}"/>
             <column name="update_date" type="TIMESTAMP" defaultValueComputed="${defaultTimestamp}"/>
-            <column name="version" type="INT" defaultValueNumeric="0"/>
+            <column name="version" type="TIMESTAMP" defaultValueComputed="${defaultTimestamp}"/>
         </createTable>
         <addForeignKeyConstraint baseColumnNames="device_id"
                                  baseTableName="${tablePrefix}motion_sensor_configuration"
@@ -102,7 +102,7 @@
             </column>
             <column name="insert_date" type="TIMESTAMP" defaultValueComputed="${defaultTimestamp}"/>
             <column name="update_date" type="TIMESTAMP" defaultValueComputed="${defaultTimestamp}"/>
-            <column name="version" type="INT" defaultValueNumeric="0"/>
+            <column name="version" type="TIMESTAMP" defaultValueComputed="${defaultTimestamp}"/>
         </createTable>
         <addForeignKeyConstraint baseColumnNames="device_id"
                                  baseTableName="${tablePrefix}motion_detection"
@@ -131,7 +131,7 @@
 
             <column name="insert_date" type="TIMESTAMP" defaultValueComputed="${defaultTimestamp}"/>
             <column name="update_date" type="TIMESTAMP" defaultValueComputed="${defaultTimestamp}"/>
-            <column name="version" type="INT" defaultValueNumeric="0"/>
+            <column name="version" type="TIMESTAMP" defaultValueComputed="${defaultTimestamp}"/>
         </createTable>
         <addForeignKeyConstraint baseColumnNames="device_id"
                                  baseTableName="${tablePrefix}weather"
@@ -173,7 +173,7 @@
             </column>
             <column name="insert_date" type="TIMESTAMP" defaultValueComputed="${defaultTimestamp}"/>
             <column name="update_date" type="TIMESTAMP" defaultValueComputed="${defaultTimestamp}"/>
-            <column name="version" type="INT" defaultValueNumeric="0"/>
+            <column name="version" type="TIMESTAMP" defaultValueComputed="${defaultTimestamp}"/>
         </createTable>
         <addForeignKeyConstraint baseColumnNames="device_id"
                                  baseTableName="${tablePrefix}weather_sensor_configuration"
@@ -197,7 +197,7 @@
             </column>
             <column name="insert_date" type="TIMESTAMP" defaultValueComputed="${defaultTimestamp}"/>
             <column name="update_date" type="TIMESTAMP" defaultValueComputed="${defaultTimestamp}"/>
-            <column name="version" type="INT" defaultValueNumeric="0"/>
+            <column name="version" type="TIMESTAMP" defaultValueComputed="${defaultTimestamp}"/>
         </createTable>
         <addForeignKeyConstraint baseColumnNames="device_id"
                                  baseTableName="${tablePrefix}relay_configuration"
@@ -230,7 +230,7 @@
             </column>
             <column name="insert_date" type="TIMESTAMP" defaultValueComputed="${defaultTimestamp}"/>
             <column name="update_date" type="TIMESTAMP" defaultValueComputed="${defaultTimestamp}"/>
-            <column name="version" type="INT" defaultValueNumeric="0"/>
+            <column name="version" type="TIMESTAMP" defaultValueComputed="${defaultTimestamp}"/>
         </createTable>
         <addForeignKeyConstraint baseColumnNames="device_id"
                                  baseTableName="${tablePrefix}alarm_clock_configuration"
@@ -257,7 +257,7 @@
             </column>
             <column name="insert_date" type="TIMESTAMP" defaultValueComputed="${defaultTimestamp}"/>
             <column name="update_date" type="TIMESTAMP" defaultValueComputed="${defaultTimestamp}"/>
-            <column name="version" type="INT" defaultValueNumeric="0"/>
+            <column name="version" type="TIMESTAMP" defaultValueComputed="${defaultTimestamp}"/>
         </createTable>
         <addForeignKeyConstraint baseColumnNames="alarm_clock_configuration_id"
                                  baseTableName="${tablePrefix}alarm_clock_configuration_cron"
