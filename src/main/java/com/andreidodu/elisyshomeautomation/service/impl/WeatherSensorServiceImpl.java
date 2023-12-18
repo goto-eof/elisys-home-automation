@@ -96,7 +96,7 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
             throw new ApplicationException("Invalid input: numberOfItemsToBeExtracted = 0");
         }
 
-        List<Weather> weatherList = this.weatherRepository.findByCreatedDateBetweenAndDevice_macAddress(dateStart, dateEnd, macAddress);
+        List<Weather> weatherList = this.weatherRepository.findByCreatedDateBetweenAndDevice_macAddress(DateUtil.toLocalDateTime(dateStart), DateUtil.toLocalDateTime(dateEnd), macAddress);
         if (numberOfItemsToBeExtracted.isEmpty()) {
             return this.weatherMapper.toDTO(weatherList);
         }
@@ -118,7 +118,7 @@ public class WeatherSensorServiceImpl implements WeatherSensorService {
     }
 
     private List<WeatherDTO> getAllByDateInterval(final String macAddress, final Date dateStart, Date dateEnd) {
-        List<Weather> weatherList = this.weatherRepository.findByCreatedDateBetweenAndDevice_macAddress(dateStart, dateEnd, macAddress);
+        List<Weather> weatherList = this.weatherRepository.findByCreatedDateBetweenAndDevice_macAddress(DateUtil.toLocalDateTime(dateStart), DateUtil.toLocalDateTime(dateEnd), macAddress);
         return this.weatherMapper.toDTO(weatherList);
     }
 
