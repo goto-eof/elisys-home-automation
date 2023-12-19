@@ -35,7 +35,7 @@ In brief E.H.A.S. allows to:
     - control remotely a Relay
 
 - control remotely an Alarm Clock
-    - enable/disable alarms
+    - define new alarms/remove alarms
 
 # Architecture
 ![architecture](images/elisys-architecture.png)
